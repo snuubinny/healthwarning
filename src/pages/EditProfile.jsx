@@ -1,16 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-
-function EditProfile() {
-  return (
-    <div>
-      <h2>EditProfile Page</h2>
-    </div>
-  )
+function NotFound() {
+  return <div></div>;
 }
 
-export default EditProfile
-
-
-
+export default NotFound;
