@@ -95,7 +95,6 @@ const ResisterButton = styled.div`
 
 function LoginForm() {
   const navigate = useNavigate();
-  
   const handleRegisterClick = () => {
     navigate('/register');
   };
