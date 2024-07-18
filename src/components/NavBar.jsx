@@ -51,13 +51,16 @@ const Icon = styled.svg`
 function NavBar() {
   const navigate = useNavigate();
 
-  const handleLogoClick = () => {
+  const handleEditLogoClick = () => {
     navigate("/EditProfile");
+  };
+  const handleHomeLogoClick = () => {
+    navigate("/");
   };
 
   return (
     <WrapNavBar>
-      <IconWrapper>
+      <IconWrapper onClick={handleHomeLogoClick}>
         <Icon>
           <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path
@@ -71,7 +74,7 @@ function NavBar() {
           <span style={{ color: "#fbefa2" }}>다!</span> 했슈
         </TitleWrapper>
       </IconWrapper>
-      <LogoWrapper onClick={handleLogoClick}>
+      <LogoWrapper onClick={handleEditLogoClick}>
         <CustomLogo xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
             fillRule="evenodd"
