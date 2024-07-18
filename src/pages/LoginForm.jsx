@@ -82,7 +82,7 @@ const TextBox = styled.div`
   margin-bottom: 20px;
 `;
 
-const ResisterButton = styled.div`
+const RegisterButton = styled.div`
   display: flex;
   justify-content: center;
   text-decoration: underline;
@@ -96,7 +96,7 @@ const ResisterButton = styled.div`
 function LoginForm() {
   const navigate = useNavigate();
   const handleRegisterClick = () => {
-    navigate('/register');
+    navigate('/RegisterForm');
   };
 
   return (
@@ -109,7 +109,7 @@ function LoginForm() {
         </FormBox>
         <LoginButton>로 그 인</LoginButton>
         <TextBox>or</TextBox>
-        <ResisterButton onClick={handleRegisterClick} >회원가입하기</ResisterButton>
+        <RegisterButton onClick={handleRegisterClick} >회원가입하기</RegisterButton>
       </LoginBox>
     </LoginContainer>
   );
