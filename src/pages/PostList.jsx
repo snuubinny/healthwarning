@@ -47,8 +47,8 @@ const ButtonContainer = styled.div`
 `;
 
 const GoToPost = styled.button`
-  width: 100px;
-  height: 40px;
+  width: 130px;
+  height: 45px;
   margin-right: 30px;
   margin-bottom: 20px;
   font-size: large;
@@ -73,8 +73,7 @@ const PostList = () => {
   const [cards, setCards] = useState(Array(31).fill({}));
 
   useEffect(() => {
-    // 데이터 로딩 시나리오가 있으면 여기에 추가 가능
-    // setCards(불러온 데이터);
+    
   }, []);
   
   return (
