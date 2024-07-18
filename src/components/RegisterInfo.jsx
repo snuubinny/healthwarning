@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const ProfileContainer = styled.div`
+const InfoContainer = styled.div`
   width: 50%;
   padding: 10px;
   position: relative;
@@ -18,7 +18,7 @@ const ProfileContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   cursor: pointer;
-  height: 540px;
+  height: 380px;
   margin-bottom: 20px;
   margin-top: 50px;
 `;
@@ -44,6 +44,28 @@ const TextWrap = styled.p`
   line-height: 2;
 `;
 
+const RegisterButton = styled.button`
+  padding: 3px;
+  font-size: 15px;
+  height: 40px;
+  width: 120px;
+  background-color: #ff832b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  border: 1px solid #ffe3c8;
+
+  &:hover {
+    background-color: #fee5ce;
+    color: #ff832b;
+  }
+  margin-bottom: 20px;
+`;
+
 const FormBox = styled.input`
   height: 45px;
   background-color: #feecdb;
@@ -53,7 +75,7 @@ const FormBox = styled.input`
   outline-color: #ffe3c8;
   margin: 10px 0;
   padding: 0 10px;
-  width: 60%;
+  width: 60px;
 `;
 
 const FormBoxContainer = styled.div`
@@ -61,7 +83,7 @@ const FormBoxContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-left: 70px;
+  margin-left: 110px;
   padding: 70px 10px 10px;
   margin-top: -20px;
 `;
@@ -75,80 +97,49 @@ const InputContainer = styled.div`
 
 const Label = styled.label`
   font-weight: bold;
-  width: 100px; /* Set a fixed width for consistent alignment */
+  width: 200px;
   margin-right: 10px;
-  text-align: right; /* Align text to the right */
+  text-align: right;
 `;
 
-const SexButton = styled.button`
-  padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 120px;
-  background-color: #fee5ce;
-  color: #ff832b;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-  margin-left: 2px;
+const InlineLabel = styled.label`
   font-weight: bold;
-  border: 1px solid #ffe3c8;
-
-  &:hover {
-    background-color: #ff832b;
-    color: white;
-  }
-  margin-bottom: 20px;
-`;
-const SexButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin-right: 250px;
+  margin-left: 10px;
+  flex-shrink: 0; /* 추가 */
 `;
 
-const Myinfo = () => {
+const RegisterInfo = () => {
   return (
     <Wrapper>
-      <ProfileContainer>
+      <InfoContainer>
         <Header>
-          <TextWrap>내정보</TextWrap>
+          <TextWrap>필수정보</TextWrap>
         </Header>
         <FormBoxContainer>
           <InputContainer>
-            <Label>이름:</Label>
-            <FormBox type="text" placeholder="이름을 입력하세요" />
+            <Label>목표 수면시간은</Label>
+            <FormBox type="integer" />
+            <InlineLabel>시간 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
-            <Label>아이디:</Label>
-            <FormBox type="text" placeholder="아이디를 입력하세요" />
+            <Label>약 복용횟수는</Label>
+            <FormBox type="integer" />
+            <InlineLabel>회 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
-            <Label>비밀번호:</Label>
-            <FormBox type="text" placeholder="비밀번호를 입력하세요" />
+            <Label>목표 운동시간은</Label>
+            <FormBox type="integer" />
+            <InlineLabel>분 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
-            <Label>이메일:</Label>
-            <FormBox type="text" placeholder="이메일을 입력하세요" />
+            <Label>하루 목표 식사횟수는</Label>
+            <FormBox type="integer" />
+            <InlineLabel>끼입니다.</InlineLabel>
           </InputContainer>
-          <InputContainer>
-            <Label>생년월일:</Label>
-            <FormBox
-              type="text"
-              placeholder="생년월일을 입력하세요 (YYMMDD 형식)"
-            />
-          </InputContainer>
-          <SexButtonContainer>
-            <Label>성별:</Label>
-            <SexButton>남</SexButton>
-            <SexButton>여</SexButton>
-          </SexButtonContainer>
         </FormBoxContainer>
-      </ProfileContainer>
+      </InfoContainer>
     </Wrapper>
   );
 };
 
-export { Myinfo };
+export { RegisterInfo };

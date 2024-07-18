@@ -1,6 +1,6 @@
 import React from "react";
-import { Myinfo } from "../components/Myinfo";
-import { NecessaryInfo } from "../components/NecessaryInfo";
+import { RegisterMyInfo } from "../components/RegisterMyInfo";
+import { RegisterInfo } from "../components/RegisterInfo";
 import styled from "styled-components";
 import lionImage from "../img/lion.png";
 
@@ -41,6 +41,27 @@ const LionIcon = styled.img`
   height: auto;
   margin-right: 10px;
 `;
+const RegisterButton = styled.button`
+  padding: 3px;
+  font-size: 15px;
+  height: 40px;
+  width: 120px;
+  background-color: #ff832b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 680px;
+  font-weight: bold;
+  border: 1px solid #ffe3c8;
+
+  &:hover {
+    background-color: #fee5ce;
+    color: #ff832b;
+  }
+  margin-bottom: 20px;
+`;
 
 const RegisterForm = () => {
   return (
@@ -53,8 +74,9 @@ const RegisterForm = () => {
         <ContextWrap>회원가입을 통해 다했슈 멤버가 되어보세요!</ContextWrap>
         <Divider />
       </RegisterWrap>
-      <Myinfo />
-      <NecessaryInfo />
+      <RegisterMyInfo />
+      <RegisterInfo />
+      <RegisterButton>회원가입</RegisterButton>
     </>
   );
 };
