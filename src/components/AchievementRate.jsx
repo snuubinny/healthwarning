@@ -15,7 +15,7 @@ const PercentContainer = styled.div`
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
-  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   cursor: pointer;
   height: 450px;
@@ -57,7 +57,7 @@ const ContentContainer = styled.div`
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
-  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   cursor: pointer;
   height: 300px;
@@ -91,9 +91,11 @@ const CommentButton = styled.button`
   cursor: pointer;
   margin-top: 20px;
   margin-left: 10px;
+  font-weight: bold;
 
   &:hover {
-    background-color: #e67a00;
+    background-color: #fee5ce;
+    color: #ff832b;
   }
   margin-bottom: 20px;
 `;
@@ -104,6 +106,11 @@ const CommentWrapper = styled.div`
   justify-content: center;
   margin-top: 20px;
   width: 100%;
+`;
+const CommentButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AchievementRate = () => {
@@ -137,7 +144,9 @@ const AchievementRate = () => {
       </ContentContainer>
       <CommentWrapper>
         <CommentField />
-        <CommentButton>등록!</CommentButton>
+        <CommentButtonWrapper>
+          <CommentButton>등록!</CommentButton>
+        </CommentButtonWrapper>
       </CommentWrapper>
     </Wrapper>
   );
