@@ -59,6 +59,9 @@ const EditProfile = () => {
     setExercise(data.exercise);
     setMeal(data.meal);
   };
+  const handleSexChange = (newSex) => {
+    setSex(newSex);
+  };
 
   const initialData = {
     name,
@@ -80,10 +83,12 @@ const EditProfile = () => {
         setIsEditable={setIsEditable}
         name={name}
         id={id}
+        sex={sex}
       />
       <MyInformation
         isEditable={isEditable}
         onSave={handleSave}
+        onSexChange={handleSexChange}
         initialData={initialData}
       />
       <ProfileDetails

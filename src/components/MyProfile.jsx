@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import lionImage from "../img/lion.png";
-
+import womanImage from "../img/woman.png";
+import manImage from "../img/man.png";
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -9,7 +9,13 @@ const IconWrapper = styled.div`
   margin-left: 280px;
 `;
 
-const LionIcon = styled.img`
+const WomanIcon = styled.img`
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+`;
+
+const ManIcon = styled.img`
   width: 150px;
   height: auto;
   margin-right: 20px;
@@ -76,7 +82,7 @@ const TextWrap = styled.p`
   line-height: 2;
 `;
 
-const MyProfile = ({ isEditable, setIsEditable, name, id }) => {
+const MyProfile = ({ isEditable, setIsEditable, name, id, sex }) => {
   const handleIconClick = () => {
     setIsEditable(!isEditable);
   };
@@ -88,7 +94,11 @@ const MyProfile = ({ isEditable, setIsEditable, name, id }) => {
           <TitleWrap>내 프로필</TitleWrap>
         </Header>
         <IconWrapper>
-          <LionIcon src={lionImage} />
+          {sex === "여" ? (
+            <WomanIcon src={womanImage} />
+          ) : (
+            <ManIcon src={manImage} />
+          )}
           <PencilIcon
             isActive={isEditable}
             onClick={handleIconClick}
