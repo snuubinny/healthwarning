@@ -33,7 +33,35 @@ const Header = styled.div`
   top: 0;
   left: 0;
 `;
+const SexButton = styled.button`
+  padding: 3px;
+  font-size: 15px;
+  height: 40px;
+  width: 120px;
+  background-color: ${(props) => (props.active ? "#ff832b" : "#fee5ce")};
+  color: ${(props) => (props.active ? "white" : "#ff832b")};
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 2px;
+  font-weight: bold;
+  border: 1px solid #ffe3c8;
 
+  &:hover {
+    background-color: #ff832b;
+    color: white;
+  }
+  margin-bottom: 20px;
+`;
+
+const SexButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 250px;
+`;
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
@@ -80,7 +108,7 @@ const Label = styled.label`
   text-align: right; /* Align text to the right */
 `;
 
-const MyInformation = ({ isEditable, onSave, initialData }) => {
+const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
   const [name, setName] = useState(initialData.name);
   const [id, setId] = useState(initialData.id);
   const [password, setPassword] = useState(initialData.password);
@@ -89,7 +117,8 @@ const MyInformation = ({ isEditable, onSave, initialData }) => {
   const [sex, setSex] = useState(initialData.sex);
 
   const handleSave = () => {
-    onSave(name, id); // onSave 함수를 호출하여 부모 컴포넌트로 데이터를 전달합니다.
+    onSave(name, id);
+    onSexChange(sex);
   };
 
   useEffect(() => {
@@ -155,16 +184,21 @@ const MyInformation = ({ isEditable, onSave, initialData }) => {
               readOnly={!isEditable}
             />
           </InputContainer>
-          <InputContainer>
+          <SexButtonContainer>
             <Label>성별:</Label>
-            <FormBox
-              type="text"
-              value={sex}
-              onChange={(e) => setSex(e.target.value)}
-              placeholder={initialData.sex}
-              readOnly={!isEditable}
-            />
-          </InputContainer>
+            <SexButton
+              active={sex === "남"}
+              onClick={() => isEditable && setSex("남")}
+            >
+              남
+            </SexButton>
+            <SexButton
+              active={sex === "여"}
+              onClick={() => isEditable && setSex("여")}
+            >
+              여
+            </SexButton>
+          </SexButtonContainer>
         </FormBoxContainer>
       </ProfileContainer>
     </Wrapper>
