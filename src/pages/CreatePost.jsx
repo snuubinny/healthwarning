@@ -25,6 +25,28 @@ const CheckListTitle = styled.div`
   font-weight: bold;
 `;
 
+const YYYY = styled.input`
+  width:110px;
+  height: 45px;
+  background-color: #fee5ce;
+  border-style: none;
+  border-radius: 10px;
+  outline-color: #ffe3c8;
+  margin: 10px;
+  font-size: 20px;
+`;
+
+const MMDD = styled.input`
+  width:55px;
+  height: 45px;
+  background-color: #fee5ce;
+  border-style: none;
+  border-radius: 10px;
+  outline-color: #ffe3c8;
+  margin: 10px;
+  font-size: 20px;
+`;
+
 const CheckList = styled.div`
   display: flex;
   justify-content: center;
@@ -38,9 +60,6 @@ const CheckList = styled.div`
   gap: 20px;
 `;
 
-const TextWrapper = styled.div`
-  
-`;
 
 const SleepBox = styled.div`
   display: flex;
@@ -134,7 +153,12 @@ const PostButton = styled.button`
 function CreatePost() {
   return (
     <Wrapper>
-      <CheckListTitle>어떤 하루를 보내셨나요?</CheckListTitle>
+      <CheckListTitle>
+        <YYYY/>년
+        <MMDD/>월
+        <MMDD/>일
+        어떤 하루를 보내셨나요?
+      </CheckListTitle>
       <CheckList>
         <SleepBox>목표 수면 시간 ___시간 중<Input></Input>시간 잠</SleepBox>
         <MedicationsBox>목표 복약 횟수 ___회 중<Input></Input>회 복용함</MedicationsBox>
