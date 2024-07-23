@@ -16,15 +16,16 @@ const HeadLine = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 1100px;
+  height: 60px;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 60px;
-  background: linear-gradient(to right, #f8f6e9,#ffffff, #ffffff, #ffffff,#f8f6e9);
+  background-color: white;
   border-radius: 20px;
   margin-top: 30px;
   font-size: 30px;
   gap:5px;
+  box-shadow: 0px 0px 10px 1px rgb(220, 220, 220);
 `;
 
 const AchievementRate = styled.div`
@@ -75,19 +76,20 @@ const RightButton = styled.img`
 `;
 
 const MissYouButton = styled.img`
-  width:200px;
-  height:160px;
-  object-fit: cover; /* 이미지 크기 조정 */
+  width:150px;
+  height:120px;
+  object-fit: cover;
   transition: all 0.3s ease-in-out;
-  margin-left: 100px;
-  margin-top: 100px;
+  margin-left: 160px;
+  margin-top: 180px;
   cursor: pointer;
 
   &:hover {
     content: url('${process.env.PUBLIC_URL}/missyou-1.png');
-    width: 250px;
-    height: 200px;
-    margin-top: 100px;
+    width: 200px;
+    height: 160px;
+    margin-left: 140px;
+    margin-top: 120px;
     object-fit: cover;
     cursor: pointer;
   }
@@ -133,10 +135,10 @@ const PostButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const GoToPostButton = styled.button`
-  width: 180px;
+const PostButton = styled.button`
+  width: 190px;
   height: 50px;
-  margin-right: 150px;
+  margin-right: 140px;
   margin-top: 20px;
   font-size: large;
   font-weight: bold;
@@ -185,7 +187,7 @@ const PostList = () => {
       ))}
       </PostListContainer>
       <PostButtonContainer>
-        <GoToPostButton onClick={handleCreatePostClick}>하루 점검하기</GoToPostButton>    
+        <PostButton onClick={handleCreatePostClick}>오늘의 글 작성</PostButton>    
       </PostButtonContainer>
       <PageButtonContainer>
         <LeftPageButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left"/>
