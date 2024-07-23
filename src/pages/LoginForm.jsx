@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import { useState, useEffect } from "react";
 
 const LoginContainer = styled.div`
   background-color: #f8f6e9;
@@ -95,8 +96,19 @@ const RegisterButton = styled.div`
 
 function LoginForm() {
   const navigate = useNavigate();
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+ 
   const handleRegisterClick = () => {
     navigate('/RegisterForm');
+  };
+
+  const handleLoginClick = () => {
+    if (id === "jeonsubin5156" && password === "1234") {
+      navigate('/PostList');
+    } else {
+      alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+    }
   };
 
   return (
@@ -104,10 +116,18 @@ function LoginForm() {
       <LoginBox>
         <TitleBox>회원 로그인</TitleBox>
         <FormBox>
-          <IdBox placeholder=" 아이디를 입력하세요"></IdBox>
-          <PwBox placeholder=" 비밀번호를 입력하세요"></PwBox>
+          <IdBox 
+            placeholder=" 아이디를 입력하세요" type="password" 
+            value={id} 
+            onChange={(e) => setId(e.target.value)}>
+          </IdBox>
+          <PwBox 
+            placeholder=" 비밀번호를 입력하세요" type="password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)}>
+          </PwBox>
         </FormBox>
-        <LoginButton>로 그 인</LoginButton>
+        <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
         <TextBox>or</TextBox>
         <RegisterButton onClick={handleRegisterClick} >회원가입하기</RegisterButton>
       </LoginBox>
