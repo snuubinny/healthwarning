@@ -47,11 +47,6 @@ const SexButton = styled.button`
   margin-left: 2px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
-
-  &:hover {
-    background-color: #ff832b;
-    color: white;
-  }
   margin-bottom: 20px;
 `;
 
@@ -103,9 +98,9 @@ const InputContainer = styled.div`
 
 const Label = styled.label`
   font-weight: bold;
-  width: 100px; /* Set a fixed width for consistent alignment */
+  width: 100px;
   margin-right: 10px;
-  text-align: right; /* Align text to the right */
+  text-align: right;
 `;
 
 const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {

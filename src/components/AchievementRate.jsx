@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -72,7 +72,8 @@ const CommentField = styled.input`
   font-size: 16px;
   box-sizing: border-box;
   margin-top: 20px;
-  margin-left: 95px;
+  margin-left: 15px;
+  padding-left: 30px;
   &:focus {
     outline: 2px solid #ff832b;
   }
@@ -106,7 +107,9 @@ const CommentWrapper = styled.div`
   justify-content: center;
   margin-top: 20px;
   width: 100%;
+  margin-left: 10px;
 `;
+
 const CommentButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -142,12 +145,6 @@ const AchievementRate = () => {
           등등의 내용들...
         </TextWrap>
       </ContentContainer>
-      <CommentWrapper>
-        <CommentField />
-        <CommentButtonWrapper>
-          <CommentButton>등록!</CommentButton>
-        </CommentButtonWrapper>
-      </CommentWrapper>
     </Wrapper>
   );
 };
