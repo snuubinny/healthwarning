@@ -20,8 +20,7 @@ const CardImage = styled.img`
 
 const DateBox = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: flex-start;
   font-weight: bold;
   margin-bottom: 10px;
 `;
@@ -29,8 +28,8 @@ const DateBox = styled.div`
 const Card = () => {
   return (
     <CardWrapper>
-      <CardImage src={`${process.env.PUBLIC_URL}/percent.png`} alt="Example" />
-      <DateBox>07.01</DateBox>
+      <CardImage src={`${process.env.PUBLIC_URL}/percentcircle.png`} alt="Example" />
+      <DateBox>2024.07.01</DateBox>
     </CardWrapper>
   );
 };
