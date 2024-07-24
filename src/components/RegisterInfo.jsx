@@ -44,28 +44,6 @@ const TextWrap = styled.p`
   line-height: 2;
 `;
 
-const RegisterButton = styled.button`
-  padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 120px;
-  background-color: #ff832b;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-  margin-left: 10px;
-  font-weight: bold;
-  border: 1px solid #ffe3c8;
-
-  &:hover {
-    background-color: #fee5ce;
-    color: #ff832b;
-  }
-  margin-bottom: 20px;
-`;
-
 const FormBox = styled.input`
   height: 45px;
   background-color: #feecdb;
