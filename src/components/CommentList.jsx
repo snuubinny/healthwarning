@@ -33,6 +33,11 @@ const CommentContainer = styled.div`
 const CommentText = styled.div`
   margin-left: 20px;
   flex: 1;
+  .guardian {
+    font-weight: bold;
+    color: #ff832b;
+    margin-right: 5px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -178,7 +183,8 @@ const CommentList = () => {
           comments.map((c, index) => (
             <CommentContainer key={index}>
               <CommentText>
-                {c.guardian ? `보호자: ${c.text}` : c.text}
+                {c.guardian ? <span className="guardian">보호자: </span> : null}
+                {c.text}
               </CommentText>
               <ButtonContainer>
                 <ModifyButton>수정</ModifyButton>
