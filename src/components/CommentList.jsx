@@ -40,6 +40,21 @@ const CommentText = styled.div`
   }
 `;
 
+const GuardianText = styled.button`
+  padding: 3px;
+  font-size: 12px;
+  width: 30%;
+  font-size: 13px;
+  height: 25px;
+  width: 50px;
+  background-color: #fee5ce;
+  color: #ff832b;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -182,10 +197,9 @@ const CommentList = () => {
         {comments.length > 0 &&
           comments.map((c, index) => (
             <CommentContainer key={index}>
-              <CommentText>
-                {c.guardian ? <span className="guardian">보호자: </span> : null}
-                {c.text}
-              </CommentText>
+              {c.guardian && <GuardianText>보호자</GuardianText>}
+
+              <CommentText>{c.text}</CommentText>
               <ButtonContainer>
                 <ModifyButton>수정</ModifyButton>
                 <DeleteButton>삭제</DeleteButton>
