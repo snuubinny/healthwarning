@@ -26,18 +26,6 @@ const PercentContainer = styled.div`
   }
 `;
 
-const Percent = styled.div`
-  width: 60%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 5px;
-  background-color: #f8f6e9;
-  margin: auto;
-`;
-
 const TextWrap = styled.p`
   text-align: center;
   font-weight: bold;
@@ -64,56 +52,12 @@ const ContentContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const CommentField = styled.input`
-  width: 50%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
-  margin-top: 20px;
-  margin-left: 15px;
-  padding-left: 30px;
-  &:focus {
-    outline: 2px solid #ff832b;
-  }
-  margin-bottom: 20px;
-`;
-
-const CommentButton = styled.button`
-  padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 80px;
-  background-color: #ff832b;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-  margin-left: 10px;
-  font-weight: bold;
-
-  &:hover {
-    background-color: #fee5ce;
-    color: #ff832b;
-  }
-  margin-bottom: 20px;
-`;
-
-const CommentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  width: 100%;
-  margin-left: 10px;
-`;
-
-const CommentButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const CardImage = styled.img`
+  width: 250px;
+  height: auto;
+  border-radius: 8px;
+  margin-left: 240px;
+  margin-top: 40px;
 `;
 
 const AchievementRate = () => {
@@ -126,9 +70,11 @@ const AchievementRate = () => {
   return (
     <Wrapper>
       <PercentContainer>
-        <Percent>
-          <p>여기에는 달성률 이미지 붙일 예정</p>
-        </Percent>
+        <CardImage
+          src={`${process.env.PUBLIC_URL}/percentcircle.png`}
+          alt="Example"
+        />
+
         <TextWrap>
           잘하고 있어요! 목표의 <Highlight>{percentage}%</Highlight>를
           달성했어요!
