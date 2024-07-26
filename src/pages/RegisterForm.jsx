@@ -2,7 +2,7 @@ import React from "react";
 import { RegisterMyInfo } from "../components/RegisterMyInfo";
 import { RegisterInfo } from "../components/RegisterInfo";
 import styled from "styled-components";
-import lionImage from "../img/lion.png";
+import footerLogo from "../img/Footer_Logo.png";
 
 const RegisterWrap = styled.div`
   display: flex;
@@ -36,11 +36,6 @@ const ContextWrap = styled.p`
   margin-left: -430px;
 `;
 
-const LionIcon = styled.img`
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
-`;
 const RegisterButton = styled.button`
   padding: 3px;
   font-size: 15px;
@@ -62,13 +57,21 @@ const RegisterButton = styled.button`
   }
   margin-bottom: 20px;
 `;
-
+const FooterIcon = styled.img`
+  width: 60px;
+  height: 50px;
+  fill: currentColor;
+  margin-right: 4px;
+  transform: scale(2);
+  margin-top: 4px;
+  margin-left: 0px;
+`;
 const RegisterForm = () => {
   return (
     <>
       <RegisterWrap>
         <TextWrap>
-          <LionIcon src={lionImage} />
+          <FooterIcon src={footerLogo} />
           <span style={{ color: "#ff832b" }}>다! </span>했슈 계정 만들기
         </TextWrap>
         <ContextWrap>회원가입을 통해 다했슈 멤버가 되어보세요!</ContextWrap>
