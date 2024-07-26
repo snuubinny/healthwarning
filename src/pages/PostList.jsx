@@ -136,6 +136,11 @@ const PostButtonContainer = styled.div`
 `;
 
 const PostButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   width: 190px;
   height: 50px;
   margin-right: 140px;
@@ -153,6 +158,16 @@ const PostButton = styled.button`
   color: #ff832b;
 }
 
+`;
+
+const PostText = styled.div`
+  
+`;
+
+const ButtonPNG = styled.img`
+  display: flex;
+  align-items: flex-end;
+  filter: invert(1) brightness(2);
 `;
 
 const PostList = () => {
@@ -187,7 +202,10 @@ const PostList = () => {
       ))}
       </PostListContainer>
       <PostButtonContainer>
-        <PostButton onClick={handleCreatePostClick}>오늘의 글 작성</PostButton>    
+        <PostButton onClick={handleCreatePostClick}>
+          <PostText>오늘의 글 작성</PostText>
+          <ButtonPNG src={`${process.env.PUBLIC_URL}/write.png`} alt="pen" width="20" height="20" />
+        </PostButton>    
       </PostButtonContainer>
       <PageButtonContainer>
         <LeftPageButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left"/>
@@ -199,4 +217,3 @@ const PostList = () => {
   };
   
   export default PostList;
-  
