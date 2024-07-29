@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -75,9 +76,9 @@ const InputContainer = styled.div`
 
 const Label = styled.label`
   font-weight: bold;
-  width: 100px; /* Set a fixed width for consistent alignment */
+  width: 100px;
   margin-right: 10px;
-  text-align: right; /* Align text to the right */
+  text-align: right;
 `;
 
 const SexButton = styled.button`
@@ -85,8 +86,8 @@ const SexButton = styled.button`
   font-size: 15px;
   height: 40px;
   width: 120px;
-  background-color: #fee5ce;
-  color: #ff832b;
+  background-color: ${(props) => (props.active ? "#ff832b" : "#fee5ce")};
+  color: ${(props) => (props.active ? "white" : "#ff832b")};
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -94,11 +95,6 @@ const SexButton = styled.button`
   margin-left: 2px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
-
-  &:hover {
-    background-color: #ff832b;
-    color: white;
-  }
   margin-bottom: 20px;
 `;
 const SexButtonContainer = styled.div`
@@ -110,6 +106,17 @@ const SexButtonContainer = styled.div`
 `;
 
 const RegisterMyInfo = () => {
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [sex, setSex] = useState("");
+
+  const handleSexClick = (selectedSex) => {
+    setSex(selectedSex);
+  };
+
   return (
     <Wrapper>
       <ProfileContainer>
@@ -119,31 +126,65 @@ const RegisterMyInfo = () => {
         <FormBoxContainer>
           <InputContainer>
             <Label>이름:</Label>
-            <FormBox type="text" placeholder="이름을 입력하세요" />
+            <FormBox
+              type="text"
+              placeholder="이름을 입력하세요"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </InputContainer>
           <InputContainer>
             <Label>아이디:</Label>
-            <FormBox type="text" placeholder="아이디를 입력하세요" />
+            <FormBox
+              type="text"
+              placeholder="아이디를 입력하세요"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
           </InputContainer>
           <InputContainer>
             <Label>비밀번호:</Label>
-            <FormBox type="text" placeholder="비밀번호를 입력하세요" />
+            <FormBox
+              type="text"
+              placeholder="비밀번호를 입력하세요"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </InputContainer>
           <InputContainer>
             <Label>이메일:</Label>
-            <FormBox type="text" placeholder="이메일을 입력하세요" />
+            <FormBox
+              type="text"
+              placeholder="이메일을 입력하세요"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </InputContainer>
           <InputContainer>
             <Label>생년월일:</Label>
             <FormBox
-              type="text"
-              placeholder="생년월일을 입력하세요 (YYMMDD 형식)"
+              type="date"
+              placeholder="생년월일을 입력하세요"
+              value={birthdate}
+              onChange={(e) => setBirthdate(e.target.value)}
             />
           </InputContainer>
           <SexButtonContainer>
             <Label>성별:</Label>
-            <SexButton>남</SexButton>
-            <SexButton>여</SexButton>
+            <SexButton
+              active={sex === "m"}
+              onClick={() => handleSexClick("m")}
+              value="m"
+            >
+              남
+            </SexButton>
+            <SexButton
+              active={sex === "f"}
+              onClick={() => handleSexClick("f")}
+              value="f"
+            >
+              여
+            </SexButton>
           </SexButtonContainer>
         </FormBoxContainer>
       </ProfileContainer>
@@ -152,3 +193,4 @@ const RegisterMyInfo = () => {
 };
 
 export { RegisterMyInfo };
+/*여자 버튼을 눌렀을 시 setSex에 f로 설정되도록함*/
