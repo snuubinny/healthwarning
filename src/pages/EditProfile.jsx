@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MyProfile } from "../components/MyProfile";
 import { MyInformation } from "../components/MyInformation";
 import { ProfileDetails } from "../components/ProfileDetails";
+import { useLocation } from "react-router-dom";
 
 const EditButton = styled.button`
   padding: 3px;
@@ -27,17 +28,21 @@ const EditButton = styled.button`
 `;
 
 const EditProfile = () => {
+  const location = useLocation();
+  const userData = location.state || {};
   const [isEditable, setIsEditable] = useState(false);
-  const [name, setName] = useState("전수빈");
-  const [id, setId] = useState("jeonsubin5156");
-  const [password, setPassword] = useState("1234");
-  const [email, setEmail] = useState("jeonsubin5156@inha.edu");
-  const [birthdate, setBirthdate] = useState("010329");
-  const [sex, setSex] = useState("여");
-  const [sleep, setSleep] = useState(8);
-  const [medicine, setMedicine] = useState(3);
-  const [exercise, setExercise] = useState(30);
-  const [meal, setMeal] = useState(3);
+  const [name, setName] = useState(userData.name || "전수빈");
+  const [id, setId] = useState(userData.id || "jeonsubin5156");
+  const [password, setPassword] = useState(userData.password || "1234");
+  const [email, setEmail] = useState(
+    userData.email || "jeonsubin5156@inha.edu"
+  );
+  const [birthdate, setBirthdate] = useState(userData.birthdate || "010329");
+  const [sex, setSex] = useState(userData.sex || "여");
+  const [sleep, setSleep] = useState(userData.sleep || 8);
+  const [medicine, setMedicine] = useState(userData.medicine || 3);
+  const [exercise, setExercise] = useState(userData.exercise || 30);
+  const [meal, setMeal] = useState(userData.meal || 3);
 
   const handleEditClick = () => {
     if (isEditable) {

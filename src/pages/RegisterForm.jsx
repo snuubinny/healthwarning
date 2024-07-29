@@ -3,6 +3,8 @@ import { RegisterMyInfo } from "../components/RegisterMyInfo";
 import { RegisterInfo } from "../components/RegisterInfo";
 import styled from "styled-components";
 import footerLogo from "../img/Footer_Logo.png";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const RegisterWrap = styled.div`
   display: flex;
@@ -67,6 +69,13 @@ const FooterIcon = styled.img`
   margin-left: 0px;
 `;
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
+  const RegisterButtonClick = () => {
+    alert("회원가입이 완료되었습니다.");
+    navigate("/");
+  };
+
   return (
     <>
       <RegisterWrap>
@@ -79,7 +88,7 @@ const RegisterForm = () => {
       </RegisterWrap>
       <RegisterMyInfo />
       <RegisterInfo />
-      <RegisterButton>회원가입</RegisterButton>
+      <RegisterButton onClick={RegisterButtonClick}>회원가입</RegisterButton>
     </>
   );
 };
