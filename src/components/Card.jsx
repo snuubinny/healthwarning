@@ -25,11 +25,15 @@ const DateBox = styled.div`
   margin-bottom: 10px;
 `;
 
-const Card = () => {
+const Card = ({data}) => {
   return (
     <CardWrapper>
       <CardImage src={`${process.env.PUBLIC_URL}/percentcircle.png`} alt="Example" />
       <DateBox>2024.07.01</DateBox>
+    
+      {/* <CardImage>{data.achievement_rate}%</CardImage>
+      <DateBox>{data.date}</DateBox> */}
+
     </CardWrapper>
   );
 };
