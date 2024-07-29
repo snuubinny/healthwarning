@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -166,30 +168,110 @@ const PostButton = styled.button`
 `;
 
 function CreatePost() {
+  
+  const navigate = useNavigate();
+
   const goalSleep = 8;
   const goalMedication = 3;
   const goalExercise = 40;
   const goalMeal= 3;
   
+  const [date, setDate] = useState({ year: '', month: '', day: '' });
+  const [sleep, setSleep] = useState('');
+  const [medication, setMedication] = useState('');
+  const [exercise, setExercise] = useState('');
+  const [meal, setMeal] = useState('');
+  const [diary, setDiary] = useState('');
+
+  const handleSubmit = async () => {
+    const postData = {
+      date: `${date.year}-${date.month}-${date.day}`,
+      medication_today: medication,
+      exercise_time: exercise,
+      meal_count: meal,
+      sleep_time: sleep,
+      daily_summary: diary,
+    };
+
+    try {
+      const response = await axios.post('/blog/create/', postData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      console.log('Post created successfully:', response.data);
+      navigate('/posts'); // 게시글 목록 페이지로 이동
+    } catch (error) {
+      console.error('Error creating post:', error);
+      alert('포스트 생성 중 오류가 발생했습니다.');
+    }
+  };
+
   return (
     <Wrapper>
       <CheckListTitle>
-        <YYYY/>년
-        <MMDD/>월
-        <MMDD/>일
-        어떤 하루를 보내셨나요?
+        <YYYY
+          placeholder="YYYY"
+          value={date.year}
+          onChange={(e) => setDate({ ...date, year: e.target.value })}
+        />
+        년
+        <MMDD
+          placeholder="MM"
+          value={date.month}
+          onChange={(e) => setDate({ ...date, month: e.target.value })}
+        />
+        월
+        <MMDD
+          placeholder="DD"
+          value={date.day}
+          onChange={(e) => setDate({ ...date, day: e.target.value })}
+        />
+        일 어떤 하루를 보내셨나요?
       </CheckListTitle>
       <CheckList>
-        <SleepBox>목표 수면 시간 <GoalBox>{goalSleep}</GoalBox>시간 중<Input/>시간 잠</SleepBox>
-        <MedicationsBox>목표 복약 횟수 <GoalBox>{goalMedication}</GoalBox>회 중<Input/>회 복용함</MedicationsBox>
-        <ExerciseBox>목표 운동 시간 <GoalBox>{goalExercise}</GoalBox>분 중<Input/>분 운동함</ExerciseBox>
-        <MealsBox>목표 식사 횟수 <GoalBox>{goalMeal}</GoalBox>회 중<Input/>회 식사함</MealsBox>
+        <SleepBox>
+          목표 수면 시간 <GoalBox>{goalSleep}</GoalBox>시간 중
+          <Input
+            value={sleep}
+            onChange={(e) => setSleep(e.target.value)}
+          />
+          시간 잠
+        </SleepBox>
+        <MedicationsBox>
+          목표 복약 횟수 <GoalBox>{goalMedication}</GoalBox>회 중
+          <Input
+            value={medication}
+            onChange={(e) => setMedication(e.target.value)}
+          />
+          회 복용함
+        </MedicationsBox>
+        <ExerciseBox>
+          목표 운동 시간 <GoalBox>{goalExercise}</GoalBox>분 중
+          <Input
+            value={exercise}
+            onChange={(e) => setExercise(e.target.value)}
+          />
+          분 운동함
+        </ExerciseBox>
+        <MealsBox>
+          목표 식사 횟수 <GoalBox>{goalMeal}</GoalBox>회 중
+          <Input
+            value={meal}
+            onChange={(e) => setMeal(e.target.value)}
+          />
+          회 식사함
+        </MealsBox>
       </CheckList>
       <DiaryTitle>오늘의 일기</DiaryTitle>
-      <DiaryInput placeholder="특이사항이나 오늘의 기분 등을 작성해주세요!"></DiaryInput>
-      <PostButton>등록하기</PostButton>
+      <DiaryInput
+        placeholder="특이사항이나 오늘의 기분 등을 작성해주세요!"
+        value={diary}
+        onChange={(e) => setDiary(e.target.value)}
+      />
+      <PostButton onClick={handleSubmit}>등록하기</PostButton>
     </Wrapper>
-  )
+  );
 }
 
 export default CreatePost;
