@@ -62,6 +62,14 @@ const DiaryContainer = styled.div`
   margin-bottom: 20px;
   margin-top: 50px;
 `;
+
+const DiaryText = styled.p`
+  margin-top: 60px;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 30px;
+  color: #333;
+`;
+
 const StyledCatImage = styled.img`
   width: 110px;
   height: auto;
@@ -225,6 +233,7 @@ const AchievementRate = () => {
         <Header>
           <HeaderText>오늘의 일기</HeaderText>
         </Header>
+        <DiaryText className="Nanum Pen Script">안녕하세요</DiaryText>
         <StyledCatImage src={CatImage} alt="Catimage" />
       </DiaryContainer>
     </Wrapper>
