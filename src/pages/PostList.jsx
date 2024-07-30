@@ -19,48 +19,51 @@ const HeadLine = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1100px;
+  width: 700px;
   height: 60px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: white;
+  background:#ffffff;
+  border: 2px solid #fee5ce;
+  /* background: linear-gradient(to right, #ff832b, #ffb74d);
+  color:white; */
   border-radius: 20px;
   margin-top: 30px;
   font-size: 30px;
-  gap:5px;
-  box-shadow: 0px 0px 10px 1px rgb(220, 220, 220);
+  /* box-shadow: 0px 0px 10px 1px #fee5ce; */
 `;
 
 const AchievementRate = styled.div`
   width:100px;
   height: 55px;
-  background-color: #fee5ce;
-  font-size: 20px;
+  /* background-color: #fee5ce; */
   border-radius: 20px;
   margin-left: 15px;
   text-align: center;
   font-size: 38px;
+  font-weight: 600;
+  color: #ff832b;
 `;
 
 const PostList = () => {
   const navigate = useNavigate();
 
-  const [tenDaysAverage, setTenDaysAverage] = useState(0);
+  const [tenDaysAverage, setTenDaysAverage] = useState(100);
 
-  useEffect(() => {
-    axios.get('/users/main/')
-      .then(response => {
-        setTenDaysAverage(response.data.TenDaysAverage);
-      })
-      .catch(error => {
-        console.error("There was an error fetching the data!", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get('/users/main/')
+  //     .then(response => {
+  //       setTenDaysAverage(response.data.TenDaysAverage);
+  //     })
+  //     .catch(error => {
+  //       console.error("There was an error fetching the data!", error);
+  //     });
+  // }, []);
 
 
-  useEffect(() => {
+  // useEffect(() => {
     
-  }, []);
+  // }, []);
 
 
   return (

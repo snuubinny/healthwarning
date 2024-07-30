@@ -141,10 +141,9 @@ const DiaryInput = styled.textarea`
   height: 300px;
   resize: none;
   background-color: #ffffff;
-  border-color: #f8efe6;
   border-style: none;
   border-radius: 10px;
-  outline-color: #ffe3c8;
+  outline-color: #ffd4b5;
   padding: 30px;
   font-size: 15px;
 `;
@@ -200,7 +199,7 @@ function CreatePost() {
         },
       });
       console.log('Post created successfully:', response.data);
-      navigate('/posts'); // 게시글 목록 페이지로 이동
+      navigate('/PostList'); // 게시글 목록 페이지로 이동
     } catch (error) {
       console.error('Error creating post:', error);
       alert('포스트 생성 중 오류가 발생했습니다.');
@@ -236,7 +235,7 @@ function CreatePost() {
             value={sleep}
             onChange={(e) => setSleep(e.target.value)}
           />
-          시간 잠
+          시간 수면함
         </SleepBox>
         <MedicationsBox>
           목표 복약 횟수 <GoalBox>{goalMedication}</GoalBox>회 중
@@ -255,12 +254,12 @@ function CreatePost() {
           분 운동함
         </ExerciseBox>
         <MealsBox>
-          목표 식사 횟수 <GoalBox>{goalMeal}</GoalBox>회 중
+          목표 식사 횟수 <GoalBox>{goalMeal}</GoalBox>끼 중
           <Input
             value={meal}
             onChange={(e) => setMeal(e.target.value)}
           />
-          회 식사함
+          끼 식사함
         </MealsBox>
       </CheckList>
       <DiaryTitle>오늘의 일기</DiaryTitle>
