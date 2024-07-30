@@ -82,7 +82,7 @@ const PostList = () => {
     navigate('/CreatePost');
   };
 
-  const [cards, setCards] = useState(Array(41).fill({})); // 데이터를 45개로 설정하여 페이지네이션 예시
+  const [cards, setCards] = useState(Array(23).fill({})); // 데이터를 45개로 설정하여 페이지네이션 예시
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 15;
 
