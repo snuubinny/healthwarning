@@ -98,6 +98,15 @@ const ProfileDetails = ({ isEditable, initialData, onSave }) => {
     }
   }, [isEditable]);
 
+  /*
+  useEffect(() => {
+    if (!isEditable) {
+      const updatedData = { ...initialData, sleep, medicine, exercise, meal };
+      onSave(updatedData);
+    }
+  }, [isEditable]);
+  */
+
   return (
     <Wrapper>
       <InfoContainer>
