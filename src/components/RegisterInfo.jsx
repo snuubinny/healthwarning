@@ -89,9 +89,9 @@ const InlineLabel = styled.label`
 
 const RegisterInfo = () => {
   const [sleep, setSleep] = useState("");
-  const [medicine, setMedicine] = useState("");
-  const [exercise, setExercise] = useState("");
-  const [meal, setMeal] = useState("");
+  const [medications, setMedications] = useState("");
+  const [exercises, setExercises] = useState("");
+  const [meals, setMeals] = useState("");
 
   const handleNumberInput = (e, setter) => {
     const value = e.target.value;
@@ -110,7 +110,7 @@ const RegisterInfo = () => {
           <InputContainer>
             <Label>목표 수면시간은</Label>
             <FormBox
-              type="integer"
+              type="text"
               value={sleep}
               onChange={(e) => handleNumberInput(e, setSleep)}
             />
@@ -119,27 +119,27 @@ const RegisterInfo = () => {
           <InputContainer>
             <Label>약 복용횟수는</Label>
             <FormBox
-              type="integer"
-              value={medicine}
-              onChange={(e) => handleNumberInput(e, setMedicine)}
+              type="text"
+              value={medications}
+              onChange={(e) => handleNumberInput(e, setMedications)}
             />
             <InlineLabel>회 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
             <Label>목표 운동시간은</Label>
             <FormBox
-              type="integer"
-              value={exercise}
-              onChange={(e) => handleNumberInput(e, setExercise)}
+              type="text"
+              value={exercises}
+              onChange={(e) => handleNumberInput(e, setExercises)}
             />
             <InlineLabel>분 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
             <Label>하루 목표 식사횟수는</Label>
             <FormBox
-              type="integer"
-              value={meal}
-              onChange={(e) => handleNumberInput(e, setMeal)}
+              type="text"
+              value={meals}
+              onChange={(e) => handleNumberInput(e, setMeals)}
             />
             <InlineLabel>끼입니다.</InlineLabel>
           </InputContainer>
@@ -149,4 +149,4 @@ const RegisterInfo = () => {
   );
 };
 
-export { RegisterInfo };
+export default RegisterInfo;

@@ -1,6 +1,6 @@
 import React from "react";
-import { RegisterMyInfo } from "../components/RegisterMyInfo";
-import { RegisterInfo } from "../components/RegisterInfo";
+import RegisterMyInfo from "../components/RegisterMyInfo";
+import RegisterInfo from "../components/RegisterInfo";
 import styled from "styled-components";
 import footerLogo from "../img/Footer_Logo.png";
 import { useNavigate } from "react-router-dom";
@@ -71,30 +71,33 @@ const FooterIcon = styled.img`
 `;
 
 const RegisterForm = () => {
-  /*
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [sex, setSex] = useState("");
+  const [birth, setBirth] = useState("");
+  const [gender, setGender] = useState("");
   const [sleep, setSleep] = useState("");
-  const [medicine, setMedicine] = useState("");
-  const [exercise, setExercise] = useState("");
-  const [meal, setMeal] = useState("");
+  const [medications, setMedications] = useState("");
+  const [exercises, setExercises] = useState("");
+  const [meals, setMeals] = useState("");
 
   const handleRegister = async () => {
     try {
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/signup",
+        "https://dahaessyu.kro.kr/users/signup/",
         {
           name,
-          id,
+          identifier,
           password,
           email,
-          birthdate,
-          sex,
+          birth,
+          gender,
+          sleep,
+          medications,
+          exercises,
+          meals,
         }
       );
 
@@ -109,13 +112,6 @@ const RegisterForm = () => {
       console.error("Error registering user:", error);
       alert("An error occurred during registration. Please try again.");
     }
-  }; */
-
-  const navigate = useNavigate();
-
-  const RegisterButtonClick = () => {
-    alert("회원가입이 완료되었습니다.");
-    navigate("/");
   };
 
   return (
@@ -128,9 +124,31 @@ const RegisterForm = () => {
         <ContextWrap>회원가입을 통해 다했슈 멤버가 되어보세요!</ContextWrap>
         <Divider />
       </RegisterWrap>
-      <RegisterMyInfo />
-      <RegisterInfo />
-      <RegisterButton onClick={RegisterButtonClick}>회원가입</RegisterButton>
+      <RegisterMyInfo
+        name={name}
+        setName={setName}
+        identifier={identifier}
+        setIdentifier={setIdentifier}
+        password={password}
+        setPassword={setPassword}
+        email={email}
+        setEmail={setEmail}
+        birth={birth}
+        setBirth={setBirth}
+        gender={gender}
+        setGender={setGender}
+      />
+      <RegisterInfo
+        sleep={sleep}
+        setSleep={setSleep}
+        medications={medications}
+        setMedications={setMedications}
+        exercises={exercises}
+        setExercises={setExercises}
+        meals={meals} // 수정: meal에서 meals로 변경
+        setMeals={setMeals} // 수정: setMeal에서 setMeals로 변경
+      />
+      <RegisterButton onClick={handleRegister}>회원가입</RegisterButton>
     </>
   );
 };
