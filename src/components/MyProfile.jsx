@@ -151,3 +151,21 @@ const MyProfile = ({ isEditable, setIsEditable, name, id, sex }) => {
 };
 
 export { MyProfile };
+
+/* 
+const [name,setName]=useState([]);
+const [id, setId] = useState([]);
+
+ useEffect(() => {
+    axios
+      .get(`https://advise.kro.kr/dutch/`)
+      .then((res) => {
+        setAuctionList(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+*/

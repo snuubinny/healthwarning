@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -87,6 +88,18 @@ const InlineLabel = styled.label`
 `;
 
 const RegisterInfo = () => {
+  const [sleep, setSleep] = useState("");
+  const [medicine, setMedicine] = useState("");
+  const [exercise, setExercise] = useState("");
+  const [meal, setMeal] = useState("");
+
+  const handleNumberInput = (e, setter) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setter(value);
+    }
+  };
+
   return (
     <Wrapper>
       <InfoContainer>
@@ -96,22 +109,38 @@ const RegisterInfo = () => {
         <FormBoxContainer>
           <InputContainer>
             <Label>목표 수면시간은</Label>
-            <FormBox type="integer" />
+            <FormBox
+              type="integer"
+              value={sleep}
+              onChange={(e) => handleNumberInput(e, setSleep)}
+            />
             <InlineLabel>시간 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
             <Label>약 복용횟수는</Label>
-            <FormBox type="integer" />
+            <FormBox
+              type="integer"
+              value={medicine}
+              onChange={(e) => handleNumberInput(e, setMedicine)}
+            />
             <InlineLabel>회 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
             <Label>목표 운동시간은</Label>
-            <FormBox type="integer" />
+            <FormBox
+              type="integer"
+              value={exercise}
+              onChange={(e) => handleNumberInput(e, setExercise)}
+            />
             <InlineLabel>분 입니다.</InlineLabel>
           </InputContainer>
           <InputContainer>
             <Label>하루 목표 식사횟수는</Label>
-            <FormBox type="integer" />
+            <FormBox
+              type="integer"
+              value={meal}
+              onChange={(e) => handleNumberInput(e, setMeal)}
+            />
             <InlineLabel>끼입니다.</InlineLabel>
           </InputContainer>
         </FormBoxContainer>

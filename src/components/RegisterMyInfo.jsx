@@ -165,7 +165,7 @@ const RegisterMyInfo = () => {
                 type="text"
                 placeholder="아이디를 입력하세요"
                 value={id}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setId(e.target.value)}
               />
               <DuplicateButton>중복확인</DuplicateButton>
             </InputContainer>
