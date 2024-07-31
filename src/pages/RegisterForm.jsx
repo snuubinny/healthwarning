@@ -68,7 +68,40 @@ const FooterIcon = styled.img`
   margin-top: 4px;
   margin-left: 0px;
 `;
+
 const RegisterForm = () => {
+  /*  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [sex, setSex] = useState("");
+
+  const handleSexClick = (selectedSex) => {
+    setSex(selectedSex);
+  };
+
+  const checkDuplicate = async () => {
+    try {
+      const response = await axios.post("/api/check-duplicate", { id, email });
+      return response.data.exists;
+    } catch (error) {
+      console.error("Error checking duplicate:", error);
+      return true; // 서버 오류 시 중복으로 간주 (id,email동일한걸로 가입 시 가입 안됨)
+    }
+  };
+
+  const handleRegisterClick = async () => {
+    const isDuplicate = await checkDuplicate();
+    if (isDuplicate) {
+      alert("이미 계정이 존재합니다!");
+    } else {
+      alert("회원가입이 완료되었습니다.");
+      navigate("/");
+    }
+  };*/
+
   const navigate = useNavigate();
 
   const RegisterButtonClick = () => {

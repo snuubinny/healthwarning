@@ -73,6 +73,31 @@ const InputContainer = styled.div`
   width: 100%;
   margin-bottom: 15px;
 `;
+const DuplicateWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+const DuplicateButton = styled.button`
+  padding: 3px;
+  font-size: 13px;
+  height: 25px;
+  width: 70px;
+  background-color: #ff832b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid #ffe3c8;
+  margin-left: 10px;
+
+  &:hover {
+    background-color: #fee5ce;
+    color: #ff832b;
+  }
+`;
 
 const Label = styled.label`
   font-weight: bold;
@@ -133,15 +158,18 @@ const RegisterMyInfo = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </InputContainer>
-          <InputContainer>
-            <Label>아이디:</Label>
-            <FormBox
-              type="text"
-              placeholder="아이디를 입력하세요"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-            />
-          </InputContainer>
+          <DuplicateWrapper>
+            <InputContainer>
+              <Label>아이디:</Label>
+              <FormBox
+                type="text"
+                placeholder="아이디를 입력하세요"
+                value={id}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <DuplicateButton>중복확인</DuplicateButton>
+            </InputContainer>
+          </DuplicateWrapper>
           <InputContainer>
             <Label>비밀번호:</Label>
             <FormBox
@@ -151,15 +179,18 @@ const RegisterMyInfo = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </InputContainer>
-          <InputContainer>
-            <Label>이메일:</Label>
-            <FormBox
-              type="text"
-              placeholder="이메일을 입력하세요"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </InputContainer>
+          <DuplicateWrapper>
+            <InputContainer>
+              <Label>이메일:</Label>
+              <FormBox
+                type="text"
+                placeholder="이메일을 입력하세요"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <DuplicateButton>중복확인</DuplicateButton>
+            </InputContainer>
+          </DuplicateWrapper>
           <InputContainer>
             <Label>생년월일:</Label>
             <FormBox
