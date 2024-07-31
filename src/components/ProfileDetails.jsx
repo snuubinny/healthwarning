@@ -107,6 +107,22 @@ const ProfileDetails = ({ isEditable, initialData, onSave }) => {
   }, [isEditable]);
   */
 
+  /*
+  useEffect(() => {
+    setName(initialData.name);
+    setId(initialData.id);
+    setPassword(initialData.password);
+    setEmail(initialData.email);
+    setBirthdate(initialData.birthdate);
+    setSex(initialData.sex);
+  }, [initialData]);
+
+  const handleSaveClick = () => {
+    onSave(name, id, password, email, birthdate, sex);
+  };
+
+  */
+
   return (
     <Wrapper>
       <InfoContainer>

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import footerLogo from "../img/Footer_Logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const RegisterWrap = styled.div`
   display: flex;
@@ -70,37 +71,45 @@ const FooterIcon = styled.img`
 `;
 
 const RegisterForm = () => {
-  /*  const navigate = useNavigate();
+  /*
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [sex, setSex] = useState("");
+  const [sleep, setSleep] = useState("");
+  const [medicine, setMedicine] = useState("");
+  const [exercise, setExercise] = useState("");
+  const [meal, setMeal] = useState("");
 
-  const handleSexClick = (selectedSex) => {
-    setSex(selectedSex);
-  };
-
-  const checkDuplicate = async () => {
+  const handleRegister = async () => {
     try {
-      const response = await axios.post("/api/check-duplicate", { id, email });
-      return response.data.exists;
-    } catch (error) {
-      console.error("Error checking duplicate:", error);
-      return true; // 서버 오류 시 중복으로 간주 (id,email동일한걸로 가입 시 가입 안됨)
-    }
-  };
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/users/signup",
+        {
+          name,
+          id,
+          password,
+          email,
+          birthdate,
+          sex,
+        }
+      );
 
-  const handleRegisterClick = async () => {
-    const isDuplicate = await checkDuplicate();
-    if (isDuplicate) {
-      alert("이미 계정이 존재합니다!");
-    } else {
-      alert("회원가입이 완료되었습니다.");
-      navigate("/");
+      console.log(response); // 서버 응답 로그
+
+      if (response.status === 200) {
+        alert("회원가입이 완료되었습니다");
+      } else {
+        alert("회원가입에 실패하였습니다 다시 시도해주세요");
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+      alert("An error occurred during registration. Please try again.");
     }
-  };*/
+  }; */
 
   const navigate = useNavigate();
 
@@ -127,3 +136,32 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
+
+/*      
+ <RegisterMyInfo
+        name={name}
+        setName={setName}
+        id={id}
+        setId={setId}
+        password={password}
+        setPassword={setPassword}
+        email={email}
+        setEmail={setEmail}
+        birthdate={birthdate}
+        setBirthdate={setBirthdate}
+        sex={sex}
+        setSex={setSex}
+      />
+
+
+
+<RegisterInfo
+        sleep={sleep}
+        setSleep={setSleep}
+        medicine={medicine}
+        setMedicine={setMedicine}
+        exercise={exercise}
+        setExercise={setExercise}
+        meal={meal}
+        setMeal={setMeal}
+         */

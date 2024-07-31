@@ -116,11 +116,20 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
     onSexChange(sex);
   };
 
-  useEffect(() => {
-    if (!isEditable) {
-      handleSave();
-    }
-  }, [isEditable]);
+  /*
+ useEffect(() => {
+    setName(initialData.name);
+    setId(initialData.id);
+    setPassword(initialData.password);
+    setEmail(initialData.email);
+    setBirthdate(initialData.birthdate);
+    setSex(initialData.sex);
+  }, [initialData]);
+
+  const handleSaveClick = () => {
+    onSave(name, id, password, email, birthdate, sex);
+  };
+  */
 
   return (
     <Wrapper>
@@ -201,3 +210,8 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
 };
 
 export { MyInformation };
+
+/*
+Wrapper isEditable={isEditable}
+
+*/
