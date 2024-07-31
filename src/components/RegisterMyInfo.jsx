@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -17,7 +16,6 @@ const ProfileContainer = styled.div`
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
   cursor: pointer;
   height: 540px;
   margin-bottom: 20px;
@@ -73,6 +71,7 @@ const InputContainer = styled.div`
   width: 100%;
   margin-bottom: 15px;
 `;
+
 const DuplicateWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -111,8 +110,8 @@ const SexButton = styled.button`
   font-size: 15px;
   height: 40px;
   width: 120px;
-  background-color: ${(props) => (props.active ? "#ff832b" : "#fee5ce")};
-  color: ${(props) => (props.active ? "white" : "#ff832b")};
+  background-color: ${(props) => (props.$active ? "#ff832b" : "#fee5ce")};
+  color: ${(props) => (props.$active ? "white" : "#ff832b")};
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -122,6 +121,7 @@ const SexButton = styled.button`
   border: 1px solid #ffe3c8;
   margin-bottom: 20px;
 `;
+
 const SexButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -132,14 +132,14 @@ const SexButtonContainer = styled.div`
 
 const RegisterMyInfo = () => {
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [sex, setSex] = useState("");
+  const [birth, setBirth] = useState("");
+  const [gender, setGender] = useState("");
 
-  const handleSexClick = (selectedSex) => {
-    setSex(selectedSex);
+  const handleSexClick = (selectedGender) => {
+    setGender(selectedGender);
   };
 
   return (
@@ -164,8 +164,8 @@ const RegisterMyInfo = () => {
               <FormBox
                 type="text"
                 placeholder="아이디를 입력하세요"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
               />
               <DuplicateButton>중복확인</DuplicateButton>
             </InputContainer>
@@ -196,23 +196,21 @@ const RegisterMyInfo = () => {
             <FormBox
               type="date"
               placeholder="생년월일을 입력하세요"
-              value={birthdate}
-              onChange={(e) => setBirthdate(e.target.value)}
+              value={birth}
+              onChange={(e) => setBirth(e.target.value)}
             />
           </InputContainer>
           <SexButtonContainer>
             <Label>성별:</Label>
             <SexButton
-              active={sex === "m"}
+              $active={gender === "m"}
               onClick={() => handleSexClick("m")}
-              value="m"
             >
               남
             </SexButton>
             <SexButton
-              active={sex === "f"}
+              $active={gender === "f"}
               onClick={() => handleSexClick("f")}
-              value="f"
             >
               여
             </SexButton>
@@ -223,5 +221,6 @@ const RegisterMyInfo = () => {
   );
 };
 
-export { RegisterMyInfo };
+export default RegisterMyInfo;
+
 /*여자 버튼을 눌렀을 시 setSex에 f로 설정되도록함*/
