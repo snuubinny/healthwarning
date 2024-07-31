@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import SleepImage from "../img/sleep.png";
 import MealImage from "../img/meal.png";
@@ -180,6 +182,23 @@ const ExerciseBox = styled(Box)``;
 const MealBox = styled(Box)``;
 
 const AchievementRate = () => {
+  /*
+  const { userId } = useParams(); // URL 파라미터에서 userId 가져오기
+  const [userInfo, setUserInfo] = useState(null); // 상태로 회원 정보 저장
+
+  useEffect(() => {
+    axios
+      .get(`https:/~/${userid}`)
+      .then((res) => {
+        setAuctionList(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+ */
+
   const percentage = 75;
 
   return (
@@ -241,3 +260,8 @@ const AchievementRate = () => {
 };
 
 export { AchievementRate };
+
+/*  <PercentText>
+          잘하고 있어요! 목표의 <Highlight>{userInfo.percentage}%</Highlight>를
+          달성했어요!
+        </PercentText>...등등으로 쭉쭉~*/

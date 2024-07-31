@@ -4,6 +4,8 @@ import { MyProfile } from "../components/MyProfile";
 import { MyInformation } from "../components/MyInformation";
 import { ProfileDetails } from "../components/ProfileDetails";
 import { useLocation } from "react-router-dom";
+import { axios } from "axios";
+import { useParams } from "react-router-dom";
 
 const EditButton = styled.button`
   padding: 3px;
@@ -12,7 +14,8 @@ const EditButton = styled.button`
   width: 120px;
   background-color: #ff832b;
   color: white;
-  border: none;
+  border: none;5
+  
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
@@ -43,6 +46,43 @@ const EditProfile = () => {
   const [medicine, setMedicine] = useState(userData.medicine || 3);
   const [exercise, setExercise] = useState(userData.exercise || 30);
   const [meal, setMeal] = useState(userData.meal || 3);
+
+  /*
+const { userId } = useParams(); // URL 파라미터에서 userId 가져오기
+  const [isEditable, setIsEditable] = useState(false);
+  const [userData, setUserData] = useState(null); // 초기 회원 정보 상태
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`/api/users/${userId}`); // 회원 정보 API 호출
+        setUserData(response.data); // 상태 업데이트
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
+
+  const handleEditClick = () => {
+    setIsEditable((prev) => !prev);
+  };
+
+  const handleSave = async (updatedData) => {
+    try {
+      await axios.put(`/api/users/${userId}`, updatedData); // 업데이트된 데이터 서버로 저장
+      setUserData(updatedData); // 상태 업데이트
+      setIsEditable(false); // 편집 모드 해제
+    } catch (error) {
+      console.error("Error saving user data:", error);
+    }
+  };
+
+  if (!userData) return <p>Loading...</p>; // 데이터를 가져오기 전 로딩 상태
+
+
+*/
 
   const handleEditClick = () => {
     if (isEditable) {
