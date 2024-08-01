@@ -74,29 +74,61 @@ const MissYouButton = styled.img`
 `;
 
 const RecentPosts = () => {
+  const [posts, setPosts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalPosts = 10;
+  
+//   useEffect(() => {
+//     axios.get('/users/main/')
+//     .then(response => {
+//         if (response.status === 200) {
+//         setPosts(response.data.posts.slice(0, 10)); // 상위 10개의 포스트만 저장
+//         }
+//     })
+//     .catch(error => {
+//         if (error.response && error.response.status === 401) {
+//         console.error('인증 실패');
+//         } else {
+//         console.error('데이터를 불러오는데 실패했습니다.');
+//         }
+//     });
+//     }, []);
 
   const handleLeftClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? totalPosts - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? posts.length - 1 : prevIndex - 1));
   };
 
   const handleRightClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === totalPosts - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) => (prevIndex === posts.length - 1 ? 0 : prevIndex + 1));
   };
   
+  const handleMissYouClick = () => {
+    axios.get('https://dahaessyu.kro.kr/blog/miss_email/{user_id}/')
+      .then(response => {
+        if (response.status === 200) {
+          console.log('Success:', response.data);
+          alert('Data fetched successfully');
+        }
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 404) {
+          console.error('Not Found');
+          alert('Data not found');
+        } else {
+          console.error('An error occurred:', error);
+          alert('An error occurred while fetching data');
+        }
+      });
+  };
 
   return (
     <>
     <MainContainer> 
          <RecentPostsContainer>
-          <LeftButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left"
-          onClick={handleLeftClick}/>
+          <LeftButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left" onClick={handleLeftClick}/>
           <RecentPostCard/>
-          <RightButton src={`${process.env.PUBLIC_URL}/rightbutton.png`} alt="right"
-          onClick={handleRightClick}/>
+          <RightButton src={`${process.env.PUBLIC_URL}/rightbutton.png`} alt="right" onClick={handleRightClick}/>
         </RecentPostsContainer>
-        <MissYouButton src={`${process.env.PUBLIC_URL}/missyou-2.png`} alt="heart"/>
+        <MissYouButton src={`${process.env.PUBLIC_URL}/missyou-2.png`} alt="heart" onClick={handleMissYouClick}/>
       </MainContainer>
     </>
   );
