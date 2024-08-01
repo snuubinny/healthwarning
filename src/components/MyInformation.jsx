@@ -104,17 +104,12 @@ const Label = styled.label`
 `;
 
 const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
-  const [name, setName] = useState(initialData.name);
-  const [id, setId] = useState(initialData.id);
-  const [password, setPassword] = useState(initialData.password);
-  const [email, setEmail] = useState(initialData.email);
-  const [birthdate, setBirthdate] = useState(initialData.birthdate);
-  const [sex, setSex] = useState(initialData.sex);
-
-  const handleSave = () => {
-    onSave(name, id);
-    onSexChange(sex);
-  };
+  const [username, setUsername] = useState("");
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birth, setBirth] = useState("");
+  const [gender, setGender] = useState("");
 
   /*
  useEffect(() => {
@@ -142,8 +137,8 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
             <Label>이름:</Label>
             <FormBox
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               placeholder={initialData.name}
               readOnly={!isEditable}
             />
@@ -152,8 +147,8 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
             <Label>아이디:</Label>
             <FormBox
               type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
               placeholder={initialData.id}
               readOnly={!isEditable}
             />
@@ -182,8 +177,8 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
             <Label>생년월일:</Label>
             <FormBox
               type="text"
-              value={birthdate}
-              onChange={(e) => setBirthdate(e.target.value)}
+              value={birth}
+              onChange={(e) => setBirth(e.target.value)}
               placeholder={initialData.birthdate}
               readOnly={!isEditable}
             />
@@ -191,14 +186,14 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
           <SexButtonContainer>
             <Label>성별:</Label>
             <SexButton
-              active={sex === "남"}
-              onClick={() => isEditable && setSex("남")}
+              active={gender === "m"}
+              onClick={() => isEditable && setGender("m")}
             >
               남
             </SexButton>
             <SexButton
-              active={sex === "여"}
-              onClick={() => isEditable && setSex("여")}
+              active={gender === "w"}
+              onClick={() => isEditable && setGender("w")}
             >
               여
             </SexButton>

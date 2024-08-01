@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 import axios from "axios";
-import Pagination from '../components/Pagination';
-import RecentPosts from '../components/RecentPosts';
+import Pagination from "../components/Pagination";
+import RecentPosts from "../components/RecentPosts";
 
 const Wrapper = styled.div`
   background-color: #f8f6e9;

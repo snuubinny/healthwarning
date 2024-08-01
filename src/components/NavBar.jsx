@@ -1,6 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import navBarLogo from "../img/NavBar_Logo.png";
 
@@ -55,17 +54,19 @@ const NavBarIcon = styled.img`
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const { userId } = useParams(); // URL에서 userId를 가져옴
+
+  console.log("NavBar userId:", userId); // userId 확인
 
   const handleHomeLogoClick = () => {
-    navigate("/PostList");
+    navigate(`/PostList/${userId}`);
   };
 
   const handleEditLogoClick = () => {
-    if (location.pathname === "/") {
+    if (!userId) {
       alert("먼저 로그인을 진행해주세요!");
     } else {
-      navigate("/EditProfile");
+      navigate(`/EditProfile/${userId}`);
     }
   };
 
