@@ -22,7 +22,7 @@ root.render(
           <Route path="CreatePost" element={<CreatePost />} />
           <Route path="EditProfile" element={<EditProfile />} />
           <Route path="Post" element={<Post />} />
-          <Route path="PostList" element={<PostList />} />
+          <Route path="PostList/:user_id" element={<PostList />} />
           <Route path="RegisterForm" element={<RegisterForm />} />
           <Route path="*" element={<NotFound />} />
         </Route>
