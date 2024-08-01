@@ -123,9 +123,9 @@ const Pagination = () => {
   return (
     <>
       <PostListContainer>
-        {currentCards.map((card, index) => (
-           <Card key={index} data={card} />
-         ))}
+        {currentCards.map((card) => (
+          <Card key={card.id} data={card} />
+        ))}
       </PostListContainer>
       <PostButtonContainer>
         <PostButton onClick={handleCreatePostClick}>
