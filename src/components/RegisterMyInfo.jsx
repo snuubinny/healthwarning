@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const Wrapper = styled.div`
   display: flex;
@@ -148,6 +149,50 @@ const RegisterMyInfo = ({
     setGender(selectedGender);
   };
 
+  const handleIdDuplicate = async () => {
+    try {
+      const requestData = { identifier };
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/users/check_identifier/",
+        requestData
+      );
+
+      if (response.status === 200) {
+        alert("사용가능한 아이디입니다.");
+      } else {
+        alert("이미 사용중인 아이디입니다.");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 사용중인 아이디입니다.");
+      } else {
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    }
+  };
+
+  const handleEmailDuplicate = async () => {
+    try {
+      const requestData = { email };
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/users/check_email/",
+        requestData
+      );
+
+      if (response.status === 200) {
+        alert("사용가능한 이메일입니다.");
+      } else {
+        alert("이미 사용중인 이메일입니다.");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 사용중인 이메일입니다.");
+      } else {
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    }
+  };
+
   return (
     <Wrapper>
       <ProfileContainer>
@@ -173,7 +218,9 @@ const RegisterMyInfo = ({
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
               />
-              <DuplicateButton>중복확인</DuplicateButton>
+              <DuplicateButton onClick={handleIdDuplicate}>
+                중복확인
+              </DuplicateButton>
             </InputContainer>
           </DuplicateWrapper>
           <InputContainer>
@@ -194,7 +241,9 @@ const RegisterMyInfo = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <DuplicateButton>중복확인</DuplicateButton>
+              <DuplicateButton onClick={handleEmailDuplicate}>
+                중복확인
+              </DuplicateButton>
             </InputContainer>
           </DuplicateWrapper>
           <InputContainer>
