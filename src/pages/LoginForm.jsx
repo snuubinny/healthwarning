@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useParams } from "react-router-dom";
 
 const LoginContainer = styled.div`
   background-color: #f8f6e9;
@@ -97,6 +97,7 @@ const RegisterButton = styled.div`
 `;
 
 function LoginForm() {
+
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -120,7 +121,7 @@ function LoginForm() {
         );
         
       localStorage.setItem('token', response.data.token);
-      navigate('/PostList');
+      navigate('/PostList/{use_id}');
     } catch (error) {
       console.error('Error logging in:', error);
       alert("아이디 또는 비밀번호가 일치하지 않습니다.");
