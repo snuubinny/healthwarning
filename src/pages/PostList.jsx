@@ -44,46 +44,46 @@ const PostList = () => {
   const { userId } = useParams(); // URL 파라미터에서 userId를 가져옴
   const [tenDaysAverage, setTenDaysAverage] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchTenDaysAverage = async () => {
-  //     const token = localStorage.getItem('token');
-  //     if (!token) {
-  //       console.error('No token found');
-  //       return;
-  //     }
+  useEffect(() => {
+    const fetchTenDaysAverage = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
 
-  //     console.log('Token:', token); // 토큰 값 확인용
+      console.log('Token:', token); // 토큰 값 확인용
 
-  //     try {
-  //       const response = await axios.get('https://dahaessyu.kro.kr/blog/main/', {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`
-  //         }
-  //       });
+      try {
+        const response = await axios.get('https://dahaessyu.kro.kr/blog/main/', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
 
-  //       console.log('Response data:', response.data); // 응답 데이터 확인
-  //       if (response.data && response.data.TenDaysAverage !== undefined) {
-  //         setTenDaysAverage(response.data.TenDaysAverage);
-  //       } else {
-  //         console.error("TenDaysAverage is missing in the response");
-  //       }
-  //     } catch (error) {
-  //       console.error("There was an error fetching the data!", error);
-  //     }
-  //   };
+        console.log('Response data:', response.data); // 응답 데이터 확인
+        if (response.data && response.data.TenDaysAverage !== undefined) {
+          setTenDaysAverage(response.data.TenDaysAverage);
+        } else {
+          console.error("TenDaysAverage is missing in the response");
+        }
+      } catch (error) {
+        console.error("There was an error fetching the data!", error);
+      }
+    };
 
-  //   fetchTenDaysAverage();
-  // }, [userId]);
+    fetchTenDaysAverage();
+  }, [userId]);
 
   return (
     <Wrapper>
-      {/* <HeadLine>
+      <HeadLine>
         최근 10일 내의 달성률은 
         <AchievementRate>{tenDaysAverage !== null ? tenDaysAverage : '...'} </AchievementRate> 
         % 입니다.
       </HeadLine>
       <RecentPosts userId={userId} />
-      <Pagination userId={userId} /> */}
+      <Pagination userId={userId} />
     </Wrapper>
   );
 };

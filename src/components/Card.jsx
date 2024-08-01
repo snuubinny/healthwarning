@@ -1,5 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const CardWrapper = styled.div`
   background: #fff;
@@ -30,9 +32,15 @@ const DateBox = styled.div`
   margin-bottom: 10px;
 `;
 
-const Card = ({ data, onClick }) => {
+const Card = ({ data }) => {
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const handleClick = () => {
+    navigate(`/post/${userId}`);
+  };
+
   return (
-    <CardWrapper onClick={() => onClick(data.id)}>
+    <CardWrapper onClick={handleClick}>
       <CardImage>{data.achievement_rate_value}%</CardImage>
       <DateBox>{data.date}</DateBox>
     </CardWrapper>

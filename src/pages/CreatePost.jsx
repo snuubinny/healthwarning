@@ -181,7 +181,7 @@ function CreatePost() {
   const [diary, setDiary] = useState('');
 
   const handleSubmit = async () => {
-      const postData = {
+    const postData = {
       date: `${date.year}-${date.month}-${date.day}`,
       medication_today: medication,
       exercise_time: exercise,
@@ -191,13 +191,14 @@ function CreatePost() {
     };
 
     try {
-      const response = await axios.post('/blog/create/', postData, {
+      const response = await axios.post('https://dahaessyu.kro.kr/blog/create/', postData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
       console.log('Post created successfully:', response.data);
-      navigate('/PostList'); // 게시글 목록 페이지로 이동
+      alert(`오늘의 글이 정상적으로 등록되었습니다`);
+      navigate('/PostList/${user_id}'); // 게시글 목록 페이지로 이동
     } catch (error) {
       console.error('Error creating post:', error);
       alert('포스트 생성 중 오류가 발생했습니다.');
