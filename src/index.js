@@ -20,9 +20,9 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<LoginForm />} />
           <Route path="CreatePost" element={<CreatePost />} />
-          <Route path="EditProfile" element={<EditProfile />} />
+          <Route path="/EditProfile/:userId" element={<EditProfile />} />
           <Route path="Post" element={<Post />} />
-          <Route path="PostList/:user_id" element={<PostList />} />
+          <Route path="/PostList/:userId" element={<PostList />} />
           <Route path="RegisterForm" element={<RegisterForm />} />
           <Route path="*" element={<NotFound />} />
         </Route>

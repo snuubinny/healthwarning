@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import MyProfile from "../components/MyProfile";
-import MyInformation from "../components/MyInformation";
-import ProfileDetails from "../components/ProfileDetails";
-import { useLocation } from "react-router-dom";
-import { axios } from "axios";
+import axios from "axios";
 import { useParams } from "react-router-dom";
+import MyProfile from "../components/MyProfile";
 
 const EditButton = styled.button`
   padding: 3px;
@@ -14,8 +11,7 @@ const EditButton = styled.button`
   width: 120px;
   background-color: #ff832b;
   color: white;
-  border: none;5
-  
+  border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
@@ -31,108 +27,60 @@ const EditButton = styled.button`
 `;
 
 const EditProfile = () => {
-  const location = useLocation();
-  const userData = location.state || {};
+  const { userId } = useParams();
   const [isEditable, setIsEditable] = useState(false);
-  const [name, setName] = useState(userData.name || "전수빈");
-  const [id, setId] = useState(userData.id || "jeonsubin5156");
-  const [password, setPassword] = useState(userData.password || "1234");
-  const [email, setEmail] = useState(
-    userData.email || "jeonsubin5156@inha.edu"
-  );
-  const [birthdate, setBirthdate] = useState(userData.birthdate || "010329");
-  const [sex, setSex] = useState(userData.sex || "여");
-  const [sleep, setSleep] = useState(userData.sleep || 8);
-  const [medicine, setMedicine] = useState(userData.medicine || 3);
-  const [exercise, setExercise] = useState(userData.exercise || 30);
-  const [meal, setMeal] = useState(userData.meal || 3);
+  const [username, setUsername] = useState("");
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birth, setBirth] = useState("");
+  const [gender, setGender] = useState("");
+  const [sleep, setSleep] = useState("");
+  const [medications, setMedications] = useState("");
+  const [exercises, setExercises] = useState("");
+  const [meals, setMeals] = useState("");
 
-  const handleEditClick = () => {
-    if (isEditable) {
-      setIsEditable(false);
-    } else {
-      setIsEditable(true);
-    }
-  };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        console.log("Token:", token); // 로컬 스토리지에서 토큰을 가져옵니다.
+        const response = await axios.get(
+          `https://dahaessyu.kro.kr/users/profile/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 요청 헤더에 토큰을 포함시킵니다.
+            },
+          }
+        );
+        const userData = response.data;
+        setUsername(userData.username);
+        setIdentifier(userData.identifier);
+        setPassword(userData.password);
+        setEmail(userData.email);
+        setBirth(userData.birth);
+        setGender(userData.gender);
+        setSleep(userData.sleep);
+        setMedications(userData.medications);
+        setExercises(userData.exercises);
+        setMeals(userData.meals);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
 
-  /*
- const handleEditClick = () => {
-    setIsEditable(!isEditable);
-  };
-  */
-
-  const handleSave = (newName, newId) => {
-    setName(newName);
-    setId(newId);
-    setIsEditable(false);
-  };
-
-  const handleProfileDetailsSave = (data) => {
-    setSleep(data.sleep);
-    setMedicine(data.medicine);
-    setExercise(data.exercise);
-    setMeal(data.meal);
-  };
-  const handleSexChange = (newSex) => {
-    setSex(newSex);
-  };
-
-  /*
-const handleProfileDetailsSave = async (data) => {
-    try {
-      // 서버에 데이터 전송
-      await axios.put("/api/update-profile", data);
-      setSleep(data.sleep);
-      setMedicine(data.medicine);
-      setExercise(data.exercise);
-      setMeal(data.meal);
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
-  };
-
-  const handleSexChange = (newSex) => {
-    setSex(newSex);
-  };
-
-*/
-
-  const initialData = {
-    name,
-    id,
-    password,
-    email,
-    birthdate,
-    sex,
-    sleep,
-    medicine,
-    exercise,
-    meal,
-  };
+    fetchUserData();
+  }, [userId]);
 
   return (
     <>
       <MyProfile
         isEditable={isEditable}
         setIsEditable={setIsEditable}
-        name={name}
-        id={id}
-        sex={sex}
+        username={username}
+        identifier={identifier}
+        gender={gender}
       />
-      <MyInformation
-        isEditable={isEditable}
-        onSave={handleSave}
-        onSexChange={handleSexChange}
-        initialData={initialData}
-      />
-      <ProfileDetails
-        isEditable={isEditable}
-        initialData={initialData}
-        onSave={handleProfileDetailsSave}
-      />
-      <EditButton onClick={handleEditClick}>
-        {isEditable ? "저장" : "정보수정"}
-      </EditButton>
     </>
   );
 };

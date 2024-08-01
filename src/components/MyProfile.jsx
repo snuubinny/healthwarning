@@ -3,6 +3,9 @@ import styled from "styled-components";
 import womanImage from "../img/woman.png";
 import manImage from "../img/man.png";
 import { useNavigate } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+
 /* import {useParams} from "react-router-dom"; */
 
 const IconWrapper = styled.div`
@@ -27,7 +30,7 @@ const ManIcon = styled.img`
 const PencilIcon = styled.svg`
   width: 40px;
   height: 40px;
-  fill: ${(props) => (props.isActive ? "#ff832b" : "black")};
+  fill: ${(props) => (props.$isActive ? "#ff832b" : "black")};
   cursor: pointer;
   margin-top: 130px;
   margin-left: -15px;
@@ -95,9 +98,17 @@ const LogoutIcon = styled.svg`
   fill: #ff8000;
 `;
 
-const MyProfile = ({ isEditable, setIsEditable, name, id, sex }) => {
+const MyProfile = ({
+  isEditable,
+  setIsEditable,
+  username,
+  identifier,
+  gender,
+}) => {
   const navigate = useNavigate();
+
   const handleLogoutClick = () => {
+    localStorage.removeItem("token");
     navigate("/"); // 홈으로 이동합니다.
   };
 
@@ -127,13 +138,13 @@ const MyProfile = ({ isEditable, setIsEditable, name, id, sex }) => {
           </TitleWrap>
         </Header>
         <IconWrapper>
-          {sex === "여" ? (
+          {gender === "여" ? (
             <WomanIcon src={womanImage} />
           ) : (
             <ManIcon src={manImage} />
           )}
           <PencilIcon
-            isActive={isEditable}
+            $isActive={isEditable}
             onClick={handleIconClick}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -142,9 +153,9 @@ const MyProfile = ({ isEditable, setIsEditable, name, id, sex }) => {
           </PencilIcon>
         </IconWrapper>
         <TextWrap>
-          이름: {name}
+          이름: {username}
           <br />
-          ID: {id}
+          ID: {identifier}
         </TextWrap>
       </ProfileContainer>
     </Wrapper>
@@ -152,21 +163,3 @@ const MyProfile = ({ isEditable, setIsEditable, name, id, sex }) => {
 };
 
 export default MyProfile;
-
-/* 
-const [name,setName]=useState([]);
-const [id, setId] = useState([]);
-
- useEffect(() => {
-    axios
-      .get(`https://dahaessyu.kro.kr/users/profile/{id}`)
-      .then((res) => {
-        setAuctionList(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-*/
