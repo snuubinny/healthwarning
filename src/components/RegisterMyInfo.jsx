@@ -130,14 +130,20 @@ const SexButtonContainer = styled.div`
   margin-right: 250px;
 `;
 
-const RegisterMyInfo = () => {
-  const [name, setName] = useState("");
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birth, setBirth] = useState("");
-  const [gender, setGender] = useState("");
-
+const RegisterMyInfo = ({
+  username,
+  setUsername,
+  identifier,
+  setIdentifier,
+  password,
+  setPassword,
+  email,
+  setEmail,
+  birth,
+  setBirth,
+  gender,
+  setGender,
+}) => {
   const handleSexClick = (selectedGender) => {
     setGender(selectedGender);
   };
@@ -154,8 +160,8 @@ const RegisterMyInfo = () => {
             <FormBox
               type="text"
               placeholder="이름을 입력하세요"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </InputContainer>
           <DuplicateWrapper>
@@ -173,7 +179,7 @@ const RegisterMyInfo = () => {
           <InputContainer>
             <Label>비밀번호:</Label>
             <FormBox
-              type="text"
+              type="password" // 비밀번호 필드는 type="password"로 변경
               placeholder="비밀번호를 입력하세요"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -183,7 +189,7 @@ const RegisterMyInfo = () => {
             <InputContainer>
               <Label>이메일:</Label>
               <FormBox
-                type="text"
+                type="email" // 이메일 필드는 type="email"로 변경
                 placeholder="이메일을 입력하세요"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -209,8 +215,8 @@ const RegisterMyInfo = () => {
               남
             </SexButton>
             <SexButton
-              $active={gender === "f"}
-              onClick={() => handleSexClick("f")}
+              $active={gender === "w"}
+              onClick={() => handleSexClick("w")}
             >
               여
             </SexButton>

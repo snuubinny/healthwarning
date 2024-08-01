@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { MyProfile } from "../components/MyProfile";
-import { MyInformation } from "../components/MyInformation";
-import { ProfileDetails } from "../components/ProfileDetails";
+import MyProfile from "../components/MyProfile";
+import MyInformation from "../components/MyInformation";
+import ProfileDetails from "../components/ProfileDetails";
 import { useLocation } from "react-router-dom";
 import { axios } from "axios";
 import { useParams } from "react-router-dom";

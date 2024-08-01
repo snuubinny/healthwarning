@@ -176,4 +176,4 @@ const ProfileDetails = ({ isEditable, initialData, onSave }) => {
   );
 };
 
-export { ProfileDetails };
+export default ProfileDetails;

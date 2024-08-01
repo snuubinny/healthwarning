@@ -209,7 +209,7 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
   );
 };
 
-export { MyInformation };
+export default MyInformation;
 
 /*
 Wrapper isEditable={isEditable}

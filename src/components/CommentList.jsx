@@ -191,7 +191,7 @@ const CommentList = () => {
   );
 };
 
-export { CommentList };
+export default CommentList;
 
 /*댓글 수정/삭제
 
@@ -300,8 +300,4 @@ export { CommentList };
 };
 
 export { CommentList };
-
-
-
-
 */

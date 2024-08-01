@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <ScrollToTop/>
+      <ScrollToTop />
       <div className="outlet-background">
         <Outlet />
       </div>
