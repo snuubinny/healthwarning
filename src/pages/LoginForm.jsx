@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { useState, useEffect } from "react";
+import axios from "axios";
+
 
 const LoginContainer = styled.div`
   background-color: #f8f6e9;
@@ -97,16 +99,30 @@ const RegisterButton = styled.div`
 function LoginForm() {
   const navigate = useNavigate();
   const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
- 
+  const [pw, setPw] = useState("");
+
   const handleRegisterClick = () => {
     navigate('/RegisterForm');
   };
 
-  const handleLoginClick = () => {
-    if (id === "jeonsubin5156" && password === "1234") {
+    const handleLoginClick = async () => {
+      try {
+        const requestData = {
+          identifier: id,
+          password: pw,
+          };
+  
+        console.log("Sending request data:", requestData);
+  
+        const response = await axios.post(
+          "https://dahaessyu.kro.kr/users/login/",
+          requestData
+        );
+        
+      localStorage.setItem('token', response.data.token);
       navigate('/PostList');
-    } else {
+    } catch (error) {
+      console.error('Error logging in:', error);
       alert("아이디 또는 비밀번호가 일치하지 않습니다.");
     }
   };
@@ -117,14 +133,14 @@ function LoginForm() {
         <TitleBox>회원 로그인</TitleBox>
         <FormBox>
           <IdBox 
-            placeholder=" 아이디를 입력하세요" type="password" 
+            placeholder=" 아이디를 입력하세요" type="text" 
             value={id} 
             onChange={(e) => setId(e.target.value)}>
           </IdBox>
           <PwBox 
             placeholder=" 비밀번호를 입력하세요" type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)}>
+            value={pw} 
+            onChange={(e) => setPw(e.target.value)}>
           </PwBox>
         </FormBox>
         <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
