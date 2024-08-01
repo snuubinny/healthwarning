@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const LoginContainer = styled.div`
   background-color: #f8f6e9;
@@ -73,10 +71,10 @@ const LoginButton = styled.button`
   margin-top: 10px;
   cursor: pointer;
   
-&:hover {
-  background-color: #fee5ce;
-  color: #ff832b;
-}
+  &:hover {
+    background-color: #fee5ce;
+    color: #ff832b;
+  }
 `;
 
 const TextBox = styled.div`
@@ -97,7 +95,6 @@ const RegisterButton = styled.div`
 `;
 
 function LoginForm() {
-
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -106,22 +103,23 @@ function LoginForm() {
     navigate('/RegisterForm');
   };
 
-    const handleLoginClick = async () => {
-      try {
-        const requestData = {
-          identifier: id,
-          password: pw,
-          };
-  
-        console.log("Sending request data:", requestData);
-  
-        const response = await axios.post(
-          "https://dahaessyu.kro.kr/users/login/",
-          requestData
-        );
-        
+  const handleLoginClick = async () => {
+    try {
+      const requestData = {
+        identifier: id,
+        password: pw,
+      };
+
+      console.log("Sending request data:", requestData);
+
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/users/login/",
+        requestData
+      );
+
+      const userId = response.data.user_id; // 서버로부터 사용자 ID를 받아옴
       localStorage.setItem('token', response.data.token);
-      navigate('/PostList/{use_id}');
+      navigate(`/PostList/${userId}`);
     } catch (error) {
       console.error('Error logging in:', error);
       alert("아이디 또는 비밀번호가 일치하지 않습니다.");
@@ -150,6 +148,6 @@ function LoginForm() {
       </LoginBox>
     </LoginContainer>
   );
-};
+}
 
 export default LoginForm;

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from 'styled-components';
-import Card from '../components/Card';
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Pagination from '../components/Pagination';
 import RecentPosts from "../components/RecentPosts";
-import axios from "axios";
 
 const Wrapper = styled.div`
   background-color: #f8f6e9;
@@ -23,20 +22,16 @@ const HeadLine = styled.div`
   height: 60px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background:#ffffff;
+  background: #ffffff;
   border: 2px solid #fee5ce;
-  /* background: linear-gradient(to right, #ff832b, #ffb74d);
-  color:white; */
   border-radius: 20px;
   margin-top: 30px;
   font-size: 30px;
-  /* box-shadow: 0px 0px 10px 1px #fee5ce; */
 `;
 
 const AchievementRate = styled.div`
-  width:100px;
+  width: 100px;
   height: 55px;
-  /* background-color: #fee5ce; */
   border-radius: 20px;
   margin-left: 15px;
   text-align: center;
@@ -46,25 +41,33 @@ const AchievementRate = styled.div`
 `;
 
 const PostList = () => {
-  const navigate = useNavigate();
+  const { userId } = useParams(); // URL 파라미터에서 userId를 가져옴
+  const [tenDaysAverage, setTenDaysAverage] = useState('100');
 
-  const [tenDaysAverage, setTenDaysAverage] = useState(100);
+  useEffect(() => {
+    const fetchTenDaysAverage = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
 
-  // useEffect(() => {
-  //   axios.get('/users/main/')
-  //     .then(response => {
-  //       setTenDaysAverage(response.data.TenDaysAverage);
-  //     })
-  //     .catch(error => {
-  //       console.error("There was an error fetching the data!", error);
-  //     });
-  // }, []);
+      console.log('Token:', token); // 토큰 값 확인용
 
+      try {
+        const response = await axios.get(`https://dahaessyu.kro.kr/users/${userId}/posts`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setTenDaysAverage(response.data.TenDaysAverage);
+      } catch (error) {
+        console.error("There was an error fetching the data!", error);
+      }
+    };
 
-  // useEffect(() => {
-    
-  // }, []);
-
+    fetchTenDaysAverage();
+  }, [userId]);
 
   return (
     <Wrapper>
@@ -73,10 +76,10 @@ const PostList = () => {
         <AchievementRate>{tenDaysAverage}</AchievementRate> 
         % 입니다.
       </HeadLine>
-      <RecentPosts></RecentPosts>
-      <Pagination></Pagination>
+      <RecentPosts userId={userId} />
+      <Pagination userId={userId} />
     </Wrapper>
-    );
-  };
-  
-  export default PostList;
+  );
+};
+
+export default PostList;
