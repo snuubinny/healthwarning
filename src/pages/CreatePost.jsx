@@ -119,7 +119,6 @@ const Input = styled.input`
   font-weight: bold;
   text-align: center;
   line-height: 55px;
-
 `;
 
 const DiaryTitle = styled.div`
@@ -160,14 +159,13 @@ const PostButton = styled.button`
   margin: 30px;
   cursor: pointer;
   
-&:hover {
-  background-color: #fee5ce;
-  color: #ff832b;
-}
+  &:hover {
+    background-color: #fee5ce;
+    color: #ff832b;
+  }
 `;
 
 function CreatePost() {
-  
   const navigate = useNavigate();
 
   const goalSleep = 8;
@@ -183,7 +181,7 @@ function CreatePost() {
   const [diary, setDiary] = useState('');
 
   const handleSubmit = async () => {
-    const postData = {
+      const postData = {
       date: `${date.year}-${date.month}-${date.day}`,
       medication_today: medication,
       exercise_time: exercise,
@@ -206,25 +204,32 @@ function CreatePost() {
     }
   };
 
+  const handleNumberInput = (e, setter) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setter(value);
+    }
+  };
+
   return (
     <Wrapper>
       <CheckListTitle>
         <YYYY
           placeholder="YYYY"
           value={date.year}
-          onChange={(e) => setDate({ ...date, year: e.target.value })}
+          onChange={(e) => handleNumberInput(e, (value) => setDate({ ...date, year: value }))}
         />
         년
         <MMDD
           placeholder="MM"
           value={date.month}
-          onChange={(e) => setDate({ ...date, month: e.target.value })}
+          onChange={(e) => handleNumberInput(e, (value) => setDate({ ...date, month: value }))}
         />
         월
         <MMDD
           placeholder="DD"
           value={date.day}
-          onChange={(e) => setDate({ ...date, day: e.target.value })}
+          onChange={(e) => handleNumberInput(e, (value) => setDate({ ...date, day: value }))}
         />
         일 어떤 하루를 보내셨나요?
       </CheckListTitle>
@@ -233,7 +238,7 @@ function CreatePost() {
           목표 수면 시간 <GoalBox>{goalSleep}</GoalBox>시간 중
           <Input
             value={sleep}
-            onChange={(e) => setSleep(e.target.value)}
+            onChange={(e) => handleNumberInput(e, setSleep)}
           />
           시간 수면함
         </SleepBox>
@@ -241,7 +246,7 @@ function CreatePost() {
           목표 복약 횟수 <GoalBox>{goalMedication}</GoalBox>회 중
           <Input
             value={medication}
-            onChange={(e) => setMedication(e.target.value)}
+            onChange={(e) => handleNumberInput(e, setMedication)}
           />
           회 복용함
         </MedicationsBox>
@@ -249,7 +254,7 @@ function CreatePost() {
           목표 운동 시간 <GoalBox>{goalExercise}</GoalBox>분 중
           <Input
             value={exercise}
-            onChange={(e) => setExercise(e.target.value)}
+            onChange={(e) => handleNumberInput(e, setExercise)}
           />
           분 운동함
         </ExerciseBox>
@@ -257,7 +262,7 @@ function CreatePost() {
           목표 식사 횟수 <GoalBox>{goalMeal}</GoalBox>끼 중
           <Input
             value={meal}
-            onChange={(e) => setMeal(e.target.value)}
+            onChange={(e) => handleNumberInput(e, setMeal)}
           />
           끼 식사함
         </MealsBox>

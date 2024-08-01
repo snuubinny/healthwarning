@@ -89,7 +89,11 @@ const HighLight2 = styled.div`
   margin-right:10px ;
 `;
 
-const RecentPostCard = () => {
+const RecentPostCard = (post) => {
+  
+  const { date, sleep_time, medication_today, exercise_time, meal_count } = post;
+   
+  const postDate = '2024-07-25'
   const goalSleep = 8;
   const goalMedication = 3;
   const goalExercise = 40;
@@ -102,7 +106,7 @@ const RecentPostCard = () => {
     return (
       <>
       <RecentPostsBox>
-            <PostDate>2024-07-25</PostDate>
+            <PostDate>{postDate}</PostDate>
             <AchivementRateContainer>
                 <AchivementRate src={`${process.env.PUBLIC_URL}/percentcircle.png`} alt="Example"/>
             </AchivementRateContainer>

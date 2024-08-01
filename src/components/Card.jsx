@@ -17,7 +17,7 @@ const CardWrapper = styled.div`
   }
 `;
 
-const CardImage = styled.img`
+const CardImage = styled.div`
   width: 160px;
   height: auto;
   border-radius: 8px;
@@ -30,15 +30,11 @@ const DateBox = styled.div`
   margin-bottom: 10px;
 `;
 
-const Card = ({data}) => {
+const Card = ({ data, onClick }) => {
   return (
-    <CardWrapper>
-      <CardImage src={`${process.env.PUBLIC_URL}/percentcircle.png`} alt="Example" />
-      <DateBox>2024-07-01</DateBox>
-    
-      {/* <CardImage>{data.achievement_rate}%</CardImage>
-      <DateBox>{data.date}</DateBox> */}
-
+    <CardWrapper onClick={() => onClick(data.id)}>
+      <CardImage>{data.achievement_rate_value}%</CardImage>
+      <DateBox>{data.date}</DateBox>
     </CardWrapper>
   );
 };
