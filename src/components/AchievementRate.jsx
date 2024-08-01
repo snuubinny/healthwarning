@@ -259,7 +259,7 @@ const AchievementRate = () => {
   );
 };
 
-export { AchievementRate };
+export default AchievementRate;
 
 /*  <PercentText>
           잘하고 있어요! 목표의 <Highlight>{userInfo.percentage}%</Highlight>를

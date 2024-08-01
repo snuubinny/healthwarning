@@ -25,7 +25,7 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  gap: px;
+  gap: 10px;
 `;
 
 const FooterIcon = styled.img`
@@ -70,7 +70,7 @@ const GithubLink = styled.a`
   color: black;
 `;
 
-function Footer() {
+const Footer = () => {
   return (
     <WrapFooter>
       <ContentWrapper>
@@ -105,6 +105,6 @@ function Footer() {
       </ContentWrapper>
     </WrapFooter>
   );
-}
+};
 
 export default Footer;

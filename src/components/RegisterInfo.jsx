@@ -87,12 +87,16 @@ const InlineLabel = styled.label`
   flex-shrink: 0; /* 추가 */
 `;
 
-const RegisterInfo = () => {
-  const [sleep, setSleep] = useState("");
-  const [medications, setMedications] = useState("");
-  const [exercises, setExercises] = useState("");
-  const [meals, setMeals] = useState("");
-
+const RegisterInfo = ({
+  sleep,
+  setSleep,
+  medications,
+  setMedications,
+  exercises,
+  setExercises,
+  meals,
+  setMeals,
+}) => {
   const handleNumberInput = (e, setter) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {

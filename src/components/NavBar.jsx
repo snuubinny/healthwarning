@@ -53,10 +53,9 @@ const NavBarIcon = styled.img`
   margin-right: 6px;
 `;
 
-function NavBar() {
+const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isLogin = true;
 
   const handleHomeLogoClick = () => {
     navigate("/PostList");
@@ -89,6 +88,6 @@ function NavBar() {
       </LogoWrapper>
     </WrapNavBar>
   );
-}
+};
 
 export default NavBar;

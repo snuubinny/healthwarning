@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client"; // react-dom/client에서 createRoot를 가져옵니다.
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import NotFound from "./pages/NotFound";
@@ -10,9 +10,8 @@ import Post from "./pages/Post";
 import PostList from "./pages/PostList";
 import RegisterForm from "./pages/RegisterForm";
 
-// createRoot를 react-dom/client에서 가져옵니다.
 const container = document.getElementById("root");
-const root = createRoot(container);
+const root = ReactDOM.createRoot(container); // createRoot를 ReactDOM에서 가져옵니다.
 
 root.render(
   <React.StrictMode>

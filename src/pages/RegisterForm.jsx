@@ -72,7 +72,7 @@ const FooterIcon = styled.img`
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -85,31 +85,39 @@ const RegisterForm = () => {
 
   const handleRegister = async () => {
     try {
+      const requestData = {
+        username,
+        identifier,
+        password,
+        email,
+        birth,
+        gender,
+        sleep: parseInt(sleep, 10),
+        medications: parseInt(medications, 10),
+        exercises: parseInt(exercises, 10),
+        meals: parseInt(meals, 10),
+      };
+
+      console.log("Sending request data:", requestData);
+
       const response = await axios.post(
         "https://dahaessyu.kro.kr/users/signup/",
-        {
-          name,
-          identifier,
-          password,
-          email,
-          birth,
-          gender,
-          sleep,
-          medications,
-          exercises,
-          meals,
-        }
+        requestData
       );
 
       console.log(response); // 서버 응답 로그
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert("회원가입이 완료되었습니다");
+        navigate("/"); // 회원가입 후 로그인 페이지로 이동
       } else {
         alert("회원가입에 실패하였습니다 다시 시도해주세요");
       }
     } catch (error) {
-      console.error("Error registering user:", error);
+      console.error(
+        "Error registering user:",
+        error.response?.data || error.message
+      );
       alert("An error occurred during registration. Please try again.");
     }
   };
@@ -125,8 +133,8 @@ const RegisterForm = () => {
         <Divider />
       </RegisterWrap>
       <RegisterMyInfo
-        name={name}
-        setName={setName}
+        username={username}
+        setUsername={setUsername}
         identifier={identifier}
         setIdentifier={setIdentifier}
         password={password}
@@ -145,8 +153,8 @@ const RegisterForm = () => {
         setMedications={setMedications}
         exercises={exercises}
         setExercises={setExercises}
-        meals={meals} // 수정: meal에서 meals로 변경
-        setMeals={setMeals} // 수정: setMeal에서 setMeals로 변경
+        meals={meals}
+        setMeals={setMeals}
       />
       <RegisterButton onClick={handleRegister}>회원가입</RegisterButton>
     </>
