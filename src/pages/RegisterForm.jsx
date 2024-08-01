@@ -92,33 +92,29 @@ const RegisterForm = () => {
         email,
         birth,
         gender,
-        sleep: parseInt(sleep, 10),
-        medications: parseInt(medications, 10),
-        exercises: parseInt(exercises, 10),
-        meals: parseInt(meals, 10),
+        sleep: parseInt(sleep),
+        medications: parseInt(medications),
+        exercises: parseInt(exercises),
+        meals: parseInt(meals),
       };
-
-      console.log("Sending request data:", requestData);
 
       const response = await axios.post(
         "https://dahaessyu.kro.kr/users/signup/",
         requestData
       );
 
-      console.log(response); // 서버 응답 로그
-
       if (response.status === 201) {
         alert("회원가입이 완료되었습니다");
-        navigate("/"); // 회원가입 후 로그인 페이지로 이동
+        navigate("/");
       } else {
         alert("회원가입에 실패하였습니다 다시 시도해주세요");
       }
     } catch (error) {
-      console.error(
-        "Error registering user:",
-        error.response?.data || error.message
-      );
-      alert("An error occurred during registration. Please try again.");
+      if (error.response && error.response.status === 409) {
+        alert("회원가입 정보를 다시 한번 확인하세요 !");
+      } else {
+        alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
     }
   };
 
@@ -162,32 +158,3 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
-
-/*      
- <RegisterMyInfo
-        name={name}
-        setName={setName}
-        id={id}
-        setId={setId}
-        password={password}
-        setPassword={setPassword}
-        email={email}
-        setEmail={setEmail}
-        birthdate={birthdate}
-        setBirthdate={setBirthdate}
-        sex={sex}
-        setSex={setSex}
-      />
-
-
-
-<RegisterInfo
-        sleep={sleep}
-        setSleep={setSleep}
-        medicine={medicine}
-        setMedicine={setMedicine}
-        exercise={exercise}
-        setExercise={setExercise}
-        meal={meal}
-        setMeal={setMeal}
-         */
