@@ -3,6 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import MyProfile from "../components/MyProfile";
+import MyInformation from "../components/MyInformation";
+import ProfileDetails from "../components/ProfileDetails";
 
 const EditButton = styled.button`
   padding: 3px;
@@ -29,16 +31,18 @@ const EditButton = styled.button`
 const EditProfile = () => {
   const { userId } = useParams();
   const [isEditable, setIsEditable] = useState(false);
-  const [username, setUsername] = useState("");
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birth, setBirth] = useState("");
-  const [gender, setGender] = useState("");
-  const [sleep, setSleep] = useState("");
-  const [medications, setMedications] = useState("");
-  const [exercises, setExercises] = useState("");
-  const [meals, setMeals] = useState("");
+  const [userData, setUserData] = useState({
+    username: "",
+    identifier: "",
+    password: "",
+    email: "",
+    birth: "",
+    gender: "",
+    sleep: "",
+    medications: "",
+    exercises: "",
+    meals: "",
+  });
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -46,24 +50,26 @@ const EditProfile = () => {
         const token = localStorage.getItem("token");
         console.log("Token:", token); // 로컬 스토리지에서 토큰을 가져옵니다.
         const response = await axios.get(
-          `https://dahaessyu.kro.kr/users/profile/${userId}`,
+          `https://dahaessyu.kro.kr/users/profile/`,
           {
             headers: {
               Authorization: `Bearer ${token}`, // 요청 헤더에 토큰을 포함시킵니다.
             },
           }
         );
-        const userData = response.data;
-        setUsername(userData.username);
-        setIdentifier(userData.identifier);
-        setPassword(userData.password);
-        setEmail(userData.email);
-        setBirth(userData.birth);
-        setGender(userData.gender);
-        setSleep(userData.sleep);
-        setMedications(userData.medications);
-        setExercises(userData.exercises);
-        setMeals(userData.meals);
+        const data = response.data;
+        setUserData({
+          username: data.username,
+          identifier: data.identifier,
+          password: data.password,
+          email: data.email,
+          birth: data.birth,
+          gender: data.gender,
+          sleep: data.sleep,
+          medications: data.medications,
+          exercises: data.exercises,
+          meals: data.meals,
+        });
       } catch (error) {
         console.error("Failed to fetch user data:", error);
       }
@@ -72,15 +78,41 @@ const EditProfile = () => {
     fetchUserData();
   }, [userId]);
 
+  const saveUserData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(`https://dahaessyu.kro.kr/users/profile/`, userData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // 요청 헤더에 토큰을 포함시킵니다.
+        },
+      });
+      setIsEditable(false);
+      alert("변경사항이 저장되었습니다.");
+    } catch (error) {
+      console.error("Failed to save user data:", error);
+    }
+  };
+
   return (
     <>
       <MyProfile
         isEditable={isEditable}
         setIsEditable={setIsEditable}
-        username={username}
-        identifier={identifier}
-        gender={gender}
+        username={userData.username}
+        identifier={userData.identifier}
+        gender={userData.gender}
       />
+      <MyInformation
+        isEditable={isEditable}
+        userData={userData}
+        setUserData={setUserData}
+      />
+      <ProfileDetails
+        isEditable={isEditable}
+        userData={userData}
+        setUserData={setUserData}
+      />
+      <EditButton onClick={saveUserData}>저장</EditButton>
     </>
   );
 };

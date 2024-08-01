@@ -138,7 +138,7 @@ const MyProfile = ({
           </TitleWrap>
         </Header>
         <IconWrapper>
-          {gender === "여" ? (
+          {gender === "w" ? (
             <WomanIcon src={womanImage} />
           ) : (
             <ManIcon src={manImage} />

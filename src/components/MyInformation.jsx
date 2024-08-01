@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -33,6 +33,7 @@ const Header = styled.div`
   top: 0;
   left: 0;
 `;
+
 const SexButton = styled.button`
   padding: 3px;
   font-size: 15px;
@@ -57,6 +58,7 @@ const SexButtonContainer = styled.div`
   flex-direction: row;
   margin-right: 250px;
 `;
+
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
@@ -103,28 +105,14 @@ const Label = styled.label`
   text-align: right;
 `;
 
-const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
-  const [username, setUsername] = useState("");
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birth, setBirth] = useState("");
-  const [gender, setGender] = useState("");
-
-  /*
- useEffect(() => {
-    setName(initialData.name);
-    setId(initialData.id);
-    setPassword(initialData.password);
-    setEmail(initialData.email);
-    setBirthdate(initialData.birthdate);
-    setSex(initialData.sex);
-  }, [initialData]);
-
-  const handleSaveClick = () => {
-    onSave(name, id, password, email, birthdate, sex);
+const MyInformation = ({ isEditable, userData, setUserData }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
-  */
 
   return (
     <Wrapper>
@@ -137,9 +125,9 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
             <Label>이름:</Label>
             <FormBox
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder={initialData.name}
+              name="username"
+              value={userData.username}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
           </InputContainer>
@@ -147,29 +135,29 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
             <Label>아이디:</Label>
             <FormBox
               type="text"
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
-              placeholder={initialData.id}
+              name="identifier"
+              value={userData.identifier}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
           </InputContainer>
           <InputContainer>
             <Label>비밀번호:</Label>
             <FormBox
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder={initialData.password}
+              type="password"
+              name="password"
+              value={userData.password}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
           </InputContainer>
           <InputContainer>
             <Label>이메일:</Label>
             <FormBox
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={initialData.email}
+              type="email"
+              name="email"
+              value={userData.email}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
           </InputContainer>
@@ -177,23 +165,27 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
             <Label>생년월일:</Label>
             <FormBox
               type="text"
-              value={birth}
-              onChange={(e) => setBirth(e.target.value)}
-              placeholder={initialData.birthdate}
+              name="birth"
+              value={userData.birth}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
           </InputContainer>
           <SexButtonContainer>
             <Label>성별:</Label>
             <SexButton
-              active={gender === "m"}
-              onClick={() => isEditable && setGender("m")}
+              active={userData.gender === "m"}
+              onClick={() =>
+                isEditable && setUserData({ ...userData, gender: "m" })
+              }
             >
               남
             </SexButton>
             <SexButton
-              active={gender === "w"}
-              onClick={() => isEditable && setGender("w")}
+              active={userData.gender === "w"}
+              onClick={() =>
+                isEditable && setUserData({ ...userData, gender: "w" })
+              }
             >
               여
             </SexButton>
@@ -205,8 +197,3 @@ const MyInformation = ({ isEditable, onSave, initialData, onSexChange }) => {
 };
 
 export default MyInformation;
-
-/*
-Wrapper isEditable={isEditable}
-
-*/
