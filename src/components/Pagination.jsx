@@ -76,32 +76,40 @@ const ButtonPNG = styled.img`
   filter: invert(1) brightness(2);
 `;
 
-const PostList = () => {
+const Pagination = () => {
   const navigate = useNavigate();
   const handleCreatePostClick = () => {
     navigate('/CreatePost');
   };
 
-  const [cards, setCards] = useState(Array(23).fill({})); // 데이터를 45개로 설정하여 페이지네이션 예시
+  const [cards, setCards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 15;
 
   useEffect(() => {
-    // 데이터 가져오기 (현재는 더미 데이터 사용)
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await axios.get('/users/main/', {
-    //       headers: {
-    //         Authorization: `Bearer ${localStorage.getItem('token')}`
-    //       }
-    //     });
-    //     setCards(response.data);
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        // 여기서 로그인 페이지로 리다이렉션하는 등의 추가 처리를 할 수 있습니다.
+        return;
+      }
+      
+      console.log('Token:', token); // 토큰 값 확인용
 
-    // fetchData();
+      try {
+        const response = await axios.get('https://dahaessyu.kro.kr/blog/main/', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setCards(response.data.posts);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   // 현재 페이지에 해당하는 카드 계산
@@ -115,12 +123,9 @@ const PostList = () => {
   return (
     <>
       <PostListContainer>
-        {currentCards.map((_, index) => (
-          <Card key={index} />
-        ))}
-        {/* {CardsList.map((card, index) => (
+        {currentCards.map((card, index) => (
            <Card key={index} data={card} />
-         ))} */}
+         ))}
       </PostListContainer>
       <PostButtonContainer>
         <PostButton onClick={handleCreatePostClick}>
@@ -145,4 +150,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default Pagination;
