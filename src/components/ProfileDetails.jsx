@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -86,42 +86,14 @@ const InlineLabel = styled.label`
   flex-shrink: 0;
 `;
 
-const ProfileDetails = ({ isEditable, initialData, onSave }) => {
-  const [sleep, setSleep] = useState(initialData.sleep);
-  const [medicine, setMedicine] = useState(initialData.medicine);
-  const [exercise, setExercise] = useState(initialData.exercise);
-  const [meal, setMeal] = useState(initialData.meal);
-
-  useEffect(() => {
-    if (!isEditable) {
-      onSave({ sleep, medicine, exercise, meal });
-    }
-  }, [isEditable]);
-
-  /*
-  useEffect(() => {
-    if (!isEditable) {
-      const updatedData = { ...initialData, sleep, medicine, exercise, meal };
-      onSave(updatedData);
-    }
-  }, [isEditable]);
-  */
-
-  /*
-  useEffect(() => {
-    setName(initialData.name);
-    setId(initialData.id);
-    setPassword(initialData.password);
-    setEmail(initialData.email);
-    setBirthdate(initialData.birthdate);
-    setSex(initialData.sex);
-  }, [initialData]);
-
-  const handleSaveClick = () => {
-    onSave(name, id, password, email, birthdate, sex);
+const ProfileDetails = ({ isEditable, userData, setUserData }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
-
-  */
 
   return (
     <Wrapper>
@@ -134,8 +106,9 @@ const ProfileDetails = ({ isEditable, initialData, onSave }) => {
             <Label>목표 수면시간은</Label>
             <FormBox
               type="number"
-              value={sleep}
-              onChange={(e) => setSleep(e.target.value)}
+              name="sleep"
+              value={userData.sleep}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
             <InlineLabel>시간 입니다.</InlineLabel>
@@ -144,8 +117,9 @@ const ProfileDetails = ({ isEditable, initialData, onSave }) => {
             <Label>약 복용횟수는</Label>
             <FormBox
               type="number"
-              value={medicine}
-              onChange={(e) => setMedicine(e.target.value)}
+              name="medications"
+              value={userData.medications}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
             <InlineLabel>회 입니다.</InlineLabel>
@@ -154,8 +128,9 @@ const ProfileDetails = ({ isEditable, initialData, onSave }) => {
             <Label>목표 운동시간은</Label>
             <FormBox
               type="number"
-              value={exercise}
-              onChange={(e) => setExercise(e.target.value)}
+              name="exercises"
+              value={userData.exercises}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
             <InlineLabel>분 입니다.</InlineLabel>
@@ -164,8 +139,9 @@ const ProfileDetails = ({ isEditable, initialData, onSave }) => {
             <Label>하루 목표 식사횟수는</Label>
             <FormBox
               type="number"
-              value={meal}
-              onChange={(e) => setMeal(e.target.value)}
+              name="meals"
+              value={userData.meals}
+              onChange={handleChange}
               readOnly={!isEditable}
             />
             <InlineLabel>끼입니다.</InlineLabel>
