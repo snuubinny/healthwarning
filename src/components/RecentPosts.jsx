@@ -265,13 +265,13 @@ const RecentPosts = () => {
 
   return (
     <MainContainer> 
-      <LeftButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left" onClick={handleLeftClick}/>
       <RecentPostsContainer>
+        <LeftButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left" onClick={handleLeftClick}/>
         {posts.length > 0 && (
           <RecentPostCard post={posts[currentIndex]} />
         )}
+         <RightButton src={`${process.env.PUBLIC_URL}/rightbutton.png`} alt="right" onClick={handleRightClick}/>
       </RecentPostsContainer>
-      <RightButton src={`${process.env.PUBLIC_URL}/rightbutton.png`} alt="right" onClick={handleRightClick}/>
       <MissYouButton src={`${process.env.PUBLIC_URL}/missyou-2.png`} alt="heart" onClick={handleMissYouClick}/>
     </MainContainer>
   );
