@@ -107,11 +107,12 @@ const RegisterForm = () => {
         alert("회원가입이 완료되었습니다");
         navigate("/");
       } else {
-        alert("회원가입에 실패하였습니다 다시 시도해주세요");
+        alert("옳지않은 값이 입력되었습니다. 다시한번 확인해주세요.");
       }
     } catch (error) {
+      console.error("Error during registration:", error);
       if (error.response && error.response.status === 409) {
-        alert("회원가입 정보를 다시 한번 확인하세요 !");
+        alert("회원가입 정보를 다시 한번 확인하세요!");
       } else {
         alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
       }

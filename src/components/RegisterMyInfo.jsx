@@ -237,7 +237,7 @@ const RegisterMyInfo = ({
               <Label>이메일:</Label>
               <FormBox
                 type="email" // 이메일 필드는 type="email"로 변경
-                placeholder="이메일을 입력하세요"
+                placeholder="보호자의 이메일로 작성해주세요"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -279,3 +279,29 @@ const RegisterMyInfo = ({
 export default RegisterMyInfo;
 
 /*여자 버튼을 눌렀을 시 setSex에 f로 설정되도록함*/
+
+/*
+
+  const handleEmailDuplicate = async () => {
+    try {
+      const requestData = { identifier };
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/users/check_email/",
+        requestData
+      );
+
+      if (response.status === 200) {
+        navigate("/PostlIST_{user_id}");
+      } else {
+        alert("아이디나 비밀번호가 일치하지않습니다");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 사용중인 이메일입니다.");
+      } else {
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    }
+  };
+
+*/

@@ -1,20 +1,21 @@
-import "./App.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import { useParams } from "react-router-dom";
+import "./App.css";
 
 function App() {
-  const { userId } = useParams();
+  const location = useLocation();
+  const isMainPage = location.pathname === "/"; // Main 페이지의 경로가 '/'인 경우 nav와 footer없애기
+
   return (
     <>
-      <NavBar userId={userId} />
+      {!isMainPage && <NavBar />}
       <ScrollToTop />
       <div className="outlet-background">
         <Outlet />
       </div>
-      <Footer />
+      {!isMainPage && <Footer />}
     </>
   );
 }

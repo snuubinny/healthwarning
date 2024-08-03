@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import styled from "styled-components";
 
@@ -105,13 +106,79 @@ const Label = styled.label`
   text-align: right;
 `;
 
+const DuplicateButton = styled.button`
+  padding: 3px;
+  font-size: 13px;
+  height: 25px;
+  width: 70px;
+  background-color: #ff832b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid #ffe3c8;
+  margin-left: 10px;
+
+  &:hover {
+    background-color: #fee5ce;
+    color: #ff832b;
+  }
+`;
+
 const MyInformation = ({ isEditable, userData, setUserData }) => {
+  const { identifier, email } = userData; // userData에서 identifier와 email 추출
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleIdDuplicate = async () => {
+    try {
+      const requestData = { identifier };
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/users/check_identifier/",
+        requestData
+      );
+
+      if (response.status === 200) {
+        alert("사용가능한 아이디입니다.");
+      } else {
+        alert("이미 사용중인 아이디입니다.");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 사용중인 아이디입니다.");
+      } else {
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    }
+  };
+
+  const handleEmailDuplicate = async () => {
+    try {
+      const requestData = { email };
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/users/check_email/",
+        requestData
+      );
+
+      if (response.status === 200) {
+        alert("사용가능한 이메일입니다.");
+      } else {
+        alert("이미 사용중인 이메일입니다.");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 사용중인 이메일입니다.");
+      } else {
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    }
   };
 
   return (
@@ -140,6 +207,9 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               onChange={handleChange}
               readOnly={!isEditable}
             />
+            <DuplicateButton onClick={handleIdDuplicate}>
+              중복확인
+            </DuplicateButton>
           </InputContainer>
           <InputContainer>
             <Label>비밀번호:</Label>
@@ -160,6 +230,9 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               onChange={handleChange}
               readOnly={!isEditable}
             />
+            <DuplicateButton onClick={handleEmailDuplicate}>
+              중복확인
+            </DuplicateButton>
           </InputContainer>
           <InputContainer>
             <Label>생년월일:</Label>
