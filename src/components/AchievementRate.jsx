@@ -184,7 +184,7 @@ const ExerciseBox = styled(Box)``;
 const MealBox = styled(Box)``;
 
 const AchievementRate = () => {
-  const { post_id } = useParams(); // useParams 훅을 사용하여 post_id를 가져옴
+  const { post_id } = useParams();
   const [data, setData] = useState({
     medication_today: 0,
     exercise_time: 0,
@@ -199,12 +199,12 @@ const AchievementRate = () => {
   });
 
   useEffect(() => {
-    console.log(`Fetching data for post_id: ${post_id}`); // 디버깅용 로그
+    console.log(`Fetching data for post_id: ${post_id}`);
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `https://dahaessyu.kro.kr/blog/posts/${post_id}`, // post_id를 사용하여 API 요청
+          `https://dahaessyu.kro.kr/blog/posts/${post_id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
