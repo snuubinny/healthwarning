@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -80,6 +80,7 @@ const StyledCatImage = styled.img`
   right: 0px;
   bottom: 0px;
 `;
+
 const CardImage = styled.img`
   width: 250px;
   height: auto;
@@ -168,6 +169,7 @@ const BoxImage3 = styled.img`
   margin-left: 35px;
   margin-top: 27px;
 `;
+
 const BoxImage4 = styled.img`
   width: 90px;
   height: auto;
@@ -182,24 +184,41 @@ const ExerciseBox = styled(Box)``;
 const MealBox = styled(Box)``;
 
 const AchievementRate = () => {
-  /*
-  const { userId } = useParams(); // URL 파라미터에서 userId 가져오기
-  const [userInfo, setUserInfo] = useState(null); // 상태로 회원 정보 저장
+  const { post_id } = useParams(); // useParams 훅을 사용하여 post_id를 가져옴
+  const [data, setData] = useState({
+    medication_today: 0,
+    exercise_time: 0,
+    meal_count: 0,
+    sleep_time: 0,
+    daily_summary: "",
+    user_meals: 0,
+    user_exercises: 0,
+    user_medications: 0,
+    user_sleep: 0,
+    achievement_rate: 0,
+  });
 
   useEffect(() => {
-    axios
-      .get(`https:/~/${userid}`)
-      .then((res) => {
-        setAuctionList(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
- */
+    console.log(`Fetching data for post_id: ${post_id}`); // 디버깅용 로그
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `https://dahaessyu.kro.kr/blog/posts/${post_id}`, // post_id를 사용하여 API 요청
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setData(response.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
 
-  const percentage = 75;
+    fetchData();
+  }, [post_id]);
 
   return (
     <Wrapper>
@@ -212,8 +231,8 @@ const AchievementRate = () => {
           alt="Example"
         />
         <PercentText>
-          잘하고 있어요! 목표의 <Highlight>{percentage}%</Highlight>를
-          달성했어요!
+          잘하고 있어요! 목표의 <Highlight>{data.achievement_rate}%</Highlight>
+          를 달성했어요!
         </PercentText>
       </PercentContainer>
       <DetailTitle>세부 달성률</DetailTitle>
@@ -221,30 +240,32 @@ const AchievementRate = () => {
         <SleepBox>
           <BoxImage1 src={SleepImage} alt="Sleep" />
           <TextWrap>
-            목표 수면시간 <Highlight>8시간</Highlight> 중<br />
-            <Highlight>6시간 </Highlight>
+            목표 수면시간 <Highlight>{data.user_sleep}시간</Highlight> 중<br />
+            <Highlight>{data.sleep_time}시간 </Highlight>
             수면하였습니다.
           </TextWrap>
         </SleepBox>
         <MedicineBox>
           <BoxImage2 src={MedicineImage} alt="Medicine" />
           <TextWrap>
-            목표 약복용 <Highlight>3회 </Highlight>중<br />
-            <Highlight>3회 </Highlight> 복용하였습니다.
+            목표 약복용 <Highlight>{data.user_medications}회</Highlight> 중
+            <br />
+            <Highlight>{data.medication_today}회</Highlight> 복용하였습니다.
           </TextWrap>
         </MedicineBox>
         <ExerciseBox>
           <BoxImage3 src={ExerciseImage} alt="Exercise" />
           <TextWrap>
-            목표 운동시간 <Highlight>30분 </Highlight>중<br />
-            <Highlight>40분 </Highlight> 운동하였습니다.
+            목표 운동시간 <Highlight>{data.user_exercises}분</Highlight> 중
+            <br />
+            <Highlight>{data.exercise_time}분</Highlight> 운동하였습니다.
           </TextWrap>
         </ExerciseBox>
         <MealBox>
           <BoxImage4 src={MealImage} alt="Meal" />
           <TextWrap>
-            목표 식사횟수 <Highlight>3끼 </Highlight>중<br />
-            <Highlight>3끼 </Highlight> 섭취하였습니다.
+            목표 식사횟수 <Highlight>{data.user_meals}끼</Highlight> 중<br />
+            <Highlight>{data.meal_count}끼</Highlight> 섭취하였습니다.
           </TextWrap>
         </MealBox>
       </DetailBoxWrap>
@@ -252,7 +273,7 @@ const AchievementRate = () => {
         <Header>
           <HeaderText>오늘의 일기</HeaderText>
         </Header>
-        <DiaryText className="Nanum Pen Script">안녕하세요</DiaryText>
+        <DiaryText className="Nanum Pen Script">{data.daily_summary}</DiaryText>
         <StyledCatImage src={CatImage} alt="Catimage" />
       </DiaryContainer>
     </Wrapper>
@@ -260,8 +281,3 @@ const AchievementRate = () => {
 };
 
 export default AchievementRate;
-
-/*  <PercentText>
-          잘하고 있어요! 목표의 <Highlight>{userInfo.percentage}%</Highlight>를
-          달성했어요!
-        </PercentText>...등등으로 쭉쭉~*/

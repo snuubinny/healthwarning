@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styled from 'styled-components';
-import Card from '../components/Card';
+import styled from "styled-components";
+import Card from "../components/Card";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const PostListContainer = styled.div`
   display: grid;
@@ -33,8 +33,7 @@ const RightPageButton = styled.img`
   cursor: pointer;
 `;
 
-const PageText = styled.h3`
-`;
+const PageText = styled.h3``;
 
 const PostButtonContainer = styled.div`
   width: 100%;
@@ -67,8 +66,7 @@ const PostButton = styled.button`
   }
 `;
 
-const PostText = styled.div`
-`;
+const PostText = styled.div``;
 
 const ButtonPNG = styled.img`
   display: flex;
@@ -76,10 +74,10 @@ const ButtonPNG = styled.img`
   filter: invert(1) brightness(2);
 `;
 
-const Pagination = () => {
+const Pagination = ({ userId, onPostClick }) => {
   const navigate = useNavigate();
   const handleCreatePostClick = () => {
-    navigate('/CreatePost');
+    navigate("/CreatePost");
   };
 
   const [cards, setCards] = useState([]);
@@ -88,24 +86,27 @@ const Pagination = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (!token) {
-        console.error('No token found');
+        console.error("No token found");
         // 여기서 로그인 페이지로 리다이렉션하는 등의 추가 처리를 할 수 있습니다.
         return;
       }
-      
-      console.log('Token:', token); // 토큰 값 확인용
+
+      console.log("Token:", token); // 토큰 값 확인용
 
       try {
-        const response = await axios.get('https://dahaessyu.kro.kr/blog/main/', {
-          headers: {
-            Authorization: `Bearer ${token}`
+        const response = await axios.get(
+          "https://dahaessyu.kro.kr/blog/main/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        });
+        );
         setCards(response.data.posts);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -124,26 +125,43 @@ const Pagination = () => {
     <>
       <PostListContainer>
         {currentCards.map((card) => (
-          <Card key={card.id} data={card} />
+          <Card
+            key={card.id}
+            data={card}
+            onClick={onPostClick} // onClick 핸들러 전달
+          />
         ))}
       </PostListContainer>
       <PostButtonContainer>
         <PostButton onClick={handleCreatePostClick}>
           <PostText>오늘의 글 작성</PostText>
-          <ButtonPNG src={`${process.env.PUBLIC_URL}/write.png`} alt="pen" width="20" height="20" />
+          <ButtonPNG
+            src={`${process.env.PUBLIC_URL}/write.png`}
+            alt="pen"
+            width="20"
+            height="20"
+          />
         </PostButton>
       </PostButtonContainer>
       <PageButtonContainer>
         <LeftPageButton
           src={`${process.env.PUBLIC_URL}/leftbutton.png`}
           alt="left"
-          onClick={() => paginate(currentPage > 1 ? currentPage - 1 : currentPage)}
+          onClick={() =>
+            paginate(currentPage > 1 ? currentPage - 1 : currentPage)
+          }
         />
         <PageText>{currentPage}</PageText>
         <RightPageButton
           src={`${process.env.PUBLIC_URL}/rightbutton.png`}
           alt="right"
-          onClick={() => paginate(currentPage < Math.ceil(cards.length / cardsPerPage) ? currentPage + 1 : currentPage)}
+          onClick={() =>
+            paginate(
+              currentPage < Math.ceil(cards.length / cardsPerPage)
+                ? currentPage + 1
+                : currentPage
+            )
+          }
         />
       </PageButtonContainer>
     </>

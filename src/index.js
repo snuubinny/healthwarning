@@ -9,6 +9,7 @@ import LoginForm from "./pages/LoginForm";
 import Post from "./pages/Post";
 import PostList from "./pages/PostList";
 import RegisterForm from "./pages/RegisterForm";
+import AchievementRate from "./components/AchievementRate";
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container); // createRoot를 ReactDOM에서 가져옵니다.
@@ -21,7 +22,8 @@ root.render(
           <Route index element={<LoginForm />} />
           <Route path="CreatePost" element={<CreatePost />} />
           <Route path="/EditProfile/:userId" element={<EditProfile />} />
-          <Route path="Post" element={<Post />} />
+          <Route path="/post/:post_id" element={<AchievementRate />} />
+          <Route path="/post/:postId" element={<Post />} />
           <Route path="/PostList/:userId" element={<PostList />} />
           <Route path="RegisterForm" element={<RegisterForm />} />
           <Route path="*" element={<NotFound />} />

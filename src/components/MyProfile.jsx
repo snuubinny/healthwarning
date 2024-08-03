@@ -4,10 +4,6 @@ import womanImage from "../img/woman.png";
 import manImage from "../img/man.png";
 import { useNavigate } from "react-router-dom";
 
-import { useEffect, useState } from "react";
-
-/* import {useParams} from "react-router-dom"; */
-
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -109,7 +105,7 @@ const MyProfile = ({
 
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
-    navigate("/"); // 홈으로 이동합니다.
+    navigate("/");
   };
 
   const handleIconClick = () => {
