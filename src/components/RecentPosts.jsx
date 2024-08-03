@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import axios from 'axios';
 import RecentPostCard from "./RecentPostCard";
-import { useParams } from "react-router-dom";
 
 const MainContainer = styled.div`
   display: grid;
@@ -74,10 +73,9 @@ const MissYouButton = styled.img`
 `;
 
 const RecentPosts = () => {
-   const { userId } = useParams();
   const [posts, setPosts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -108,24 +106,30 @@ const RecentPosts = () => {
   const handleRightClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex === posts.length - 1 ? 0 : prevIndex + 1));
   };
-  
-  const handleMissYouClick = () => {
-    axios.get(`https://dahaessyu.kro.kr/blog/miss_email/${userId}/`)
-      .then(response => {
-        if (response.status === 200) {
-          console.log('Success:', response.data);
-          alert('Email sent successfully');
-        }
-      })
-      .catch(error => {
-        if (error.response && error.response.status === 404) {
-          console.error('Not Found');
-          alert('User not found');
-        } else {
-          console.error('An error occurred:', error);
-          alert('An error occurred while sending the email');
-        }
+
+  const handleMissYouClick = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`https://dahaessyu.kro.kr/blog/miss_email/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
+      if (response.status === 200) {
+        alert('Email sent successfully');
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.error('Not Found');
+        alert('User not found');
+      } else {
+        console.error('An error occurred:', error);
+        alert('An error occurred while sending the email');
+      }
+    }
   };
 
   return (
