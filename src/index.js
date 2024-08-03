@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client"; // react-dom/client에서 createRoot를 가져옵니다.
+import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import NotFound from "./pages/NotFound";
@@ -9,10 +9,9 @@ import LoginForm from "./pages/LoginForm";
 import Post from "./pages/Post";
 import PostList from "./pages/PostList";
 import RegisterForm from "./pages/RegisterForm";
-import AchievementRate from "./components/AchievementRate";
 
 const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container); // createRoot를 ReactDOM에서 가져옵니다.
+const root = ReactDOM.createRoot(container);
 
 root.render(
   <React.StrictMode>
@@ -22,8 +21,7 @@ root.render(
           <Route index element={<LoginForm />} />
           <Route path="CreatePost" element={<CreatePost />} />
           <Route path="/EditProfile/:userId" element={<EditProfile />} />
-          <Route path="/post/:post_id" element={<AchievementRate />} />
-          <Route path="/post/:postId" element={<Post />} />
+          <Route path="/post/:post_id" element={<Post />} />
           <Route path="/PostList/:userId" element={<PostList />} />
           <Route path="RegisterForm" element={<RegisterForm />} />
           <Route path="*" element={<NotFound />} />

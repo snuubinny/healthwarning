@@ -2,8 +2,8 @@ import React from "react";
 import AchievementRate from "../components/AchievementRate";
 import CommentList from "../components/CommentList";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 const DeleteButton = styled.button`
   padding: 3px;
@@ -28,10 +28,36 @@ const DeleteButton = styled.button`
 `;
 
 const Post = () => {
+  const { post_id, userId } = useParams(); // URL에서 post_id와 userId를 가져옴
+  const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate
+
+  const handleDeletePost = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(
+        `https://dahaessyu.kro.kr/blog/posts/${post_id}/delete/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      alert("게시글이 삭제되었습니다!");
+      navigate(`/PostList/${userId}`);
+    } catch (error) {
+      console.error(
+        "Failed to delete post:",
+        error.response ? error.response.data : error.message
+      );
+      alert("게시글 삭제에 실패했습니다.");
+    }
+  };
+
   return (
     <>
       <AchievementRate />
-      <DeleteButton>게시글 삭제</DeleteButton>
+      <DeleteButton onClick={handleDeletePost}>게시글 삭제</DeleteButton>
       <CommentList />
     </>
   );
