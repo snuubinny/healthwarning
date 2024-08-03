@@ -62,11 +62,18 @@ const NavBar = () => {
     navigate(`/PostList/${userId}`);
   };
 
-  const handleEditLogoClick = () => {
-    if (!userId) {
-      alert("먼저 로그인을 진행해주세요!");
-    } else {
+  const handleEditLogoClick = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        throw new Error("No token found");
+      }
+
       navigate(`/EditProfile/${userId}`);
+    } catch (error) {
+      console.error("Error fetching user information:", error);
+      alert("유저 정보를 가져오는 데 실패했습니다.");
     }
   };
 
