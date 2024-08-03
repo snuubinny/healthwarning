@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Pagination from "../components/Pagination";
-import RecentPosts from "../components/RecentPosts";
 
 const Wrapper = styled.div`
   background-color: #f8f6e9;
@@ -43,25 +42,29 @@ const AchievementRate = styled.div`
 const PostList = () => {
   const { userId } = useParams(); // URL 파라미터에서 userId를 가져옴
   const [tenDaysAverage, setTenDaysAverage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTenDaysAverage = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (!token) {
-        console.error('No token found');
+        console.error("No token found");
         return;
       }
 
-      console.log('Token:', token); // 토큰 값 확인용
+      console.log("Token:", token); // 토큰 값 확인용
 
       try {
-        const response = await axios.get('https://dahaessyu.kro.kr/blog/main/', {
-          headers: {
-            Authorization: `Bearer ${token}`
+        const response = await axios.get(
+          "https://dahaessyu.kro.kr/blog/main/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        });
+        );
 
-        console.log('Response data:', response.data); // 응답 데이터 확인
+        console.log("Response data:", response.data); // 응답 데이터 확인
         if (response.data && response.data.TenDaysAverage !== undefined) {
           setTenDaysAverage(response.data.TenDaysAverage);
         } else {
@@ -75,15 +78,14 @@ const PostList = () => {
     fetchTenDaysAverage();
   }, [userId]);
 
+  const handlePostClick = (postId) => {
+    console.log(`Navigating to post: ${postId}`); // 디버깅용 로그
+    navigate(`/post/${postId}`);
+  };
+
   return (
     <Wrapper>
-      <HeadLine>
-        최근 10일 내의 달성률은 
-        <AchievementRate>{tenDaysAverage !== null ? tenDaysAverage : '...'} </AchievementRate> 
-        % 입니다.
-      </HeadLine>
-      <RecentPosts userId={userId} />
-      <Pagination userId={userId} />
+      <Pagination userId={userId} onPostClick={handlePostClick} />
     </Wrapper>
   );
 };

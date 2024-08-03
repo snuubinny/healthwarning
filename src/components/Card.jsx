@@ -1,21 +1,19 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 const CardWrapper = styled.div`
   background: #fff;
   border: 1px solid #fee5ce;
   border-radius: 8px;
-  /* box-shadow: 0 2px 4px  #fee5ce(0, 0, 0, 0.1); */
   padding: 20px;
   padding-bottom: 0;
   gap: 10px;
   text-align: center;
 
   &:hover {
-   border: 1px solid #ff832b;
-   cursor: pointer;
+    border: 1px solid #ff832b;
+    cursor: pointer;
   }
 `;
 
@@ -32,11 +30,9 @@ const DateBox = styled.div`
   margin-bottom: 10px;
 `;
 
-const Card = ({ data }) => {
-  const navigate = useNavigate();
-  const { userId } = useParams();
+const Card = ({ data, onClick }) => {
   const handleClick = () => {
-    navigate(`/post/${userId}`);
+    onClick(data.id); // postId를 전달
   };
 
   return (
