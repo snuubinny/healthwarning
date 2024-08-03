@@ -1,10 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
 import axios from "axios";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -168,12 +165,43 @@ const PostButton = styled.button`
 `;
 
 function CreatePost() {
+  const { userId } = useParams();
   const navigate = useNavigate();
 
-  const goalSleep = 8;
-  const goalMedication = 3;
-  const goalExercise = 40;
-  const goalMeal = 3;
+  const [data, setData] = useState({
+    sleep: 0,
+    medications: 0,
+    exercises: 0,
+    meals: 0,
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        console.log("Token:", token); // 로컬 스토리지에서 토큰을 가져옵니다.
+        const response = await axios.get(
+          `https://dahaessyu.kro.kr/users/profile/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // 요청 헤더에 토큰을 포함시킵니다.
+            },
+          }
+        );
+        const data = response.data;
+        setData({
+          sleep: data.sleep,
+          medications: data.medications,
+          exercises: data.exercises,
+          meals: data.meals,
+        });
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
 
   const [date, setDate] = useState({ year: "", month: "", day: "" });
   const [sleep, setSleep] = useState("");
@@ -193,16 +221,28 @@ function CreatePost() {
     };
 
     try {
-      const response = await axios.post("/blog/create/", postData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await axios.post(
+        "https://dahaessyu.kro.kr/blog/create/",
+        postData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       console.log("Post created successfully:", response.data);
-      navigate("/PostList"); // 게시글 목록 페이지로 이동
+      alert(`오늘의 글이 정상적으로 등록되었습니다`);
+      navigate("/PostList/${userId}"); // 게시글 목록 페이지로 이동
     } catch (error) {
       console.error("Error creating post:", error);
       alert("포스트 생성 중 오류가 발생했습니다.");
+    }
+  };
+
+  const handleNumberInput = (e, setter) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setter(value);
     }
   };
 
@@ -212,48 +252,57 @@ function CreatePost() {
         <YYYY
           placeholder="YYYY"
           value={date.year}
-          onChange={(e) => setDate({ ...date, year: e.target.value })}
+          onChange={(e) =>
+            handleNumberInput(e, (value) => setDate({ ...date, year: value }))
+          }
         />
         년
         <MMDD
           placeholder="MM"
           value={date.month}
-          onChange={(e) => setDate({ ...date, month: e.target.value })}
+          onChange={(e) =>
+            handleNumberInput(e, (value) => setDate({ ...date, month: value }))
+          }
         />
         월
         <MMDD
           placeholder="DD"
           value={date.day}
-          onChange={(e) => setDate({ ...date, day: e.target.value })}
+          onChange={(e) =>
+            handleNumberInput(e, (value) => setDate({ ...date, day: value }))
+          }
         />
         일 어떤 하루를 보내셨나요?
       </CheckListTitle>
       <CheckList>
         <SleepBox>
-          목표 수면 시간 <GoalBox>{goalSleep}</GoalBox>시간 중
-          <Input value={sleep} onChange={(e) => setSleep(e.target.value)} />
+          목표 수면 시간 <GoalBox>{data.sleep}</GoalBox>시간 중
+          <Input
+            value={sleep}
+            onChange={(e) => handleNumberInput(e, setSleep)}
+          />
           시간 수면함
         </SleepBox>
         <MedicationsBox>
-          목표 복약 횟수 <GoalBox>{goalMedication}</GoalBox>회 중
+          목표 복약 횟수 <GoalBox>{data.medications}</GoalBox>회 중
           <Input
             value={medication}
-            onChange={(e) => setMedication(e.target.value)}
+            onChange={(e) => handleNumberInput(e, setMedication)}
           />
           회 복용함
         </MedicationsBox>
         <ExerciseBox>
-          목표 운동 시간 <GoalBox>{goalExercise}</GoalBox>분 중
+          목표 운동 시간 <GoalBox>{data.exercises}</GoalBox>분 중
           <Input
             value={exercise}
-            onChange={(e) => setExercise(e.target.value)}
+            onChange={(e) => handleNumberInput(e, setExercise)}
           />
           분 운동함
         </ExerciseBox>
         <MealsBox>
-          목표 식사 횟수 <GoalBox>{goalMeal}</GoalBox>끼 중
-          <Input value={meal} onChange={(e) => setMeal(e.target.value)} />끼
-          식사함
+          목표 식사 횟수 <GoalBox>{data.meals}</GoalBox>끼 중
+          <Input value={meal} onChange={(e) => handleNumberInput(e, setMeal)} />
+          끼 식사함
         </MealsBox>
       </CheckList>
       <DiaryTitle>오늘의 일기</DiaryTitle>
