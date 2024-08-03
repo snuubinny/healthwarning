@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Pagination from "../components/Pagination";
+import RecentPosts from "../components/RecentPosts";
 
 const Wrapper = styled.div`
   background-color: #f8f6e9;
@@ -85,6 +86,12 @@ const PostList = () => {
 
   return (
     <Wrapper>
+      <HeadLine>
+        최근 10일 내의 달성률은 
+        <AchievementRate>{tenDaysAverage !== null ? tenDaysAverage : '...'} </AchievementRate> 
+        % 입니다.
+      </HeadLine>
+      <RecentPosts userId={userId}/>
       <Pagination userId={userId} onPostClick={handlePostClick} />
     </Wrapper>
   );
