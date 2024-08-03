@@ -32,7 +32,7 @@ const ContentContainer = styled.div`
 `;
 
 const LinkText = styled.span`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: #333;
   margin-left: 20px;
@@ -60,10 +60,10 @@ const Highlight = styled.span`
 `;
 
 const DiaryText = styled.p`
-  margin-top: 30px;
+  margin-top: 18px;
   margin-left: 60px;
   font-family: "Nanum Pen Script", cursive;
-  font-size: 25px;
+  font-size: 19px;
   color: #ff832b;
 `;
 
