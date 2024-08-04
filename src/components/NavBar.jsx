@@ -55,24 +55,34 @@ const NavBarIcon = styled.img`
 const NavBar = () => {
   const navigate = useNavigate();
   const { userId } = useParams(); // URL에서 userId를 가져옴
+  const currentPath = window.location.pathname; // 현재 경로를 가져옴
 
   console.log("NavBar userId:", userId); // userId 확인
 
   const handleHomeLogoClick = () => {
-    navigate(`/PostList/${userId}`);
+    try {
+      if (currentPath === "/LoginForm") {
+        navigate("/LoginForm");
+        return;
+      }
+
+      navigate(`/PostList/${userId}`);
+    } catch (error) {
+      console.error("Error checking token:", error);
+      alert("유저 정보를 가져오는 데 실패했습니다.");
+    }
   };
 
   const handleEditLogoClick = async () => {
     try {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        throw new Error("No token found");
+      if (currentPath === "/LoginForm") {
+        alert("먼저 로그인을 진행해주세요!");
+        return;
       }
 
       navigate(`/EditProfile/${userId}`);
     } catch (error) {
-      console.error("Error fetching user information:", error);
+      console.error("Error checking token:", error);
       alert("유저 정보를 가져오는 데 실패했습니다.");
     }
   };
