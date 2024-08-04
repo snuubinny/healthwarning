@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -18,7 +17,7 @@ const ProfileContainer = styled.div`
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  height: 540px;
+  height: 650px;
   margin-bottom: 20px;
   margin-top: 50px;
 `;
@@ -101,7 +100,7 @@ const DuplicateButton = styled.button`
 
 const Label = styled.label`
   font-weight: bold;
-  width: 100px;
+  width: 110px;
   margin-right: 10px;
   text-align: right;
 `;
@@ -128,7 +127,7 @@ const SexButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-right: 250px;
+  margin-right: 280px;
 `;
 
 const RegisterMyInfo = ({
@@ -138,6 +137,8 @@ const RegisterMyInfo = ({
   setIdentifier,
   password,
   setPassword,
+  confirmPassword,
+  setConfirmPassword,
   email,
   setEmail,
   birth,
@@ -193,6 +194,14 @@ const RegisterMyInfo = ({
     }
   };
 
+  const handlePasswordMatch = () => {
+    if (password !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+    } else {
+      alert("비밀번호가 일치합니다.");
+    }
+  };
+
   return (
     <Wrapper>
       <ProfileContainer>
@@ -204,7 +213,7 @@ const RegisterMyInfo = ({
             <Label>이름:</Label>
             <FormBox
               type="text"
-              placeholder="이름을 입력하세요"
+              placeholder="피보호자의 이름을 입력하세요"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -226,17 +235,29 @@ const RegisterMyInfo = ({
           <InputContainer>
             <Label>비밀번호:</Label>
             <FormBox
-              type="password" // 비밀번호 필드는 type="password"로 변경
+              type="password"
               placeholder="비밀번호를 입력하세요"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </InputContainer>
+          <InputContainer>
+            <Label>비밀번호 확인:</Label>
+            <FormBox
+              type="password"
+              placeholder="비밀번호를 다시 입력하세요"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <DuplicateButton onClick={handlePasswordMatch}>
+              일치확인
+            </DuplicateButton>
+          </InputContainer>
           <DuplicateWrapper>
             <InputContainer>
               <Label>이메일:</Label>
               <FormBox
-                type="email" // 이메일 필드는 type="email"로 변경
+                type="email"
                 placeholder="보호자의 이메일로 작성해주세요"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -277,31 +298,3 @@ const RegisterMyInfo = ({
 };
 
 export default RegisterMyInfo;
-
-/*여자 버튼을 눌렀을 시 setSex에 f로 설정되도록함*/
-
-/*
-
-  const handleEmailDuplicate = async () => {
-    try {
-      const requestData = { identifier };
-      const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/check_email/",
-        requestData
-      );
-
-      if (response.status === 200) {
-        navigate("/PostlIST_{user_id}");
-      } else {
-        alert("아이디나 비밀번호가 일치하지않습니다");
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 409) {
-        alert("이미 사용중인 이메일입니다.");
-      } else {
-        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
-      }
-    }
-  };
-
-*/

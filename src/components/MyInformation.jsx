@@ -19,7 +19,7 @@ const ProfileContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   cursor: pointer;
-  height: 540px;
+  height: 650px;
   margin-bottom: 20px;
   margin-top: 50px;
 `;
@@ -101,7 +101,7 @@ const InputContainer = styled.div`
 
 const Label = styled.label`
   font-weight: bold;
-  width: 100px;
+  width: 110px;
   margin-right: 10px;
   text-align: right;
 `;
@@ -127,7 +127,7 @@ const DuplicateButton = styled.button`
 `;
 
 const MyInformation = ({ isEditable, userData, setUserData }) => {
-  const { identifier, email } = userData; // userData에서 identifier와 email 추출
+  const { identifier, email, password, confirmPassword } = userData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -141,24 +141,27 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
     try {
       const requestData = { identifier };
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/check_identifier/",
+        "https://dahaessyu.kro.kr/users/id_check/",
         requestData
       );
 
-      if (response.status === 200) {
-        alert("사용가능한 아이디입니다.");
+      if (response.data.isDuplicate) {
+        alert("아이디가 중복됩니다.");
       } else {
-        alert("이미 사용중인 아이디입니다.");
+        alert("아이디가 사용 가능합니다.");
       }
     } catch (error) {
-      if (error.response && error.response.status === 409) {
-        alert("이미 사용중인 아이디입니다.");
-      } else {
-        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
-      }
+      console.error("Error checking ID duplication:", error);
     }
   };
 
+  const handlePasswordValidation = () => {
+    if (password !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+    } else {
+      alert("비밀번호가 일치합니다.");
+    }
+  };
   const handleEmailDuplicate = async () => {
     try {
       const requestData = { email };
@@ -185,41 +188,56 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
     <Wrapper>
       <ProfileContainer>
         <Header>
-          <TextWrap>내정보</TextWrap>
+          <TextWrap>사용자 정보</TextWrap>
         </Header>
         <FormBoxContainer>
           <InputContainer>
-            <Label>이름:</Label>
+            <Label htmlFor="identifier">아이디:</Label>
             <FormBox
-              type="text"
-              name="username"
-              value={userData.username}
-              onChange={handleChange}
-              readOnly={!isEditable}
-            />
-          </InputContainer>
-          <InputContainer>
-            <Label>아이디:</Label>
-            <FormBox
-              type="text"
+              id="identifier"
               name="identifier"
-              value={userData.identifier}
+              value={identifier}
               onChange={handleChange}
-              readOnly={!isEditable}
+              disabled={!isEditable}
             />
             <DuplicateButton onClick={handleIdDuplicate}>
-              중복확인
+              중복 확인
             </DuplicateButton>
           </InputContainer>
           <InputContainer>
-            <Label>비밀번호:</Label>
+            <Label htmlFor="email">이메일:</Label>
             <FormBox
-              type="password"
-              name="password"
-              value={userData.password}
+              id="email"
+              name="email"
+              value={email}
               onChange={handleChange}
-              readOnly={!isEditable}
+              disabled={!isEditable}
             />
+          </InputContainer>
+          <InputContainer>
+            <Label htmlFor="password">비밀번호:</Label>
+            <FormBox
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={handleChange}
+              disabled={!isEditable}
+            />
+          </InputContainer>
+          <InputContainer>
+            <Label htmlFor="confirmPassword">비밀번호 확인:</Label>
+            <FormBox
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              value={confirmPassword}
+              onChange={handleChange}
+              disabled={!isEditable}
+            />
+            <DuplicateButton onClick={handlePasswordValidation}>
+              일치확인
+            </DuplicateButton>
           </InputContainer>
           <InputContainer>
             <Label>이메일:</Label>

@@ -7,6 +7,11 @@ import MealImage from "../img/meal.png";
 import MedicineImage from "../img/medicine.png";
 import ExerciseImage from "../img/exercise.png";
 import CatImage from "../img/cat.png";
+import ZeroImage from "../img/0percent.png";
+import TwentyfiveImage from "../img/25percent.png";
+import FiftyImage from "../img/50percent.png";
+import SeventyfiveImage from "../img/75percent.png";
+import HundredImage from "../img/100percent.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -220,16 +225,22 @@ const AchievementRate = () => {
     fetchData();
   }, [post_id]);
 
+  const getAchievementImage = () => {
+    const { achievement_rate } = data;
+    if (achievement_rate === 0) return ZeroImage;
+    if (achievement_rate <= 25) return TwentyfiveImage;
+    if (achievement_rate <= 50) return FiftyImage;
+    if (achievement_rate <= 75) return SeventyfiveImage;
+    return HundredImage;
+  };
+
   return (
     <Wrapper>
       <PercentContainer>
         <Header>
           <HeaderText>오늘의 달성률</HeaderText>
         </Header>
-        <CardImage
-          src={`${process.env.PUBLIC_URL}/percentcircle.png`}
-          alt="Example"
-        />
+        <CardImage src={getAchievementImage()} alt="Achievement Percentage" />
         <PercentText>
           잘하고 있어요! 목표의 <Highlight>{data.achievement_rate}%</Highlight>
           를 달성했어요!

@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import RegisterMyInfo from "../components/RegisterMyInfo";
 import RegisterInfo from "../components/RegisterInfo";
 import styled from "styled-components";
 import footerLogo from "../img/Footer_Logo.png";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
 
 const RegisterWrap = styled.div`
@@ -75,6 +74,7 @@ const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인 상태 추가
   const [email, setEmail] = useState("");
   const [birth, setBirth] = useState("");
   const [gender, setGender] = useState("");
@@ -84,6 +84,11 @@ const RegisterForm = () => {
   const [meals, setMeals] = useState("");
 
   const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
     try {
       const requestData = {
         username,
@@ -136,6 +141,8 @@ const RegisterForm = () => {
         setIdentifier={setIdentifier}
         password={password}
         setPassword={setPassword}
+        confirmPassword={confirmPassword}
+        setConfirmPassword={setConfirmPassword} // 비밀번호 확인 상태 전달
         email={email}
         setEmail={setEmail}
         birth={birth}
