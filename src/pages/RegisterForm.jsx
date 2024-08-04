@@ -74,7 +74,7 @@ const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인 상태 추가
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birth, setBirth] = useState("");
   const [gender, setGender] = useState("");
@@ -110,7 +110,7 @@ const RegisterForm = () => {
 
       if (response.status === 201) {
         alert("회원가입이 완료되었습니다");
-        navigate("/");
+        navigate("/LoginForm");
       } else {
         alert("옳지않은 값이 입력되었습니다. 다시한번 확인해주세요.");
       }
@@ -142,7 +142,7 @@ const RegisterForm = () => {
         password={password}
         setPassword={setPassword}
         confirmPassword={confirmPassword}
-        setConfirmPassword={setConfirmPassword} // 비밀번호 확인 상태 전달
+        setConfirmPassword={setConfirmPassword}
         email={email}
         setEmail={setEmail}
         birth={birth}
