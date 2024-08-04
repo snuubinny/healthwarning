@@ -35,6 +35,7 @@ const EditProfile = () => {
     username: "",
     identifier: "",
     password: "",
+    confirmPassword: "",
     email: "",
     birth: "",
     gender: "",
@@ -48,12 +49,11 @@ const EditProfile = () => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log("Token:", token); // 로컬 스토리지에서 토큰을 가져옵니다.
         const response = await axios.get(
           `https://dahaessyu.kro.kr/users/profile/`,
           {
             headers: {
-              Authorization: `Bearer ${token}`, // 요청 헤더에 토큰을 포함시킵니다.
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -61,7 +61,8 @@ const EditProfile = () => {
         setUserData({
           username: data.username,
           identifier: data.identifier,
-          password: data.password,
+          password: "",
+          confirmPassword: "",
           email: data.email,
           birth: data.birth,
           gender: data.gender,
@@ -79,17 +80,27 @@ const EditProfile = () => {
   }, [userId]);
 
   const validateUserData = () => {
-    const { username, identifier, password, email, birth, gender } = userData;
+    const {
+      username,
+      identifier,
+      password,
+      confirmPassword,
+      email,
+      birth,
+      gender,
+    } = userData;
     if (!username || !identifier || !password || !email || !birth || !gender) {
       return false;
     }
-    // 추가적인 유효성 검사 로직을 여기에 추가할 수 있습니다.
+    if (password !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return false;
+    }
     return true;
   };
 
   const saveUserData = async () => {
     if (!validateUserData()) {
-      alert("옳지않은 값이 입력되었습니다. 다시한번 확인해주세요.");
       return;
     }
 
@@ -100,7 +111,7 @@ const EditProfile = () => {
         userData,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // 요청 헤더에 토큰을 포함시킵니다.
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -136,7 +147,11 @@ const EditProfile = () => {
         userData={userData}
         setUserData={setUserData}
       />
-      <EditButton onClick={saveUserData}>저장</EditButton>
+      <EditButton
+        onClick={isEditable ? saveUserData : () => setIsEditable(true)}
+      >
+        {isEditable ? "저장" : "수정하기"}
+      </EditButton>
     </>
   );
 };
