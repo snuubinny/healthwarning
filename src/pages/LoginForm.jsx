@@ -2,47 +2,94 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import footerLogo from "../img/Footer_Logo.png";
+import arrowdown from "../img/arrowdown.png";
+
+const LoginBg = `${process.env.PUBLIC_URL}/Loginbg3.png`;
 
 const LoginContainer = styled.div`
+  background-image: url(${LoginBg});
+  background-size: cover;
+  background-position: center;
   background-color: #f8f6e9;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
-  height: auto;
+  height: 800px;
 `;
 
+const TitleTextBox = styled.div`
+  width: 650px;
+  font-size: 90px;
+  background: linear-gradient(to right, #000000, #494949);
+  opacity: 0.5;
+  border-radius: 5px;
+  padding: 30px;
+  padding-right: 80px;
+  color:white;
+`;
+
+const ServiceText = styled.p`
+  font-size: 50px;
+  font-family: "Nanum Pen Script", cursive;
+`;
+ 
 const LoginBox = styled.div`
-  background-color: white;
+  background-color: rgba(255, 252, 247, 0.9);
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   width: 500px;
-  height: 650px;
-  margin: 40px;
+  height: 600px;
+  margin: 100px;
+  margin-right: 150px;
   border-radius: 20px;
   box-shadow: 0px 0px 20px 1px #e4e4e4;
+`;
+
+const LogoIcon = styled.img`
+  width: 48px;
+  height: 40px;
+  fill: currentColor;
+  margin-right: 4px;
+  transform: scale(2);
+  margin-top: 4px;
+  margin-left: 0px;
 `;
 
 const TitleBox = styled.h1`
   display: flex;
   justify-content: center;
   color: #797979;
-  margin: 0;
+`;
+
+const Line = styled.div`
+  background-color: #afafaf;
+  width: 400px;
+  height: 1px;
+  margin:20px;
 `;
 
 const FormBox = styled.div`
-  margin: 30px;
+  width: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color:#ffffff; */
   padding: 30px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;  
   border-radius: 10px;
-  margin-bottom: 0;
 `;
 
 const IdBox = styled.input`
-  height: 45px;
-  background-color: #feecdb;
+  width: 350px;
+  height: 50px;
+  background-color: #ffffff;
   border-color: #f8efe6;
   border-style: none;
   border-radius: 10px;
@@ -50,8 +97,9 @@ const IdBox = styled.input`
 `;
 
 const PwBox = styled.input`
-  height: 45px;
-  background-color: #fee5ce;
+  width: 350px;
+  height: 50px;
+  background-color: #ffffff;
   border-color: #f8efe6;
   border-style: none;
   border-radius: 10px;
@@ -59,6 +107,7 @@ const PwBox = styled.input`
 `;
 
 const LoginButton = styled.button`
+  width: 350px;
   margin: 60px;
   height: 45px;
   border: none;
@@ -77,10 +126,20 @@ const LoginButton = styled.button`
   }
 `;
 
-const TextBox = styled.div`
+const MiddleText = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color:#686868;
+`;
+
+const ArrowImg =styled.img`
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  margin-right: 4px;
+  transform: scale(2);
+  margin-bottom: 10px;
 `;
 
 const RegisterButton = styled.div`
@@ -136,8 +195,16 @@ function LoginForm() {
 
   return (
     <LoginContainer>
+      <TitleTextBox>
+       DAHAESSYU
+        <br/><ServiceText className="Nanum Pen Script">"노인에게 다정한 건강관리 service"</ServiceText>
+      </TitleTextBox>
       <LoginBox>
-        <TitleBox>회원 로그인</TitleBox>
+        <TitleBox>
+          <LogoIcon src={footerLogo} />
+          회원 로그인
+        </TitleBox>
+        <Line/>
         <FormBox>
           <IdBox
             placeholder=" 아이디를 입력하세요"
@@ -153,7 +220,9 @@ function LoginForm() {
           ></PwBox>
         </FormBox>
         <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
-        <TextBox>or</TextBox>
+        <Line/>
+        <MiddleText>아직 회원이 아니신가요?</MiddleText>
+        <ArrowImg src={arrowdown}/>
         <RegisterButton onClick={handleRegisterClick}>
           회원가입하기
         </RegisterButton>
