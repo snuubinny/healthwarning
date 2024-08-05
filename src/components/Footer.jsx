@@ -59,7 +59,7 @@ const TextWrapper = styled.div`
 `;
 
 const GithubWrapper = styled.div`
-  font-size: 16px;
+  font-size: 15px;
   text-align: right;
 `;
 
