@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
@@ -23,10 +24,25 @@ const HeadLine = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   background: #ffffff;
+  color:#353535;
   border: 2px solid #fee5ce;
   border-radius: 20px;
   margin-top: 30px;
   font-size: 30px;
+`;
+
+const CheeringComments = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  opacity: 0.7;
+  height: 60px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #cdcdcd;
+  color: #000000;
 `;
 
 const AchievementRate = styled.div`
@@ -42,9 +58,18 @@ const AchievementRate = styled.div`
 
 const PostList = () => {
   const { userId } = useParams(); // URL 파라미터에서 userId를 가져옴
-  const [tenDaysAverage, setTenDaysAverage] = useState(null);
+  const [tenDaysAverage, setTenDaysAverage] = useState(0);
   const navigate = useNavigate();
 
+  const getCheeringMessage = () => {
+    if (tenDaysAverage === 0) return "아직 달성한 내용이 없습니다";
+    if (tenDaysAverage < 25) return "위험해요!! 다했슈와 함께 건강을 관리해보아요";
+    if (tenDaysAverage < 50) return "아직은 부족해요... 건강을 위해 꾸준한 노력이 필요합니다";
+    if (tenDaysAverage < 75) return "절반을 넘었어요! 조금만 더 힘내세요!!";
+    if (tenDaysAverage < 90) return "건강 목표까지 한걸음 남았어요! 조금만 더 힘내보아요!!";
+    return "잘 하고 있어요!! 계속 건강 목표를 달성해보아요";
+  };
+  
   useEffect(() => {
     const fetchTenDaysAverage = async () => {
       const token = localStorage.getItem("token");
@@ -86,6 +111,7 @@ const PostList = () => {
 
   return (
     <Wrapper>
+      <CheeringComments>{getCheeringMessage()}</CheeringComments>
       <HeadLine>
         최근 10일 내의 달성률은 
         <AchievementRate>{tenDaysAverage !== null ? tenDaysAverage : '...'} </AchievementRate> 
