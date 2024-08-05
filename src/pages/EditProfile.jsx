@@ -130,6 +130,7 @@ const EditProfile = () => {
 
     return true;
   };
+
   const saveUserData = async () => {
     if (!validateUserData()) {
       return;
@@ -137,9 +138,18 @@ const EditProfile = () => {
 
     try {
       const token = localStorage.getItem("token");
+
+      // 비어 있는 필드를 제거한 새로운 데이터 객체 생성
+      const filteredUserData = Object.keys(userData).reduce((acc, key) => {
+        if (userData[key] !== "") {
+          acc[key] = userData[key];
+        }
+        return acc;
+      }, {});
+
       const response = await axios.put(
         `https://dahaessyu.kro.kr/users/profile/`,
-        userData,
+        filteredUserData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
