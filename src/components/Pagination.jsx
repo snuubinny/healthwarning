@@ -8,7 +8,7 @@ const PostListContainer = styled.div`
   background-color: #fee5ce;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 20px;
   padding: 0px;
 `;
@@ -111,7 +111,7 @@ const EmptyBox = styled.div`
   font-size: 25px;
   gap: 20px;
   padding: 0px;
-  height: 400px;
+  height: 450px;
 `;
 
 const Pagination = ({ userId, onPostClick }) => {
@@ -122,7 +122,7 @@ const Pagination = ({ userId, onPostClick }) => {
 
   const [cards, setCards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 15;
+  const cardsPerPage = 10;
 
   useEffect(() => {
     const fetchData = async () => {
