@@ -14,6 +14,8 @@ const WrapNavBar = styled.div`
   top: 0;
   z-index: 10000;
   margin-bottom: 0;
+  margin: 0;
+  border: none;
 `;
 
 const LogoWrapper = styled.div`
@@ -76,6 +78,11 @@ const NavBar = () => {
   const handleEditLogoClick = async () => {
     try {
       if (currentPath === "/LoginForm") {
+        alert("먼저 로그인을 진행해주세요!");
+        return;
+      }
+
+      if (currentPath === "/RegisterForm") {
         alert("먼저 로그인을 진행해주세요!");
         return;
       }

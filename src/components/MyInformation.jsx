@@ -127,7 +127,7 @@ const DuplicateButton = styled.button`
 `;
 
 const MyInformation = ({ isEditable, userData, setUserData }) => {
-  const { identifier, email, password, confirmPassword } = userData;
+  const { username, identifier, email, password, confirmPassword } = userData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -139,19 +139,22 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
 
   const handleIdDuplicate = async () => {
     try {
-      const requestData = { identifier };
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/id_check/",
-        requestData
+        "https://dahaessyu.kro.kr/users/check_identifier/",
+        { identifier }
       );
 
-      if (response.data.isDuplicate) {
-        alert("아이디가 중복됩니다.");
+      if (response.status === 200) {
+        alert("사용가능한 아이디입니다.");
       } else {
-        alert("아이디가 사용 가능합니다.");
+        alert("이미 사용중인 아이디입니다.");
       }
     } catch (error) {
-      console.error("Error checking ID duplication:", error);
+      if (error.response && error.response.status === 409) {
+        alert("이미 사용중인 아이디입니다.");
+      } else {
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
     }
   };
 
@@ -162,6 +165,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
       alert("비밀번호가 일치합니다.");
     }
   };
+
   const handleEmailDuplicate = async () => {
     try {
       const requestData = { email };
@@ -192,6 +196,16 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
         </Header>
         <FormBoxContainer>
           <InputContainer>
+            <Label htmlFor="username">보호자 이름:</Label>
+            <FormBox
+              id="username"
+              name="username"
+              value={username}
+              onChange={handleChange}
+              disabled={!isEditable}
+            />
+          </InputContainer>
+          <InputContainer>
             <Label htmlFor="identifier">아이디:</Label>
             <FormBox
               id="identifier"
@@ -205,17 +219,20 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
             </DuplicateButton>
           </InputContainer>
           <InputContainer>
-            <Label htmlFor="email">이메일:</Label>
+            <Label>이메일:</Label>
             <FormBox
-              id="email"
+              type="email"
               name="email"
               value={email}
               onChange={handleChange}
-              disabled={!isEditable}
+              readOnly={!isEditable}
             />
+            <DuplicateButton onClick={handleEmailDuplicate}>
+              중복확인
+            </DuplicateButton>
           </InputContainer>
           <InputContainer>
-            <Label htmlFor="password">비밀번호:</Label>
+            <Label htmlFor="password">새 비밀번호:</Label>
             <FormBox
               id="password"
               name="password"
@@ -239,19 +256,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               일치확인
             </DuplicateButton>
           </InputContainer>
-          <InputContainer>
-            <Label>이메일:</Label>
-            <FormBox
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={handleChange}
-              readOnly={!isEditable}
-            />
-            <DuplicateButton onClick={handleEmailDuplicate}>
-              중복확인
-            </DuplicateButton>
-          </InputContainer>
+
           <InputContainer>
             <Label>생년월일:</Label>
             <FormBox
