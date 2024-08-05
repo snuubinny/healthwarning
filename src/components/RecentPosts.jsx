@@ -2,36 +2,36 @@ import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import axios from 'axios';
 import RecentPostCard from "./RecentPostCard";
+import { useNavigate } from "react-router-dom";
 
 const MainContainer = styled.div`
-  display: grid;
   display: flex;
-  flex-direction: row;
-  grid-template-rows: 1fr, 1fr, 1fr;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 400px;
+  height: 470px;
+  position: relative; /* MissYouButton을 절대 위치로 배치하기 위해 추가 */
 `;
 
 const RecentPostsContainer = styled.div`
-  grid-row: 2 / 3;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  margin-left: 12px;
-  width: 66.67%;
-  gap: 20px;
+  gap: 25px;
 `;
 
 const LeftButton = styled.img`
   width: 60px;
   height: 60px;
+  margin-right: 3px;
   cursor: pointer;
   filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
 
   &:hover{
     width: 63px;
     height: 63px;
+    margin-right: 0px;
     transition: all 0.1s ease-in-out;
   }
 `;
@@ -52,27 +52,37 @@ const RightButton = styled.img`
 `;
 
 const MissYouButton = styled.img`
-  grid-row: 3 / 4;
-  width:150px;
-  height:120px;
+  width: 150px;
+  height: 120px;
   object-fit: cover;
   transition: all 0.3s ease-in-out;
-  margin-left: 160px;
-  margin-top: 200px;
+  position: absolute; /* 절대 위치로 배치 */
+  margin-right: 50px;
+  margin-bottom: 10px;
+  bottom: 20px; /* 부모 요소의 아래쪽에 배치 */
+  right: 20px; /* 부모 요소의 오른쪽에 배치 */
   cursor: pointer;
 
   &:hover {
     content: url('${process.env.PUBLIC_URL}/missyou-1.png');
     width: 200px;
     height: 160px;
-    margin-left: 140px;
-    margin-top: 140px;
+    margin-bottom: 20px;
+    bottom: 10px; /* 부모 요소의 아래쪽에 배치 */
+    right: 10px; /* 부모 요소의 오른쪽에 배치 */
     object-fit: cover;
     cursor: pointer;
   }
 `;
 
+const HighLight = styled.div`
+  color: #ff832b;
+  margin-left: 5px;
+  font-weight: bold;
+`;
+
 const RecentPosts = () => {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -132,12 +142,21 @@ const RecentPosts = () => {
     }
   };
 
+  const handlePostClick = (postId) => {
+    console.log(`Navigating to post: ${postId}`); // 디버깅용 로그
+    navigate(`/post/${postId}`);
+  };
+
   return (
-    <MainContainer> 
+    <MainContainer>
       <RecentPostsContainer>
         <LeftButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left" onClick={handleLeftClick}/>
-        {posts.length > 0  && (
-          <RecentPostCard post={posts[currentIndex]}/>
+        {posts.length > 0 ? (
+          <RecentPostCard post={posts[currentIndex]} onClick={handlePostClick}/>
+        ) : (
+          <EmptyBox>
+            <HighLight>'오늘의 글 작성'</HighLight>을 눌러 첫 게시글을 작성해보세요!
+          </EmptyBox> // 데이터를 불러오지 못했을 때 빈 박스 표시
         )}
         <RightButton src={`${process.env.PUBLIC_URL}/rightbutton.png`} alt="right" onClick={handleRightClick}/>
       </RecentPostsContainer>
@@ -145,5 +164,19 @@ const RecentPosts = () => {
     </MainContainer>
   );
 };
+
+const EmptyBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 650px;
+  height: 380px;
+  margin-top: 20px;
+  background-color: #fcfcfc;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 1px #dfdfdf;
+  font-size: 23px;
+`;
 
 export default RecentPosts;

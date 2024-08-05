@@ -5,12 +5,39 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PostListContainer = styled.div`
+  background-color: #fee5ce;
   display: grid;
-  height: auto;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 20px;
   padding: 0px;
+`;
+
+const Background = styled.div`
+  background-color: #fee5ce;
+  border-radius: 20px;
+  border-color: #edd6c1;
+  border-style: solid;
+  padding: 30px;
+  width: 1200px;
+  height: auto;
+`;
+
+const ListText = styled.p`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ff8f3e;
+  color: #ffffff;
+  border-radius: 20px;
+  opacity: 0.9;
+  width: 1240px;
+  height: 60px;
+  padding: 10px;
+  padding-left: 20px;
+  margin-bottom: 3px;
+  font-size: 30px;
+  font-weight: bold;
 `;
 
 const PageButtonContainer = styled.div`
@@ -74,6 +101,19 @@ const ButtonPNG = styled.img`
   filter: invert(1) brightness(2);
 `;
 
+const EmptyBox = styled.div`
+  background-color: #fee5ce;
+  color:#ff7b00;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  gap: 20px;
+  padding: 0px;
+  height: 400px;
+`;
+
 const Pagination = ({ userId, onPostClick }) => {
   const navigate = useNavigate();
   const handleCreatePostClick = () => {
@@ -92,7 +132,7 @@ const Pagination = ({ userId, onPostClick }) => {
         return;
       }
 
-      console.log("Token:", token); // 토큰 값 확인용
+      console.log("Token:", token);
 
       try {
         const response = await axios.get(
@@ -112,25 +152,28 @@ const Pagination = ({ userId, onPostClick }) => {
     fetchData();
   }, []);
 
-  // 현재 페이지에 해당하는 카드 계산
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
 
-  // 페이지 변경 핸들러
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
-      <PostListContainer>
-        {currentCards.map((card) => (
-          <Card
-            key={card.id}
-            data={card}
-            onClick={onPostClick} // onClick 핸들러 전달
-          />
-        ))}
-      </PostListContainer>
+      <ListText>지난 달성률 한눈에 확인하기&#128064;</ListText>
+      <Background>
+        {cards.length > 0 ? (
+          <PostListContainer>
+            {currentCards.map((card, index) => (
+              <Card key={index} data={card} onClick={onPostClick} />
+            ))}
+          </PostListContainer>
+        ) : (
+          <EmptyBox>
+            등록된 포스트가 없습니다
+          </EmptyBox>
+        )}
+      </Background>
       <PostButtonContainer>
         <PostButton onClick={handleCreatePostClick}>
           <PostText>오늘의 글 작성</PostText>
