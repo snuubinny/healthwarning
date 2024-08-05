@@ -12,6 +12,24 @@ import TwentyfiveImage from "../img/25percent.png";
 import FiftyImage from "../img/50percent.png";
 import SeventyfiveImage from "../img/75percent.png";
 import HundredImage from "../img/100percent.png";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const AnimatedContainer = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -119,10 +137,10 @@ const DetailTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 750px;
+  width: 850px;
   height: 60px;
   border-radius: 20px;
-  margin: 10px;
+  margin: 0px;
   font-size: 22px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   color: white;
@@ -130,11 +148,19 @@ const DetailTitle = styled.div`
 `;
 
 const DetailBoxWrap = styled.div`
+  background-color: #fee5ce;
+  border-radius: 20px;
+  border-color: #edd6c1;
+  border-style: solid;
+  padding: 30px;
+  width: 800px;
+  height: auto;
   display: grid;
+  margin: 0px;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   justify-items: center;
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 const Box = styled.div`
@@ -203,6 +229,8 @@ const AchievementRate = () => {
     achievement_rate: 0,
   });
 
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     console.log(`Fetching data for post_id: ${post_id}`);
     const fetchData = async () => {
@@ -235,59 +263,64 @@ const AchievementRate = () => {
   };
 
   return (
-    <Wrapper>
-      <PercentContainer>
-        <Header>
-          <HeaderText>오늘의 달성률</HeaderText>
-        </Header>
-        <CardImage src={getAchievementImage()} alt="Achievement Percentage" />
-        <PercentText>
-          잘하고 있어요! 목표의 <Highlight>{data.achievement_rate}%</Highlight>
-          를 달성했어요!
-        </PercentText>
-      </PercentContainer>
-      <DetailTitle>세부 달성률</DetailTitle>
-      <DetailBoxWrap>
-        <SleepBox>
-          <BoxImage1 src={SleepImage} alt="Sleep" />
-          <TextWrap>
-            목표 수면시간 <Highlight>{data.user_sleep}시간</Highlight> 중<br />
-            <Highlight>{data.sleep_time}시간 </Highlight>
-            수면하였습니다.
-          </TextWrap>
-        </SleepBox>
-        <MedicineBox>
-          <BoxImage2 src={MedicineImage} alt="Medicine" />
-          <TextWrap>
-            목표 약복용 <Highlight>{data.user_medications}회</Highlight> 중
-            <br />
-            <Highlight>{data.medication_today}회</Highlight> 복용하였습니다.
-          </TextWrap>
-        </MedicineBox>
-        <ExerciseBox>
-          <BoxImage3 src={ExerciseImage} alt="Exercise" />
-          <TextWrap>
-            목표 운동시간 <Highlight>{data.user_exercises}분</Highlight> 중
-            <br />
-            <Highlight>{data.exercise_time}분</Highlight> 운동하였습니다.
-          </TextWrap>
-        </ExerciseBox>
-        <MealBox>
-          <BoxImage4 src={MealImage} alt="Meal" />
-          <TextWrap>
-            목표 식사횟수 <Highlight>{data.user_meals}끼</Highlight> 중<br />
-            <Highlight>{data.meal_count}끼</Highlight> 섭취하였습니다.
-          </TextWrap>
-        </MealBox>
-      </DetailBoxWrap>
-      <DiaryContainer>
-        <Header>
-          <HeaderText>오늘의 일기</HeaderText>
-        </Header>
-        <DiaryText className="Nanum Pen Script">{data.daily_summary}</DiaryText>
-        <StyledCatImage src={CatImage} alt="Catimage" />
-      </DiaryContainer>
-    </Wrapper>
+    <AnimatedContainer isVisible={isVisible}>
+      <Wrapper>
+        <PercentContainer>
+          <Header>
+            <HeaderText>오늘의 달성률</HeaderText>
+          </Header>
+          <CardImage src={getAchievementImage()} alt="Achievement Percentage" />
+          <PercentText>
+            잘하고 있어요! 목표의
+            <Highlight>{data.achievement_rate}%</Highlight>를 달성했어요!
+          </PercentText>
+        </PercentContainer>
+        <DetailTitle>세부 달성률</DetailTitle>
+        <DetailBoxWrap>
+          <SleepBox>
+            <BoxImage1 src={SleepImage} alt="Sleep" />
+            <TextWrap>
+              목표 수면시간 <Highlight>{data.user_sleep}시간</Highlight> 중
+              <br />
+              <Highlight>{data.sleep_time}시간 </Highlight>
+              수면하였습니다.
+            </TextWrap>
+          </SleepBox>
+          <MedicineBox>
+            <BoxImage2 src={MedicineImage} alt="Medicine" />
+            <TextWrap>
+              목표 약복용 <Highlight>{data.user_medications}회</Highlight> 중
+              <br />
+              <Highlight>{data.medication_today}회</Highlight> 복용하였습니다.
+            </TextWrap>
+          </MedicineBox>
+          <ExerciseBox>
+            <BoxImage3 src={ExerciseImage} alt="Exercise" />
+            <TextWrap>
+              목표 운동시간 <Highlight>{data.user_exercises}분</Highlight> 중
+              <br />
+              <Highlight>{data.exercise_time}분</Highlight> 운동하였습니다.
+            </TextWrap>
+          </ExerciseBox>
+          <MealBox>
+            <BoxImage4 src={MealImage} alt="Meal" />
+            <TextWrap>
+              목표 식사횟수 <Highlight>{data.user_meals}끼</Highlight> 중<br />
+              <Highlight>{data.meal_count}끼</Highlight> 섭취하였습니다.
+            </TextWrap>
+          </MealBox>
+        </DetailBoxWrap>
+        <DiaryContainer>
+          <Header>
+            <HeaderText>오늘의 일기</HeaderText>
+          </Header>
+          <DiaryText className="Nanum Pen Script">
+            {data.daily_summary}
+          </DiaryText>
+          <StyledCatImage src={CatImage} alt="Catimage" />
+        </DiaryContainer>
+      </Wrapper>
+    </AnimatedContainer>
   );
 };
 

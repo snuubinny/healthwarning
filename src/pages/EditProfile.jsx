@@ -6,6 +6,30 @@ import MyProfile from "../components/MyProfile";
 import MyInformation from "../components/MyInformation";
 import ProfileDetails from "../components/ProfileDetails";
 import SafeImage from "../img/Safe.png";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const AnimatedContainer = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+`;
+
+const AnimatedContainer2 = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+`;
 
 const EditButton = styled.button`
   padding: 3px;
@@ -171,27 +195,32 @@ const EditProfile = () => {
       alert("저장 실패. 다시 시도해 주세요.");
     }
   };
+  const [isVisible, setIsVisible] = useState(true);
 
   return (
     <>
-      <AlarmContainer>
-        <SafeImageStyled src={SafeImage} alt="Safe" />
-        <TitleContainer>
-          <CircleTitle>잠시만요!</CircleTitle>
-          <CircleText>
-            필수정보를 바꾸어도 이전 달성률이 변하지 않아요!
-            <br />
-            안심하고 수정하세요!
-          </CircleText>
-        </TitleContainer>
-      </AlarmContainer>
-      <MyProfile
-        isEditable={isEditable}
-        setIsEditable={setIsEditable}
-        username={userData.username}
-        identifier={userData.identifier}
-        gender={userData.gender}
-      />
+      <AnimatedContainer isVisible={isVisible}>
+        <AlarmContainer>
+          <SafeImageStyled src={SafeImage} alt="Safe" />
+          <TitleContainer>
+            <CircleTitle>잠시만요!</CircleTitle>
+            <CircleText>
+              필수정보를 바꾸어도 이전 달성률이 변하지 않아요!
+              <br />
+              안심하고 수정하세요!
+            </CircleText>
+          </TitleContainer>
+        </AlarmContainer>
+      </AnimatedContainer>
+      <AnimatedContainer2 isVisible={isVisible}>
+        <MyProfile
+          isEditable={isEditable}
+          setIsEditable={setIsEditable}
+          username={userData.username}
+          identifier={userData.identifier}
+          gender={userData.gender}
+        />
+      </AnimatedContainer2>
       <MyInformation
         isEditable={isEditable}
         userData={userData}

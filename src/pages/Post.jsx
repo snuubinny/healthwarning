@@ -5,6 +5,24 @@ import styled from "styled-components";
 import axios from "axios";
 import Footer_Logo from "../img/Footer_Logo.png";
 import { useParams, useNavigate } from "react-router-dom";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const AnimatedContainer = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+`;
 
 const DeleteButton = styled.button`
   padding: 3px;
@@ -207,22 +225,24 @@ const Post = () => {
       behavior: "smooth",
     });
   };
-
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <>
-      <CircleContainer>
-        <Circle>
-          <TitleContainer>
-            <Logo src={Footer_Logo} alt="Footer Logo" />
-            <CircleTitle>다했슈의 새로운 포스팅</CircleTitle>
-          </TitleContainer>
-          <CircleText>반가워요 {postDate}의 포스팅이에요!</CircleText>
-          <ButtonContainer>
-            <AchievementButton onClick={scrollToAchievement} />
-            <DiaryButton onClick={scrollToDiary} />
-          </ButtonContainer>
-        </Circle>
-      </CircleContainer>
+      <AnimatedContainer isVisible={isVisible}>
+        <CircleContainer>
+          <Circle>
+            <TitleContainer>
+              <Logo src={Footer_Logo} alt="Footer Logo" />
+              <CircleTitle>다했슈의 새로운 포스팅</CircleTitle>
+            </TitleContainer>
+            <CircleText>반가워요 {postDate}의 포스팅이에요!</CircleText>
+            <ButtonContainer>
+              <AchievementButton onClick={scrollToAchievement} />
+              <DiaryButton onClick={scrollToDiary} />
+            </ButtonContainer>
+          </Circle>
+        </CircleContainer>
+      </AnimatedContainer>
 
       <AchievementRate />
       <DeleteButton onClick={handleDeletePost}>게시글 삭제</DeleteButton>
