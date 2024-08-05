@@ -5,13 +5,13 @@ import axios from "axios";
 import footerLogo from "../img/Footer_Logo.png";
 import Test from "../components/Test";
 
-const LoginBg = `${process.env.PUBLIC_URL}/Loginbg3.png`;
+const LoginBg = `${process.env.PUBLIC_URL}/Loginbg2.png`;
 
 const LoginContainer = styled.div`
   background-image: url(${LoginBg});
   background-size: cover;
   background-position: center;
-  background-color: #f8f6e9;
+  background-color: #fcfbf4;
   display: flex;
   justify-content: flex-end;
   align-items: center;

@@ -2,14 +2,69 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import Pen from "../img/pen.png";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const AnimatedContainer = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+`;
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const PostHeader = styled.div`
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: #ffe3b0;
+  font-size: 100px;
+  color:#f4a003;
+  font-family: "Nanum Pen Script", cursive;
+  width: 100%;
+  height: 300px;
+`;
+
+const Pencil = styled.img`
+  width: 170px;
+  height: 170px;
+`;
+
+const InfoWrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction:row;
+`;
+
+const CheckListContainer = styled.div`
+  display:flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const DairyContainer = styled.div`
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CheckListTitle = styled.div`
@@ -58,7 +113,7 @@ const CheckList = styled.div`
   align-items: center;
   flex-direction: column;
   width: 700px;
-  height: 500px;
+  height: 400px;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 0px 20px 1px #e4e4e4;
@@ -136,14 +191,23 @@ const DiaryTitle = styled.div`
 
 const DiaryInput = styled.textarea`
   width: 640px;
-  height: 300px;
+  height: 340px;
   resize: none;
   background-color: #ffffff;
   border-style: none;
-  border-radius: 10px;
+  border-radius: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px 1px #e4e4e4;
   outline-color: #ffd4b5;
   padding: 30px;
-  font-size: 15px;
+  font-size: 20px;
+`;
+
+const PostButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 30px;
 `;
 
 const PostButton = styled.button`
@@ -152,7 +216,7 @@ const PostButton = styled.button`
   border: none;
   background-color: #ff832b;
   color: white;
-  font-size: large;
+  font-size: 20px;
   font-weight: bold;
   border-radius: 10px;
   margin: 30px;
@@ -165,6 +229,7 @@ const PostButton = styled.button`
 `;
 
 function CreatePost() {
+  const [isVisible, setIsVisible] = useState(false);
   const { userId } = useParams();
   const navigate = useNavigate();
 
@@ -247,7 +312,13 @@ function CreatePost() {
   };
 
   return (
-    <Wrapper>
+  <AnimatedContainer isVisible={isVisible}>
+  <Wrapper>
+   <PostHeader>
+    <Pencil src={Pen}/>"매일매일 기록하는 오늘의 건강 일기"
+   </PostHeader> 
+   <InfoWrapper>
+    <CheckListContainer>
       <CheckListTitle>
         <YYYY
           placeholder="YYYY"
@@ -275,7 +346,7 @@ function CreatePost() {
             handleNumberInput(e, (value) => setDate({ ...date, day: value }), 31)
           }
         />
-        일 어떤 하루를 보내셨나요?
+        일
       </CheckListTitle>
       <CheckList>
         <SleepBox>
@@ -308,14 +379,21 @@ function CreatePost() {
           끼 식사함
         </MealsBox>
       </CheckList>
-      <DiaryTitle>오늘의 일기</DiaryTitle>
+    </CheckListContainer> 
+    <DairyContainer>
+      <DiaryTitle>어떤 하루를 보내셨나요?</DiaryTitle>
       <DiaryInput
         placeholder="특이사항이나 오늘의 기분 등을 작성해주세요!"
         value={diary}
         onChange={(e) => setDiary(e.target.value)}
       />
-      <PostButton onClick={handleSubmit}>등록하기</PostButton>
-    </Wrapper>
+    </DairyContainer>
+  </InfoWrapper>
+  <PostButtonContainer>
+    <PostButton onClick={handleSubmit}>등록하기</PostButton>
+  </PostButtonContainer>  
+</Wrapper>
+</AnimatedContainer>
   );
 }
 
