@@ -4,6 +4,24 @@ import styled from "styled-components";
 import axios from "axios";
 import Pagination from "../components/Pagination";
 import RecentPosts from "../components/RecentPosts";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const AnimatedContainer = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+`;
 
 const Wrapper = styled.div`
   background-color: #f8f6e9;
@@ -41,7 +59,7 @@ const CheeringComments = styled.div`
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
-  background-color: #cdcdcd;
+  background-color: #ffdc9b;
   color: #000000;
 `;
 
@@ -57,6 +75,7 @@ const AchievementRate = styled.div`
 `;
 
 const PostList = () => {
+  const [isVisible, setIsVisible] = useState(false); 
   const { userId } = useParams(); // URL 파라미터에서 userId를 가져옴
   const [tenDaysAverage, setTenDaysAverage] = useState(0);
   const navigate = useNavigate();
@@ -110,7 +129,8 @@ const PostList = () => {
   };
 
   return (
-    <Wrapper>
+  <AnimatedContainer isVisible={isVisible}>
+  <Wrapper>
       <CheeringComments>{getCheeringMessage()}</CheeringComments>
       <HeadLine>
         최근 10일 내의 달성률은 
@@ -120,6 +140,7 @@ const PostList = () => {
       <RecentPosts userId={userId}/>
       <Pagination userId={userId} onPostClick={handlePostClick} />
     </Wrapper>
+  </AnimatedContainer>
   );
 };
 
