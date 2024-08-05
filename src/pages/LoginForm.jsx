@@ -174,22 +174,22 @@ function LoginForm() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      // 응답 본문에서 데이터 추출
       const { access_token, user_id } = response.data;
 
-      console.log("Full response:", response); // 전체 응답 객체를 확인
-      console.log("User ID:", user_id);
-      console.log("Token from response:", access_token); // 응답 본문에서 토큰 추출
-
-      // 토큰을 localStorage에 저장
       localStorage.setItem("token", access_token);
-      console.log("Stored token:", localStorage.getItem("token")); // 저장된 토큰 확인
 
       navigate(`/PostList/${user_id}`);
     } catch (error) {
       console.error("Error logging in:", error);
       alert("아이디 또는 비밀번호가 일치하지 않습니다.");
     }
+  };
+
+  const fillTestCredentials = () => {
+    setId("dahyesuk52");
+    setPw("dahae01");
+    console.log("ID:", "dahyesuk52");
+    console.log("Password:", "dahae01");
   };
 
   return (
@@ -225,13 +225,12 @@ function LoginForm() {
           <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
           <Line />
           <MiddleText>아직 회원이 아니신가요?</MiddleText>
-
           <RegisterButton onClick={handleRegisterClick}>
             회원가입하기
           </RegisterButton>
         </LoginBox>
       </LoginContainer>
-      <Test />
+      <Test fillTestCredentials={fillTestCredentials} />
     </>
   );
 }

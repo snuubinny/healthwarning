@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import HandImage from "../img/hand.png";
-import { useOutletContext } from "react-router-dom";
 
 const LinkContainer = styled.div`
   width: 60%;
@@ -57,13 +56,9 @@ const GoButton = styled.button`
   }
 `;
 
-const Highlight = styled.span`
-  color: #ff832b;
-`;
-
 const DiaryText = styled.p`
   margin-top: 18px;
-  margin-left: 60px;
+  margin-left: 100px;
   font-family: "Nanum Pen Script", cursive;
   font-size: 19px;
   color: #ff832b;
@@ -75,7 +70,12 @@ const HandIcon = styled.img`
   margin-left: 10px;
 `;
 
-const Test = () => {
+const Test = ({ fillTestCredentials }) => {
+  const handleButtonClick = () => {
+    console.log("Button clicked");
+    fillTestCredentials();
+  };
+
   return (
     <LinkContainer>
       <ContentContainer>
@@ -84,7 +84,7 @@ const Test = () => {
           체험용 계정으로 로그인해보세요!
         </DiaryText>
         <HandIcon src={HandImage} alt="Hand" />
-        <GoButton>Go to Test!</GoButton>
+        <GoButton onClick={handleButtonClick}>Go to Test!</GoButton>
       </ContentContainer>
     </LinkContainer>
   );
