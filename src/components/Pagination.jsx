@@ -89,7 +89,6 @@ const Pagination = ({ userId, onPostClick }) => {
       const token = localStorage.getItem("token");
       if (!token) {
         console.error("No token found");
-        // 여기서 로그인 페이지로 리다이렉션하는 등의 추가 처리를 할 수 있습니다.
         return;
       }
 

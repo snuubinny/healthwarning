@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import MyProfile from "../components/MyProfile";
 import MyInformation from "../components/MyInformation";
 import ProfileDetails from "../components/ProfileDetails";
+import SafeImage from "../img/Safe.png";
 
 const EditButton = styled.button`
   padding: 3px;
@@ -26,6 +27,45 @@ const EditButton = styled.button`
     color: #ff832b;
   }
   margin-bottom: 20px;
+`;
+
+const AlarmContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
+  background-color: #fee5ce;
+  padding: 20px;
+  box-sizing: border-box;
+`;
+
+const SafeImageStyled = styled.img`
+  width: 400px;
+  height: auto;
+  margin-right: 20px;
+  margin-top: 75px;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 75px;
+`;
+
+const CircleTitle = styled.div`
+  text-align: left;
+  color: #ff832b;
+  font-size: 40px;
+  font-weight: bold;
+`;
+
+const CircleText = styled.p`
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 35px;
+  color: #003366;
+  margin-top: 5px;
 `;
 
 const EditProfile = () => {
@@ -80,25 +120,16 @@ const EditProfile = () => {
   }, [userId]);
 
   const validateUserData = () => {
-    const {
-      username,
-      identifier,
-      password,
-      confirmPassword,
-      email,
-      birth,
-      gender,
-    } = userData;
-    if (!username || !identifier || !password || !email || !birth || !gender) {
-      return false;
-    }
-    if (password !== confirmPassword) {
+    const { password, confirmPassword } = userData;
+
+    // 비밀번호와 비밀번호 확인만 일치하는지 확인
+    if (password && password !== confirmPassword) {
       alert("비밀번호가 일치하지 않습니다.");
       return false;
     }
+
     return true;
   };
-
   const saveUserData = async () => {
     if (!validateUserData()) {
       return;
@@ -116,20 +147,34 @@ const EditProfile = () => {
         }
       );
 
-      if (response.status !== 200) {
-        throw new Error("Response status is not 200");
+      if (response.status === 200) {
+        setIsEditable(false);
+        alert("변경사항이 저장되었습니다.");
+      } else {
+        throw new Error("서버에서 오류가 발생했습니다.");
       }
-
-      setIsEditable(false);
-      alert("변경사항이 저장되었습니다.");
     } catch (error) {
-      console.error("Failed to save user data:", error);
-      alert("옳지않은 값이 입력되었습니다. 다시한번 확인해주세요.");
+      console.error(
+        "회원정보 저장 실패:",
+        error.response ? error.response.data : error.message
+      );
+      alert("저장 실패. 다시 시도해 주세요.");
     }
   };
 
   return (
     <>
+      <AlarmContainer>
+        <SafeImageStyled src={SafeImage} alt="Safe" />
+        <TitleContainer>
+          <CircleTitle>잠시만요!</CircleTitle>
+          <CircleText>
+            필수정보를 바꾸어도 이전 달성률이 변하지 않아요!
+            <br />
+            안심하고 수정하세요!
+          </CircleText>
+        </TitleContainer>
+      </AlarmContainer>
       <MyProfile
         isEditable={isEditable}
         setIsEditable={setIsEditable}

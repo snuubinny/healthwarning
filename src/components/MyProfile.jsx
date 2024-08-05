@@ -118,7 +118,7 @@ const MyProfile = ({
       <ProfileContainer>
         <Header>
           <TitleWrap>
-            내 프로필
+            보호자 프로필
             <LogoutIcon
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

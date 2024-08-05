@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import footerLogo from "../img/Footer_Logo.png";
-import arrowdown from "../img/arrowdown.png";
 
 const LoginBg = `${process.env.PUBLIC_URL}/Loginbg3.png`;
 
@@ -27,14 +26,14 @@ const TitleTextBox = styled.div`
   border-radius: 5px;
   padding: 30px;
   padding-right: 80px;
-  color:white;
+  color: white;
 `;
 
 const ServiceText = styled.p`
   font-size: 50px;
   font-family: "Nanum Pen Script", cursive;
 `;
- 
+
 const LoginBox = styled.div`
   background-color: rgba(255, 252, 247, 0.9);
   display: flex;
@@ -69,7 +68,7 @@ const Line = styled.div`
   background-color: #afafaf;
   width: 400px;
   height: 1px;
-  margin:20px;
+  margin: 20px;
 `;
 
 const FormBox = styled.div`
@@ -82,7 +81,7 @@ const FormBox = styled.div`
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;  
+  gap: 10px;
   border-radius: 10px;
 `;
 
@@ -130,10 +129,10 @@ const MiddleText = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  color:#686868;
+  color: #686868;
 `;
 
-const ArrowImg =styled.img`
+const ArrowImg = styled.img`
   width: 20px;
   height: 20px;
   fill: currentColor;
@@ -196,15 +195,18 @@ function LoginForm() {
   return (
     <LoginContainer>
       <TitleTextBox>
-       DAHAESSYU
-        <br/><ServiceText className="Nanum Pen Script">"노인에게 다정한 건강관리 service"</ServiceText>
+        DAHAESSYU
+        <br />
+        <ServiceText className="Nanum Pen Script">
+          "노인에게 다정한 건강관리 service"
+        </ServiceText>
       </TitleTextBox>
       <LoginBox>
         <TitleBox>
           <LogoIcon src={footerLogo} />
           회원 로그인
         </TitleBox>
-        <Line/>
+        <Line />
         <FormBox>
           <IdBox
             placeholder=" 아이디를 입력하세요"
@@ -220,9 +222,9 @@ function LoginForm() {
           ></PwBox>
         </FormBox>
         <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
-        <Line/>
+        <Line />
         <MiddleText>아직 회원이 아니신가요?</MiddleText>
-        <ArrowImg src={arrowdown}/>
+
         <RegisterButton onClick={handleRegisterClick}>
           회원가입하기
         </RegisterButton>
