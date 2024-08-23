@@ -1,21 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import navBarLogo from "../img/NavBar_Logo.png";
-import BlogImage from "../img/blog.png";
-import InstagramImage from "../img/instagram.png";
-import GithubImage from "../img/github.png";
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    height: 0;
-  }
-  to {
-    opacity: 1;
-    height: 100px;
-  }
-`;
 
 const WrapNavBar = styled.div`
   display: flex;
@@ -23,19 +9,13 @@ const WrapNavBar = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  background-color: #ff832b;
-  position: sticky;
+  background-color: transparent;
   top: 0;
   z-index: 10000;
   margin: 0;
   border: none;
   cursor: pointer;
   transition: height 0.5s ease;
-  &:hover .alarm-container {
-    height: 100px;
-    opacity: 1;
-    animation: ${fadeIn} 0.5s ease forwards;
-  }
 `;
 
 const LogoWrapper = styled.div`
@@ -48,12 +28,12 @@ const LogoWrapper = styled.div`
 const CustomLogo = styled.svg`
   width: 40px;
   height: 40px;
-  fill: white;
+  fill: black;
 `;
 
 const TitleWrapper = styled.div`
   text-align: left;
-  color: white;
+  color: black;
   font-size: 25px;
   font-weight: bold;
 `;
@@ -71,45 +51,6 @@ const NavBarIcon = styled.img`
   transform: scale(2);
   margin-top: 3px;
   margin-right: 6px;
-`;
-
-const AlarmContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  background-color: #ff832b;
-  padding: 10px;
-  box-sizing: border-box;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  height: 50px;
-  opacity: 0;
-  transition: opacity 0.5s ease, height 0.5s ease;
-  z-index: 1000;
-`;
-
-const Alarmtext = styled.p`
-  font-family: "Nanum Pen Script", cursive;
-  font-size: 25px;
-  color: white;
-  margin-top: 5px;
-  cursor: pointer;
-  margin-left: 30px;
-`;
-
-const IconLinks = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-`;
-
-const Icon = styled.img`
-  width: 40px;
-  height: 35px;
-  margin: 0 10px;
-  cursor: pointer;
 `;
 
 const NavBar = () => {
@@ -154,10 +95,6 @@ const NavBar = () => {
     setIsExpanded(false);
   };
 
-  const handleAlarmTextClick = () => {
-    navigate("/");
-  };
-
   return (
     <>
       <WrapNavBar
@@ -167,9 +104,7 @@ const NavBar = () => {
       >
         <IconWrapper onClick={handleHomeLogoClick}>
           <NavBarIcon src={navBarLogo} />
-          <TitleWrapper>
-            <span style={{ color: "#fbefa2" }}>다!</span> 했슈
-          </TitleWrapper>
+          <TitleWrapper>다!했슈</TitleWrapper>
         </IconWrapper>
         <LogoWrapper onClick={handleEditLogoClick}>
           <CustomLogo xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -180,35 +115,6 @@ const NavBar = () => {
             />
           </CustomLogo>
         </LogoWrapper>
-        <AlarmContainer className="alarm-container">
-          <Alarmtext onClick={handleAlarmTextClick}>
-            다했슈 소개 페이지 바로가기 <br />
-            구성원 소개
-          </Alarmtext>
-          <IconLinks>
-            <a
-              href="https://blog.naver.com/snuubinny"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon src={BlogImage} alt="Blog" />
-            </a>
-            <a
-              href="https://www.instagram.com/likelion_inha/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon src={InstagramImage} alt="Instagram" />
-            </a>
-            <a
-              href="https://github.com/InHelion"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon src={GithubImage} alt="GitHub" />
-            </a>
-          </IconLinks>
-        </AlarmContainer>
       </WrapNavBar>
     </>
   );

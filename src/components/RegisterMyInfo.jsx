@@ -1,30 +1,46 @@
 import styled from "styled-components";
 import axios from "axios";
+import { useState } from "react";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const Wrapper = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 `;
 
 const ProfileContainer = styled.div`
-  width: 50%;
-  padding: 10px;
+  width: 80%;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  height: 650px;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const Header = styled.div`
   width: 100%;
-  height: 60px;
+  height: 35px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -36,40 +52,54 @@ const Header = styled.div`
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 13px;
   color: white;
-  margin-top: 12px;
-  margin-left: 15px;
-  line-height: 2;
+  margin-top: 5px;
+  padding: 3px 15px;
 `;
 
 const FormBox = styled.input`
-  height: 45px;
+  height: 25px;
+  width: 200px;
+  font-size: 10px;
   background-color: #feecdb;
+  border: none;
   border-color: #f8efe6;
-  border-style: none;
-  border-radius: 10px;
   outline-color: #ffe3c8;
-  margin: 10px 0;
+  border-radius: 10px;
   padding: 0 10px;
-  width: 60%;
+  flex: 1;
+  box-sizing: border-box;
+  margin-bottom: 0;
+
+  &::placeholder {
+    font-size: 10px;
+    color: #aaa;
+    padding-left: 1px;
+  }
 `;
 
 const FormBoxContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin-left: 70px;
-  padding: 70px 10px 10px;
-  margin-top: -20px;
+  padding: 40px 0 10px;
+  width: 100%;
 `;
 
 const InputContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
   align-items: center;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 3px;
+  margin-left: -40px;
+`;
+
+const Divider = styled.hr`
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
 `;
 
 const DuplicateWrapper = styled.div`
@@ -80,17 +110,16 @@ const DuplicateWrapper = styled.div`
 
 const DuplicateButton = styled.button`
   padding: 3px;
-  font-size: 13px;
-  height: 25px;
-  width: 70px;
+  font-size: 8px;
+  height: 17px;
   background-color: #ff832b;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  border: 1px solid #ffe3c8;
   margin-left: 10px;
+  white-space: nowrap;
 
   &:hover {
     background-color: #fee5ce;
@@ -100,26 +129,26 @@ const DuplicateButton = styled.button`
 
 const Label = styled.label`
   font-weight: bold;
-  width: 110px;
-  margin-right: 10px;
+  font-size: 10px;
+  width: 120px;
+  margin-left: -5px;
   text-align: right;
+  margin-top: 0px;
 `;
 
 const SexButton = styled.button`
   padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 120px;
+  font-size: 10px;
+  height: 20px;
+  width: 60px;
   background-color: ${(props) => (props.$active ? "#ff832b" : "#fee5ce")};
   color: ${(props) => (props.$active ? "white" : "#ff832b")};
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-left: 2px;
+  margin-left: 5px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
-  margin-bottom: 20px;
 `;
 
 const SexButtonContainer = styled.div`
@@ -127,7 +156,9 @@ const SexButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-right: 280px;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: -80px;
 `;
 
 const RegisterMyInfo = ({
@@ -149,7 +180,7 @@ const RegisterMyInfo = ({
   const handleSexClick = (selectedGender) => {
     setGender(selectedGender);
   };
-
+  const [isVisible, setIsVisible] = useState(true);
   const handleIdDuplicate = async () => {
     try {
       const requestData = { identifier };
@@ -159,15 +190,15 @@ const RegisterMyInfo = ({
       );
 
       if (response.status === 200) {
-        alert("사용가능한 아이디입니다.");
+        alert("사용 가능한 아이디입니다.");
       } else {
-        alert("이미 사용중인 아이디입니다.");
+        alert("이미 사용 중인 아이디입니다.");
       }
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        alert("이미 사용중인 아이디입니다.");
+        alert("이미 사용 중인 아이디입니다.");
       } else {
-        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해 주세요.");
       }
     }
   };
@@ -181,15 +212,15 @@ const RegisterMyInfo = ({
       );
 
       if (response.status === 200) {
-        alert("사용가능한 이메일입니다.");
+        alert("사용 가능한 이메일입니다.");
       } else {
-        alert("이미 사용중인 이메일입니다.");
+        alert("이미 사용 중인 이메일입니다.");
       }
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        alert("이미 사용중인 이메일입니다.");
+        alert("이미 사용 중인 이메일입니다.");
       } else {
-        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+        alert("중복 확인 중 오류가 발생했습니다. 다시 시도해 주세요.");
       }
     }
   };
@@ -203,14 +234,14 @@ const RegisterMyInfo = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper isVisible={isVisible}>
       <ProfileContainer>
         <Header>
-          <TextWrap>내정보</TextWrap>
+          <TextWrap>필수정보</TextWrap>
         </Header>
         <FormBoxContainer>
           <InputContainer>
-            <Label>이름:</Label>
+            <Label>피보호자 이름:</Label>
             <FormBox
               type="text"
               placeholder="피보호자의 이름을 입력하세요"
@@ -218,12 +249,13 @@ const RegisterMyInfo = ({
               onChange={(e) => setUsername(e.target.value)}
             />
           </InputContainer>
+          <Divider />
           <DuplicateWrapper>
             <InputContainer>
               <Label>아이디:</Label>
               <FormBox
                 type="text"
-                placeholder="아이디를 입력하세요"
+                placeholder="아이디을 입력하세요"
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
               />
@@ -232,6 +264,7 @@ const RegisterMyInfo = ({
               </DuplicateButton>
             </InputContainer>
           </DuplicateWrapper>
+          <Divider />
           <InputContainer>
             <Label>비밀번호:</Label>
             <FormBox
@@ -241,6 +274,7 @@ const RegisterMyInfo = ({
               onChange={(e) => setPassword(e.target.value)}
             />
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label>비밀번호 확인:</Label>
             <FormBox
@@ -253,12 +287,13 @@ const RegisterMyInfo = ({
               일치확인
             </DuplicateButton>
           </InputContainer>
+          <Divider />
           <DuplicateWrapper>
             <InputContainer>
               <Label>이메일:</Label>
               <FormBox
                 type="email"
-                placeholder="보호자의 이메일로 작성해주세요"
+                placeholder="보호자의 이메일을 입력하세요"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -267,15 +302,16 @@ const RegisterMyInfo = ({
               </DuplicateButton>
             </InputContainer>
           </DuplicateWrapper>
+          <Divider />
           <InputContainer>
             <Label>생년월일:</Label>
             <FormBox
               type="date"
-              placeholder="생년월일을 입력하세요"
               value={birth}
               onChange={(e) => setBirth(e.target.value)}
             />
           </InputContainer>
+          <Divider />
           <SexButtonContainer>
             <Label>성별:</Label>
             <SexButton

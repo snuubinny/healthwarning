@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import MainPage from "../img/MainPage.png";
-import DirectLinks from "../components/DirectLinks"; // DirectLinks 컴포넌트 가져오기
+import DirectLinks from "../components/DirectLinks";
+import NavBar from "../components/NavBar";
 
 const FullScreenImage = styled.img`
   height: 100%;
