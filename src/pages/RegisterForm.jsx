@@ -3,53 +3,75 @@ import RegisterMyInfo from "../components/RegisterMyInfo";
 import RegisterInfo from "../components/RegisterInfo";
 import styled from "styled-components";
 import footerLogo from "../img/Footer_Logo.png";
+import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const RegisterWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #f8f6e9;
+  background-color: #fee5ce;
+  margin-top: 20px; /* NavBar의 높이만큼 margin 추가해서 공간 안생기게!!!! */
+  animation: ${fadeIn} 0.5s ease-out;
 `;
 
 const TextWrap = styled.div`
   display: flex;
   align-items: center;
   text-align: left;
-  font-size: 40px;
+  font-size: 20px;
   font-weight: bold;
-  margin-left: -350px;
+  margin-left: 0px;
   padding-top: 50px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 `;
 
 const Divider = styled.div`
-  width: 80%;
+  width: 100%;
   max-width: 800px;
-  border-bottom: 2px solid #dddddd;
+  border-bottom: 2px solid #ddd;
   margin: 20px 0;
 `;
 
 const ContextWrap = styled.p`
   text-align: left;
   font-size: 15px;
-  margin-left: -430px;
+  margin-left: 0px;
+`;
+
+const RegisterButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  margin: 20px 0;
 `;
 
 const RegisterButton = styled.button`
   padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 120px;
+  font-size: 10px;
+  height: 30px;
+  width: 75px;
   background-color: #ff832b;
   color: white;
   border: none;
   border-radius: 4px;
+  margin-right: 30px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-left: 680px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
 
@@ -57,11 +79,11 @@ const RegisterButton = styled.button`
     background-color: #fee5ce;
     color: #ff832b;
   }
-  margin-bottom: 20px;
 `;
+
 const FooterIcon = styled.img`
-  width: 60px;
-  height: 50px;
+  width: 45px;
+  height: 35px;
   fill: currentColor;
   margin-right: 4px;
   transform: scale(2);
@@ -82,6 +104,8 @@ const RegisterForm = () => {
   const [medications, setMedications] = useState("");
   const [exercises, setExercises] = useState("");
   const [meals, setMeals] = useState("");
+
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleRegister = async () => {
     if (password !== confirmPassword) {
@@ -126,7 +150,8 @@ const RegisterForm = () => {
 
   return (
     <>
-      <RegisterWrap>
+      <NavBar />
+      <RegisterWrap isVisible={isVisible}>
         <TextWrap>
           <FooterIcon src={footerLogo} />
           <span style={{ color: "#ff832b" }}>다! </span>했슈 계정 만들기
@@ -149,6 +174,7 @@ const RegisterForm = () => {
         setBirth={setBirth}
         gender={gender}
         setGender={setGender}
+        isVisible={isVisible}
       />
       <RegisterInfo
         sleep={sleep}
@@ -160,7 +186,9 @@ const RegisterForm = () => {
         meals={meals}
         setMeals={setMeals}
       />
-      <RegisterButton onClick={handleRegister}>회원가입</RegisterButton>
+      <RegisterButtonContainer>
+        <RegisterButton onClick={handleRegister}>회원가입</RegisterButton>
+      </RegisterButtonContainer>
     </>
   );
 };

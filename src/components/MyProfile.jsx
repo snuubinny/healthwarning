@@ -7,25 +7,25 @@ import { useNavigate } from "react-router-dom";
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 80px;
-  margin-left: 280px;
+  margin-top: 30px;
+  margin-left: 115px;
 `;
 
 const WomanIcon = styled.img`
-  width: 150px;
+  width: 120px;
   height: auto;
   margin-right: 20px;
 `;
 
 const ManIcon = styled.img`
-  width: 150px;
+  width: 120px;
   height: auto;
   margin-right: 20px;
 `;
 
 const PencilIcon = styled.svg`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   fill: ${(props) => (props.$isActive ? "#ff832b" : "black")};
   cursor: pointer;
   margin-top: 130px;
@@ -37,26 +37,27 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 `;
 
 const ProfileContainer = styled.div`
-  width: 50%;
-  padding: 10px;
+  width: 80%;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
   cursor: pointer;
-  height: 400px;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const Header = styled.div`
   width: 100%;
-  height: 60px;
+  height: 35px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -70,10 +71,10 @@ const TitleWrap = styled.p`
   align-items: center;
   text-align: left;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 13px;
   justify-content: space-between;
   color: white;
-  margin-top: 12px;
+  margin-top: 5px;
   margin-left: 15px;
   line-height: 2;
 `;
@@ -81,15 +82,15 @@ const TitleWrap = styled.p`
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 18px;
-  margin-left: 300px;
+  font-size: 13px;
+  margin-left: 100px;
   color: black;
   line-height: 2;
 `;
 
 const LogoutIcon = styled.svg`
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
   fill: #ff8000;
 `;

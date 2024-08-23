@@ -6,26 +6,28 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 `;
 
 const InfoContainer = styled.div`
-  width: 50%;
-  padding: 10px;
+  width: 80%;
+  height: 220px;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
   cursor: pointer;
-  height: 380px;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const Header = styled.div`
   width: 100%;
-  height: 60px;
+  height: 35px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -37,15 +39,14 @@ const Header = styled.div`
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 13px;
   color: white;
-  margin-top: 12px;
-  margin-left: 15px;
-  line-height: 2;
+  margin-top: 5px;
+  padding: 3px 15px;
 `;
 
 const FormBox = styled.input`
-  height: 45px;
+  height: 20px;
   background-color: #feecdb;
   border-color: #f8efe6;
   border-style: none;
@@ -53,7 +54,7 @@ const FormBox = styled.input`
   outline-color: #ffe3c8;
   margin: 10px 0;
   padding: 0 10px;
-  width: 60px;
+  width: 20px;
 `;
 
 const FormBoxContainer = styled.div`
@@ -62,28 +63,42 @@ const FormBoxContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin-left: 110px;
-  padding: 70px 10px 10px;
+  padding: 40px 10px 0px;
   margin-top: -20px;
+  margin-left: 20px;
 `;
 
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: -5px;
+  margin-left: -5px;
 `;
 
 const Label = styled.label`
   font-weight: bold;
+  font-size: 10px;
   width: 200px;
-  margin-right: 10px;
+  margin-left: -10px;
   text-align: right;
+  margin-top: 0px;
+  margin: 0 4px;
 `;
 
 const InlineLabel = styled.label`
   font-weight: bold;
-  margin-left: 10px;
+  margin: 0 7px;
+  font-size: 10px;
   flex-shrink: 0;
+  width: 100px;
+`;
+
+const Divider = styled.hr`
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
 `;
 
 const ProfileDetails = ({ isEditable, userData, setUserData }) => {
@@ -113,6 +128,7 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
             />
             <InlineLabel>시간 입니다.</InlineLabel>
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label>약 복용횟수는</Label>
             <FormBox
@@ -124,6 +140,7 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
             />
             <InlineLabel>회 입니다.</InlineLabel>
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label>목표 운동시간은</Label>
             <FormBox
@@ -135,6 +152,7 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
             />
             <InlineLabel>분 입니다.</InlineLabel>
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label>하루 목표 식사횟수는</Label>
             <FormBox

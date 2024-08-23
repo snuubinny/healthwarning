@@ -7,26 +7,27 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 `;
 
 const ProfileContainer = styled.div`
-  width: 50%;
-  padding: 10px;
+  width: 80%;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
   cursor: pointer;
-  height: 650px;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const Header = styled.div`
   width: 100%;
-  height: 60px;
+  height: 35px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -37,19 +38,17 @@ const Header = styled.div`
 
 const SexButton = styled.button`
   padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 120px;
-  background-color: ${(props) => (props.active ? "#ff832b" : "#fee5ce")};
-  color: ${(props) => (props.active ? "white" : "#ff832b")};
+  font-size: 10px;
+  height: 20px;
+  width: 60px;
+  background-color: ${(props) => (props.$active ? "#ff832b" : "#fee5ce")};
+  color: ${(props) => (props.$active ? "white" : "#ff832b")};
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-left: 2px;
+  margin-left: 5px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
-  margin-bottom: 20px;
 `;
 
 const SexButtonContainer = styled.div`
@@ -57,68 +56,85 @@ const SexButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-right: 250px;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: -80px;
 `;
 
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 13px;
   color: white;
-  margin-top: 12px;
-  margin-left: 15px;
-  line-height: 2;
+  margin-top: 5px;
+  padding: 3px 15px;
 `;
 
 const FormBox = styled.input`
-  height: 45px;
+  height: 25px;
+  width: 200px;
+  font-size: 10px;
   background-color: #feecdb;
+  border: none;
   border-color: #f8efe6;
-  border-style: none;
-  border-radius: 10px;
   outline-color: #ffe3c8;
-  margin: 10px 0;
+  border-radius: 10px;
   padding: 0 10px;
-  width: 60%;
+  flex: 1;
+  box-sizing: border-box;
+  margin-bottom: 0;
+
+  &::placeholder {
+    font-size: 10px;
+    color: #aaa;
+    padding-left: 1px;
+  }
 `;
 
 const FormBoxContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin-left: 70px;
-  padding: 70px 10px 10px;
-  margin-top: -20px;
+  padding: 40px 0 10px;
+  width: 100%;
 `;
 
 const InputContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
   align-items: center;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 3px;
+  margin-left: -40px;
+`;
+
+const Divider = styled.hr`
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
 `;
 
 const Label = styled.label`
   font-weight: bold;
-  width: 110px;
-  margin-right: 10px;
+  font-size: 10px;
+  width: 120px;
+  margin-left: -5px;
   text-align: right;
+  margin-top: 0px;
 `;
 
 const DuplicateButton = styled.button`
   padding: 3px;
-  font-size: 13px;
-  height: 25px;
-  width: 70px;
+  font-size: 8px;
+  height: 17px;
   background-color: #ff832b;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  border: 1px solid #ffe3c8;
   margin-left: 10px;
+  white-space: nowrap;
 
   &:hover {
     background-color: #fee5ce;
@@ -205,6 +221,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               disabled={!isEditable}
             />
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label htmlFor="identifier">아이디:</Label>
             <FormBox
@@ -218,6 +235,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               중복 확인
             </DuplicateButton>
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label>이메일:</Label>
             <FormBox
@@ -231,6 +249,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               중복확인
             </DuplicateButton>
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label htmlFor="password">새 비밀번호:</Label>
             <FormBox
@@ -242,6 +261,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               disabled={!isEditable}
             />
           </InputContainer>
+          <Divider />
           <InputContainer>
             <Label htmlFor="confirmPassword">비밀번호 확인:</Label>
             <FormBox
@@ -256,7 +276,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               일치확인
             </DuplicateButton>
           </InputContainer>
-
+          <Divider />
           <InputContainer>
             <Label>생년월일:</Label>
             <FormBox
@@ -267,6 +287,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
               readOnly={!isEditable}
             />
           </InputContainer>
+          <Divider />
           <SexButtonContainer>
             <Label>성별:</Label>
             <SexButton

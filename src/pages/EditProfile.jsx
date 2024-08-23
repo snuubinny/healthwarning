@@ -7,6 +7,7 @@ import MyInformation from "../components/MyInformation";
 import ProfileDetails from "../components/ProfileDetails";
 import SafeImage from "../img/Safe.png";
 import { keyframes } from "styled-components";
+import NavBar from "../components/NavBar";
 
 const fadeIn = keyframes`
   from {
@@ -30,19 +31,24 @@ const AnimatedContainer2 = styled.div`
   opacity: 1;
   transform: translateY(0);
 `;
-
+const EditButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  margin: 20px 0;
+`;
 const EditButton = styled.button`
   padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 120px;
+  font-size: 10px;
+  height: 30px;
+  width: 75px;
   background-color: #ff832b;
   color: white;
   border: none;
   border-radius: 4px;
+  margin-right: 30px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-left: 680px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
 
@@ -50,7 +56,6 @@ const EditButton = styled.button`
     background-color: #fee5ce;
     color: #ff832b;
   }
-  margin-bottom: 20px;
 `;
 
 const AlarmContainer = styled.div`
@@ -58,38 +63,42 @@ const AlarmContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 400px;
+  height: 150px;
   background-color: #fee5ce;
-  padding: 20px;
   box-sizing: border-box;
 `;
 
 const SafeImageStyled = styled.img`
-  width: 400px;
+  width: 150px;
   height: auto;
-  margin-right: 20px;
-  margin-top: 75px;
+  margin-right: 100px;
+  margin-top: 28px;
 `;
 
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 75px;
+  margin-top: 15px;
+  margin-right: -100px;
 `;
 
 const CircleTitle = styled.div`
   text-align: left;
   color: #ff832b;
-  font-size: 40px;
+  margin-left: -50px;
+  margin-bottom: 70px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
 const CircleText = styled.p`
   font-family: "Nanum Pen Script", cursive;
-  font-size: 35px;
+  width: 300px;
+  font-size: 12px;
   color: #003366;
-  margin-top: 5px;
+  margin-left: -50px;
+  margin-top: -50px;
 `;
 
 const EditProfile = () => {
@@ -198,7 +207,8 @@ const EditProfile = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   return (
-    <>
+    <div className="edit-profile-container">
+      <NavBar />
       <AnimatedContainer isVisible={isVisible}>
         <AlarmContainer>
           <SafeImageStyled src={SafeImage} alt="Safe" />
@@ -231,12 +241,14 @@ const EditProfile = () => {
         userData={userData}
         setUserData={setUserData}
       />
-      <EditButton
-        onClick={isEditable ? saveUserData : () => setIsEditable(true)}
-      >
-        {isEditable ? "저장" : "수정하기"}
-      </EditButton>
-    </>
+      <EditButtonContainer>
+        <EditButton
+          onClick={isEditable ? saveUserData : () => setIsEditable(true)}
+        >
+          {isEditable ? "저장" : "수정하기"}
+        </EditButton>
+      </EditButtonContainer>
+    </div>
   );
 };
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import footerLogo from "../img/Footer_Logo.png";
 import Test from "../components/Test";
+import NavBar from "../components/NavBar";
 
 const LoginBg = `${process.env.PUBLIC_URL}/Loginbg2.png`;
 
@@ -195,6 +196,7 @@ function LoginForm() {
   return (
     <>
       <LoginContainer>
+        <NavBar />
         <TitleTextBox>
           DAHAESSYU
           <br />
