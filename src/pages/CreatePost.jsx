@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Pen from "../img/pen.png";
 import { keyframes } from "styled-components";
+import NavBar from "../components/NavBar";
 
 const fadeIn = keyframes`
   from {
@@ -25,23 +26,32 @@ const AnimatedContainer = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: #F8F6E9;
+`;
+
+const NavBarWrapper = styled.div`
+  width: 100%;
+  height: 70px;
 `;
 
 const PostHeader = styled.div`
  display: flex;
  justify-content: center;
  align-items: center;
- background-color: #ffe3b0;
-  font-size: 100px;
-  color:#f4a003;
-  font-family: "Nanum Pen Script", cursive;
-  width: 100%;
-  height: 300px;
+ background-color: #FEE5CE;
+ font-size: 40px;
+ color:#f4a003;
+ font-family: "Nanum Pen Script", cursive;
+ width: 100%;
+ height: 150px;
+ border-radius: 0px 0px 100px 100px;
 `;
 
 const Pencil = styled.img`
-  width: 170px;
-  height: 170px;
+  width: 70px;
+  height: 70px;
+  margin-right: 30px;
 `;
 
 const InfoWrapper = styled.div`
@@ -49,8 +59,7 @@ const InfoWrapper = styled.div`
   height: auto;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  flex-direction:row;
+  flex-direction:column;
 `;
 
 const CheckListContainer = styled.div`
@@ -71,38 +80,39 @@ const CheckListTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 700px;
-  height: 60px;
+  width: 350px;
+  height: 50px;
   border-radius: 20px;
-  margin: 30px;
-  font-size: 25px;
+  margin: 10px;
+  margin-top: 0;
+  font-size: 20px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   color: white;
   font-weight: bold;
 `;
 
 const YYYY = styled.input`
-  width: 110px;
-  height: 45px;
+  width: 80px;
+  height: 35px;
   background-color: #fee5ce;
   border-style: none;
   border-radius: 10px;
   outline-color: #ffe3c8;
   margin: 10px;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   line-height: 55px;
 `;
 
 const MMDD = styled.input`
-  width: 55px;
-  height: 45px;
+  width: 40px;
+  height: 35px;
   background-color: #fee5ce;
   border-style: none;
   border-radius: 10px;
   outline-color: #ffe3c8;
   margin: 10px;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   line-height: 55px;
 `;
@@ -112,17 +122,17 @@ const CheckList = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 700px;
-  height: 400px;
+  width: 350px;
+  height: 280px;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 0px 20px 1px #e4e4e4;
-  gap: 30px;
+  gap: 20px;
 `;
 
 const GoalBox = styled.div`
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
   color: #ff832b;
 `;
 
@@ -130,7 +140,7 @@ const SleepBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   gap: 10px;
 `;
@@ -139,7 +149,7 @@ const MedicationsBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   gap: 10px;
 `;
@@ -148,7 +158,7 @@ const ExerciseBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   gap: 10px;
 `;
@@ -157,14 +167,14 @@ const MealsBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   gap: 10px;
 `;
 
 const Input = styled.input`
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   background-color: #fee5ce;
   border-style: none;
   border-radius: 10px;
@@ -179,47 +189,47 @@ const DiaryTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 700px;
-  height: 60px;
+  width: 350px;
+  height: 50px;
   border-radius: 20px;
-  margin: 30px;
-  font-size: 25px;
+  margin: 10px;
+  margin-top: 20px;
+  font-size: 20px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   color: white;
   font-weight: bold;
 `;
 
 const DiaryInput = styled.textarea`
-  width: 640px;
-  height: 340px;
+  width: 300px;
+  height: 150px;
   resize: none;
   background-color: #ffffff;
   border-style: none;
   border-radius: 20px;
-  border-radius: 20px;
   box-shadow: 0px 0px 20px 1px #e4e4e4;
   outline-color: #ffd4b5;
   padding: 30px;
-  font-size: 20px;
+  font-size: 13px;
 `;
 
 const PostButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 30px;
+  margin: 20px;
 `;
 
 const PostButton = styled.button`
-  width: 300px;
-  height: 55px;
+  width: 350px;
+  height: 50px;
   border: none;
   background-color: #ff832b;
   color: white;
   font-size: 20px;
   font-weight: bold;
-  border-radius: 10px;
-  margin: 30px;
+  border-radius: 30px;
+  margin: 10px;
   cursor: pointer;
 
   &:hover {
@@ -312,10 +322,16 @@ function CreatePost() {
   };
 
   return (
+  <>
   <AnimatedContainer isVisible={isVisible}>
   <Wrapper>
+    <NavBarWrapper>
+      <NavBar />  
+    </NavBarWrapper>
    <PostHeader>
-    <Pencil src={Pen}/>"매일매일 기록하는 오늘의 건강 일기"
+    <Pencil src={Pen}/>
+    "매일매일 기록하는 
+    <br/> 오늘의 건강 일기"
    </PostHeader> 
    <InfoWrapper>
     <CheckListContainer>
@@ -390,10 +406,11 @@ function CreatePost() {
     </DairyContainer>
   </InfoWrapper>
   <PostButtonContainer>
-    <PostButton onClick={handleSubmit}>등록하기</PostButton>
+    <PostButton onClick={handleSubmit}>오늘의 글 등록하기</PostButton>
   </PostButtonContainer>  
 </Wrapper>
 </AnimatedContainer>
+</>
   );
 }
 

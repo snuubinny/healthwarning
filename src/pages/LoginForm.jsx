@@ -2,68 +2,114 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import footerLogo from "../img/Footer_Logo.png";
 import Test from "../components/Test";
-import NavBar from "../components/NavBar";
-
-const LoginBg = `${process.env.PUBLIC_URL}/Loginbg2.png`;
 
 const LoginContainer = styled.div`
-  background-image: url(${LoginBg});
-  background-size: cover;
-  background-position: center;
-  background-color: #fcfbf4;
+  background-color: #FEE5CE;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 800px;
+  height: 700px;
 `;
 
-const TitleTextBox = styled.div`
-  width: 650px;
-  font-size: 90px;
-  background: linear-gradient(to right, #000000, #494949);
-  opacity: 0.5;
-  border-radius: 5px;
-  padding: 30px;
-  padding-right: 80px;
-  color: white;
+const Header = styled.div`
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: flex-start;
 `;
 
-const ServiceText = styled.p`
-  font-size: 50px;
+const BackButton = styled.img`
+  width: 25px;
+  height: 25px;
+  margin: 20px;
+  cursor: pointer;
+`;
+
+const ServiceInfo = styled.div`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const LogoImg = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  margin: 20px;
+`;
+
+const LogoText = styled.div`
   font-family: "Nanum Pen Script", cursive;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  font-size: 30px;
+  color: #ff832b;
+`;
+
+const LoginText = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  color: #797979;
 `;
 
 const LoginBox = styled.div`
-  background-color: rgba(255, 252, 247, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 500px;
-  height: 600px;
-  margin: 100px;
-  margin-right: 150px;
+  width: 100%;
+  height: 250px;
+  gap:20px;
+`;
+
+const IdBox = styled.input`
+  width: 330px;
+  height: 45px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  border-style: none;
+  border-radius: 30px;
+  outline-color: #ffffff;
+  font-size: 15px;
+`;
+
+const PwBox = styled.input`
+  width: 330px;
+  height: 45px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  border-style: none;
+  border-radius: 30px;
+  outline-color: #ffffff;
+  font-size: 15px;
+`;
+
+const LoginButton = styled.button`
+  width: 330px;
+  height: 45px;
+  border: none;
+  background-color: #ff832b;
+  color: white;
+  font-size: 25px;
   border-radius: 20px;
-  box-shadow: 0px 0px 20px 1px #e4e4e4;
-`;
+  cursor: pointer;
 
-const LogoIcon = styled.img`
-  width: 48px;
-  height: 40px;
-  fill: currentColor;
-  margin-right: 4px;
-  transform: scale(2);
-  margin-top: 4px;
-  margin-left: 0px;
-`;
-
-const TitleBox = styled.h1`
-  display: flex;
-  justify-content: center;
-  color: #797979;
+  &:hover {
+    background-color: #ffffff;
+    color: #ff832b;
+  }
 `;
 
 const Line = styled.div`
@@ -73,84 +119,43 @@ const Line = styled.div`
   margin: 20px;
 `;
 
-const FormBox = styled.div`
-  width: 360px;
+const RegisterBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 30px;
-  padding-bottom: 20px;
-  display: flex;
   flex-direction: column;
-  gap: 10px;
-  border-radius: 10px;
+  width: 100%;
+  height: 150px;
+  gap:10px;
 `;
 
-const IdBox = styled.input`
-  width: 350px;
-  height: 50px;
-  background-color: #ffffff;
-  border-color: #f8efe6;
-  border-style: none;
-  border-radius: 10px;
-  outline-color: #ffe3c8;
-`;
-
-const PwBox = styled.input`
-  width: 350px;
-  height: 50px;
-  background-color: #ffffff;
-  border-color: #f8efe6;
-  border-style: none;
-  border-radius: 10px;
-  outline-color: #ffe3c8;
-`;
-
-const LoginButton = styled.button`
-  width: 350px;
-  margin: 60px;
-  height: 45px;
-  border: none;
-  background-color: #ff832b;
-  color: white;
-  font-size: large;
-  font-weight: bold;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  margin-top: 10px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #fee5ce;
-    color: #ff832b;
-  }
-`;
-
-const MiddleText = styled.div`
+const RegisterText = styled.div`
   display: flex;
   justify-content: center;
+  text-decoration: underline;
   margin-bottom: 10px;
   color: #686868;
 `;
 
-const ArrowImg = styled.img`
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-  margin-right: 4px;
-  transform: scale(2);
-  margin-bottom: 10px;
-`;
-
-const RegisterButton = styled.div`
-  display: flex;
-  justify-content: center;
-  text-decoration: underline;
+const RegisterButton = styled.button`
+  width: 330px;
+  height: 45px;
+  border: none;
+  background-color: #ffffff;
+  color: #ff832b;
+  font-size: 25px;
+  border-radius: 20px;
   cursor: pointer;
 
   &:hover {
-    font-weight: bold;
+    background-color:#ff832b;
+    color: #ffffff;
   }
+`;
+
+const Footer = styled.div`
+  width: 100%;
+  height: 50px;
 `;
 
 function LoginForm() {
@@ -162,6 +167,10 @@ function LoginForm() {
     navigate("/RegisterForm");
   };
 
+  const handleBackClick = () => {
+    navigate("/Main");
+  };
+  
   const handleLoginClick = async () => {
     try {
       const requestData = {
@@ -196,42 +205,38 @@ function LoginForm() {
   return (
     <>
       <LoginContainer>
-        <NavBar />
-        <TitleTextBox>
-          DAHAESSYU
-          <br />
-          <ServiceText className="Nanum Pen Script">
-            "노인에게 다정한 건강관리 service"
-          </ServiceText>
-        </TitleTextBox>
+        <Header>
+          <BackButton src="/back.png" alt="Back" onClick={handleBackClick} />
+        </Header>
+        <ServiceInfo>
+          <LogoImg/>
+          <LogoText>삐용삐용! 내일의 건강을 감독해주는<br/>완벽한 맞춤형 건강 보호사 서비스</LogoText>
+        </ServiceInfo>
+        <LoginText>회원 로그인</LoginText>
         <LoginBox>
-          <TitleBox>
-            <LogoIcon src={footerLogo} />
-            회원 로그인
-          </TitleBox>
-          <Line />
-          <FormBox>
             <IdBox
-              placeholder=" 아이디를 입력하세요"
+              placeholder=" ID : 아이디를 입력하세요"
               type="text"
               value={id}
               onChange={(e) => setId(e.target.value)}
             />
             <PwBox
-              placeholder=" 비밀번호를 입력하세요"
+              placeholder=" PW : 비밀번호를 입력하세요"
               type="password"
               value={pw}
               onChange={(e) => setPw(e.target.value)}
             />
-          </FormBox>
           <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
-          <Line />
-          <MiddleText>아직 회원이 아니신가요?</MiddleText>
+        </LoginBox>
+        <Line /> 
+        <RegisterBox>
+          <RegisterText>아직 회원이 아니신가요?</RegisterText>
           <RegisterButton onClick={handleRegisterClick}>
             회원가입하기
           </RegisterButton>
-        </LoginBox>
+        </RegisterBox>  
       </LoginContainer>
+      <Footer/>
       <Test fillTestCredentials={fillTestCredentials} />
     </>
   );
