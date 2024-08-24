@@ -3,8 +3,10 @@ import styled from "styled-components";
 import HandImage from "../img/hand.png";
 
 const LinkContainer = styled.div`
-  width: 60%;
-  height: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 70px;
   transition: transform 0.2s;
   background-color: white;
   padding: 10px;
@@ -26,7 +28,7 @@ const LinkContainer = styled.div`
 
 const ContentContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
   width: 100%;
 `;
@@ -39,10 +41,11 @@ const LinkText = styled.span`
 `;
 
 const GoButton = styled.button`
+  margin-left: 10px;
   padding: 10px;
   font-size: 20px;
-  height: 60px;
-  width: 200px;
+  height: 40px;
+  width: 170px;
   background-color: #ff832b;
   color: white;
   border: none;
@@ -57,8 +60,6 @@ const GoButton = styled.button`
 `;
 
 const DiaryText = styled.p`
-  margin-top: 18px;
-  margin-left: 100px;
   font-family: "Nanum Pen Script", cursive;
   font-size: 19px;
   color: #ff832b;
@@ -78,8 +79,8 @@ const Test = ({ fillTestCredentials }) => {
 
   return (
     <LinkContainer>
+      <LinkText>회원가입은 번거롭고, 체험해보고 싶다면?</LinkText>
       <ContentContainer>
-        <LinkText>회원가입은 번거롭고, 체험해보고 싶다면?</LinkText>
         <DiaryText className="Nanum Pen Script">
           체험용 계정으로 로그인해보세요!
         </DiaryText>

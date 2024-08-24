@@ -34,14 +34,13 @@ const CustomLogo = styled.svg`
 const TitleWrapper = styled.div`
   text-align: left;
   color: black;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 `;
 
 const NavBarIcon = styled.img`
@@ -104,7 +103,7 @@ const NavBar = () => {
       >
         <IconWrapper onClick={handleHomeLogoClick}>
           <NavBarIcon src={navBarLogo} />
-          <TitleWrapper>다!했슈</TitleWrapper>
+          <TitleWrapper>건강주의보</TitleWrapper>
         </IconWrapper>
         <LogoWrapper onClick={handleEditLogoClick}>
           <CustomLogo xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
