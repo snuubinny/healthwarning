@@ -160,7 +160,7 @@ const Post = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `https://dahaessyu.kro.kr/blog/posts/${post_id}/`,
+          `https://healthwarning.kro.kr/blog/posts/${post_id}/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -185,7 +185,7 @@ const Post = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `https://dahaessyu.kro.kr/blog/posts/${post_id}/delete/`,
+        `https://healthwarning.kro.kr/blog/posts/${post_id}/delete/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

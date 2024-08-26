@@ -131,7 +131,7 @@ const RecentPostCard = ({ post, onClick }) => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `https://dahaessyu.kro.kr/blog/posts/${post.id}`, // post_id를 사용하여 API 요청
+          `https://healthwarning.kro.kr/blog/posts/${post.id}`, // post_id를 사용하여 API 요청
           {
             headers: {
               Authorization: `Bearer ${token}`,
