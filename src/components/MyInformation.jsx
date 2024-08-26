@@ -156,7 +156,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
   const handleIdDuplicate = async () => {
     try {
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/check_identifier/",
+        "https://healthwarning.kro.kr/users/check_identifier/",
         { identifier }
       );
 
@@ -186,7 +186,7 @@ const MyInformation = ({ isEditable, userData, setUserData }) => {
     try {
       const requestData = { email };
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/check_email/",
+        "https://healthwarning.kro.kr/users/check_email/",
         requestData
       );
 

@@ -123,7 +123,7 @@ const EditProfile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `https://dahaessyu.kro.kr/users/profile/`,
+          `https://healthwarning.kro.kr/users/profile/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -181,7 +181,7 @@ const EditProfile = () => {
       }, {});
 
       const response = await axios.put(
-        `https://dahaessyu.kro.kr/users/profile/`,
+        `https://healthwarning.kro.kr/users/profile/`,
         filteredUserData,
         {
           headers: {

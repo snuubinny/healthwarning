@@ -89,7 +89,7 @@ const RecentPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://dahaessyu.kro.kr/blog/main/`, {
+        const response = await axios.get(`https://healthwarning.kro.kr/blog/main/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -120,7 +120,7 @@ const RecentPosts = () => {
   const handleMissYouClick = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`https://dahaessyu.kro.kr/blog/miss_email/`, {
+      const response = await axios.get(`https://healthwarning.kro.kr/blog/miss_email/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

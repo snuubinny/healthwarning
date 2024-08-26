@@ -237,7 +237,7 @@ const AchievementRate = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `https://dahaessyu.kro.kr/blog/posts/${post_id}`,
+          `https://healthwarning.kro.kr/blog/posts/${post_id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

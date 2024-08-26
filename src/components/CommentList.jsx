@@ -143,7 +143,7 @@ const CommentList = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://dahaessyu.kro.kr/blog/posts/${post_id}/comments`,
+        `https://healthwarning.kro.kr/blog/posts/${post_id}/comments`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -169,7 +169,7 @@ const CommentList = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `https://dahaessyu.kro.kr/blog/posts/${post_id}/comments/create/`, // 여기에서 슬래시 추가
+        `https://healthwarning.kro.kr/blog/posts/${post_id}/comments/create/`, // 여기에서 슬래시 추가
         {
           content: comment,
           protector: isGuardian,
@@ -198,7 +198,7 @@ const CommentList = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `https://dahaessyu.kro.kr/blog/posts/${post_id}/comments/${commentId}/delete`,
+        `https://healthwarning.kro.kr/blog/posts/${post_id}/comments/${commentId}/delete`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

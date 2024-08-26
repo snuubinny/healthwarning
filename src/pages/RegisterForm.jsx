@@ -128,7 +128,7 @@ const RegisterForm = () => {
       };
 
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/signup/",
+        "https://healthwarning.kro.kr/users/signup/",
         requestData
       );
 

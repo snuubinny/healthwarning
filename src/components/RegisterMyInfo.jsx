@@ -185,7 +185,7 @@ const RegisterMyInfo = ({
     try {
       const requestData = { identifier };
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/check_identifier/",
+        "https://healthwarning.kro.kr/users/check_identifier/",
         requestData
       );
 
@@ -207,7 +207,7 @@ const RegisterMyInfo = ({
     try {
       const requestData = { email };
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/users/check_email/",
+        "https://healthwarning.kro.kr/users/check_email/",
         requestData
       );
 

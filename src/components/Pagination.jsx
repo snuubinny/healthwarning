@@ -136,7 +136,7 @@ const Pagination = ({ userId, onPostClick }) => {
 
       try {
         const response = await axios.get(
-          "https://dahaessyu.kro.kr/blog/main/",
+          "https://healthwarning.kro.kr/blog/main/",
           {
             headers: {
               Authorization: `Bearer ${token}`,

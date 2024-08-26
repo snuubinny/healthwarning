@@ -256,7 +256,7 @@ function CreatePost() {
         const token = localStorage.getItem("token");
         console.log("Token:", token); // 로컬 스토리지에서 토큰을 가져옵니다.
         const response = await axios.get(
-          `https://dahaessyu.kro.kr/users/profile/`,
+          `https://healthwarning.kro.kr/users/profile/`,
           {
             headers: {
               Authorization: `Bearer ${token}`, // 요청 헤더에 토큰을 포함시킵니다.
@@ -297,7 +297,7 @@ function CreatePost() {
 
     try {
       const response = await axios.post(
-        "https://dahaessyu.kro.kr/blog/create/",
+        "https://healthwarning.kro.kr/blog/create/",
         postData,
         {
           headers: {
