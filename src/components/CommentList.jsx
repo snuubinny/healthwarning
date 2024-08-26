@@ -67,7 +67,7 @@ const DeleteButton = styled.button`
   padding: 3px;
   font-size: 12px;
   height: 25px;
-  width: 50px;
+  width: 35px;
   background-color: #ff832b;
   color: white;
   border: none;
@@ -82,55 +82,67 @@ const DeleteButton = styled.button`
 `;
 
 const CommentField = styled.input`
-  width: 50%;
-  padding: 10px;
+  width: 80%;
+  padding: 3px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 10px;
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 15px;
-  padding-left: 30px;
+  padding-left: 10px;
   &:focus {
-    outline: 2px solid #ff832b;
+    outline: 1px solid #ff832b;
   }
   margin-bottom: 20px;
 `;
 
 const CommentButton = styled.button`
   padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 80px;
+  font-size: 10px;
+  height: 23px;
+  width: 50px;
   background-color: #ff832b;
   color: white;
   border: none;
   border-radius: 4px;
+  margin-right: 30px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-left: 10px;
   font-weight: bold;
+  border: 1px solid #ffe3c8;
 
   &:hover {
     background-color: #fee5ce;
     color: #ff832b;
   }
-  margin-bottom: 20px;
 `;
 
 const CommentFieldWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
   margin-left: 10px;
 `;
 
 const CommentButtonWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  margin-left: 10px;
+  margin-bottom: 10px;
+`;
+
+const Label = styled.label`
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-bottom: 10px;
+`;
+
+const Checkbox = styled.input`
+  margin-left: 5px;
 `;
 
 const CommentList = () => {
@@ -215,14 +227,14 @@ const CommentList = () => {
   return (
     <>
       <CommentFieldWrapper>
-        <label>
+        <Label>
           보호자
-          <input
+          <Checkbox
             type="checkbox"
             checked={isGuardian}
             onChange={handleGuardianChange}
           />
-        </label>
+        </Label>
         <CommentField
           value={comment}
           onChange={handleCommentChange}
