@@ -5,22 +5,43 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PostListContainer = styled.div`
-  background-color: #fee5ce;
+  background-color: #FFD6B0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 20px;
+  gap: 10px;
   padding: 0px;
+  overflow-x: auto;
+  white-space: nowrap;
+
+   /* Webkit 기반 브라우저 (Chrome, Safari, Edge 등) */
+   ::-webkit-scrollbar {
+    height: 8px; /* 스크롤바의 높이 (가로 스크롤) */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤바 트랙 (배경) 색상 */
+    border-radius: 10px; /* 트랙의 모서리 둥글게 */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #6b6b6b; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 모서리 둥글게 */
+  }
+
+  scrollbar-width: thin; /* 스크롤바 너비 */
+  scrollbar-color: #ff8f3e #ffffff; /* 스크롤바 색상 (스크롤바 색상, 트랙 색상) */
 `;
 
 const Background = styled.div`
-  background-color: #fee5ce;
+  background-color: #FFD6B0;
   border-radius: 20px;
   border-color: #edd6c1;
   border-style: solid;
-  padding: 30px;
-  width: 1200px;
+  padding: 15px;
+  width: 350px;
   height: auto;
+  overflow-x: auto;
 `;
 
 const ListText = styled.p`
@@ -29,44 +50,23 @@ const ListText = styled.p`
   align-items: center;
   background-color: #ff8f3e;
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 10px;
   opacity: 0.9;
-  width: 1240px;
-  height: 60px;
+  width: 350px;
+  height: 25px;
   padding: 10px;
   padding-left: 20px;
   margin-bottom: 3px;
-  font-size: 30px;
+  font-size: 15px;
   font-weight: bold;
 `;
 
-const PageButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 10px;
-`;
-
-const LeftPageButton = styled.img`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-`;
-
-const RightPageButton = styled.img`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-`;
-
-const PageText = styled.h3``;
-
 const PostButtonContainer = styled.div`
   width: 100%;
-  height: 70px;
+  height: 90px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 `;
 
 const PostButton = styled.button`
@@ -75,20 +75,19 @@ const PostButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 190px;
-  height: 50px;
-  margin-right: 140px;
+  width: 350px;
+  height: 45px;
   margin-top: 20px;
-  font-size: large;
+  font-size: 15px;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 30px;
   border-style: none;
   background-color: #ff832b;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
 
   &:hover {
-    background-color: #fee5ce;
+    background-color: #ffffff;
     color: #ff832b;
   }
 `;
@@ -102,16 +101,16 @@ const ButtonPNG = styled.img`
 `;
 
 const EmptyBox = styled.div`
-  background-color: #fee5ce;
-  color:#ff7b00;
+  background-color: #FEE5CE;
+  color: #ff7b00;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: 15px;
   gap: 20px;
   padding: 0px;
-  height: 450px;
+  height: 150px;
 `;
 
 const Pagination = ({ userId, onPostClick }) => {
@@ -123,6 +122,7 @@ const Pagination = ({ userId, onPostClick }) => {
   const [cards, setCards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 10;
+  const maxCardsToShow = 10;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -154,7 +154,7 @@ const Pagination = ({ userId, onPostClick }) => {
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard).slice(0, maxCardsToShow);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -169,9 +169,7 @@ const Pagination = ({ userId, onPostClick }) => {
             ))}
           </PostListContainer>
         ) : (
-          <EmptyBox>
-            등록된 포스트가 없습니다
-          </EmptyBox>
+          <EmptyBox>등록된 포스트가 없습니다</EmptyBox>
         )}
       </Background>
       <PostButtonContainer>
@@ -185,27 +183,6 @@ const Pagination = ({ userId, onPostClick }) => {
           />
         </PostButton>
       </PostButtonContainer>
-      <PageButtonContainer>
-        <LeftPageButton
-          src={`${process.env.PUBLIC_URL}/leftbutton.png`}
-          alt="left"
-          onClick={() =>
-            paginate(currentPage > 1 ? currentPage - 1 : currentPage)
-          }
-        />
-        <PageText>{currentPage}</PageText>
-        <RightPageButton
-          src={`${process.env.PUBLIC_URL}/rightbutton.png`}
-          alt="right"
-          onClick={() =>
-            paginate(
-              currentPage < Math.ceil(cards.length / cardsPerPage)
-                ? currentPage + 1
-                : currentPage
-            )
-          }
-        />
-      </PageButtonContainer>
     </>
   );
 };

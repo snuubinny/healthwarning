@@ -8,6 +8,8 @@ import HundredImage from "../img/100percent.png";
 
 const CardWrapper = styled.div`
   background: #fff;
+  width: 100px;
+  height: 100px;
   border: 1px solid #fee5ce;
   border-radius: 8px;
   padding-top: 15px;
@@ -23,8 +25,8 @@ const CardWrapper = styled.div`
 `;
 
 const CardImage = styled.img`
-  width: 160px;
-  height: 160px;
+  width: 70px;
+  height: 70px;
   border-radius: 8px;
 `;
 
@@ -33,8 +35,9 @@ const DateBox = styled.div`
   height: 20px;
   display: flex;
   justify-content: center;
-  font-weight: bold;
   margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 500;
 `;
 
 const Card = ({ data, onClick }) => {
