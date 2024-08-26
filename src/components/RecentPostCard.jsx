@@ -12,8 +12,8 @@ const RecentPostsBox = styled.div`
   display: flex;
   align-content: center;
   flex-direction: column;
-  width: 650px;
-  height: 380px;
+  width: 360px;
+  height: 200px;
   margin-top: 20px;
   background-color: white;
   border-radius: 20px;
@@ -30,9 +30,9 @@ const PostDate = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: 40px;
   display: flex;
-  font-size: 30px;
+  font-size: 15px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   color: white;
   margin: 0;
@@ -46,22 +46,22 @@ const AchivementRateContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
   gap: 10px;
 `;
 
 const AchivementRate = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 90px;
+  height: 90px;
+  margin-top: 20px;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
-  gap: 30px;
+  margin-top: 20px;
+  gap: 10px;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const SleepInfo = styled.div`

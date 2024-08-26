@@ -81,8 +81,8 @@ const CheckListTitle = styled.div`
   justify-content: center;
   align-items: center;
   width: 350px;
-  height: 50px;
-  border-radius: 20px;
+  height: 45px;
+  border-radius:20px;
   margin: 10px;
   margin-top: 0;
   font-size: 20px;
@@ -93,26 +93,26 @@ const CheckListTitle = styled.div`
 
 const YYYY = styled.input`
   width: 80px;
-  height: 35px;
+  height: 25px;
   background-color: #fee5ce;
   border-style: none;
   border-radius: 10px;
   outline-color: #ffe3c8;
   margin: 10px;
-  font-size: 18px;
+  font-size: 15px;
   text-align: center;
   line-height: 55px;
 `;
 
 const MMDD = styled.input`
   width: 40px;
-  height: 35px;
+  height: 25px;
   background-color: #fee5ce;
   border-style: none;
   border-radius: 10px;
   outline-color: #ffe3c8;
   margin: 10px;
-  font-size: 18px;
+  font-size: 15px;
   text-align: center;
   line-height: 55px;
 `;
@@ -123,7 +123,7 @@ const CheckList = styled.div`
   align-items: center;
   flex-direction: column;
   width: 350px;
-  height: 280px;
+  height: 250px;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 0px 20px 1px #e4e4e4;
@@ -132,7 +132,7 @@ const CheckList = styled.div`
 
 const GoalBox = styled.div`
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   color: #ff832b;
 `;
 
@@ -141,16 +141,14 @@ const SleepBox = styled.div`
   flex-direction: row;
   align-items: center;
   font-size: 15px;
-  font-weight: bold;
   gap: 10px;
 `;
 
 const MedicationsBox = styled.div`
-  display: flex;
+    display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 15px;
-  font-weight: bold;
   gap: 10px;
 `;
 
@@ -159,7 +157,6 @@ const ExerciseBox = styled.div`
   flex-direction: row;
   align-items: center;
   font-size: 15px;
-  font-weight: bold;
   gap: 10px;
 `;
 
@@ -168,19 +165,17 @@ const MealsBox = styled.div`
   flex-direction: row;
   align-items: center;
   font-size: 15px;
-  font-weight: bold;
   gap: 10px;
 `;
 
 const Input = styled.input`
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background-color: #fee5ce;
   border-style: none;
   border-radius: 10px;
   outline-color: #ffe3c8;
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 18px;
   text-align: center;
   line-height: 55px;
 `;
@@ -190,11 +185,11 @@ const DiaryTitle = styled.div`
   justify-content: center;
   align-items: center;
   width: 350px;
-  height: 50px;
-  border-radius: 20px;
+  height: 45px;
+  border-radius:20px;
   margin: 10px;
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 18px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   color: white;
   font-weight: bold;
@@ -217,23 +212,28 @@ const PostButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 20px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 `;
 
 const PostButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 350px;
-  height: 50px;
-  border: none;
-  background-color: #ff832b;
-  color: white;
-  font-size: 20px;
+  height: 45px;
+  margin-top: 20px;
+  font-size: 15px;
   font-weight: bold;
   border-radius: 30px;
-  margin: 10px;
+  border-style: none;
+  background-color: #ff832b;
+  color: #ffffff;
   cursor: pointer;
 
   &:hover {
-    background-color: #fee5ce;
+    background-color: #ffffff;
     color: #ff832b;
   }
 `;

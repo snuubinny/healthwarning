@@ -10,7 +10,8 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 470px;
+  height: 300px;
+  gap:20px;
   position: relative; /* MissYouButton을 절대 위치로 배치하기 위해 추가 */
 `;
 
@@ -18,62 +19,73 @@ const RecentPostsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 0px;
 `;
 
 const LeftButton = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin-right: 3px;
   cursor: pointer;
   filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
 
   &:hover{
-    width: 63px;
-    height: 63px;
+    width: 43px;
+    height: 43px;
     margin-right: 0px;
     transition: all 0.1s ease-in-out;
   }
 `;
 
 const RightButton = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin-right: 3px;
   cursor: pointer;
   filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
 
   &:hover{
-    width: 63px;
-    height: 63px;
+    width: 43px;
+    height: 43px;
     margin-right: 0;
     transition: all 0.1s ease-in-out;
   }
 `;
 
-const MissYouButton = styled.img`
-  width: 150px;
-  height: 120px;
-  object-fit: cover;
-  transition: all 0.3s ease-in-out;
-  position: absolute; /* 절대 위치로 배치 */
-  margin-right: 50px;
-  margin-bottom: 10px;
-  bottom: 20px; /* 부모 요소의 아래쪽에 배치 */
-  right: 20px; /* 부모 요소의 오른쪽에 배치 */
+const MissYouContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 20px;
+`;
+
+const MissYouButton = styled.div`
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background-color: #EAD4C1;
   cursor: pointer;
+  background-image: url('${process.env.PUBLIC_URL}/missyou.png');
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center; 
 
   &:hover {
-    content: url('${process.env.PUBLIC_URL}/missyou-1.png');
-    width: 200px;
-    height: 160px;
-    margin-bottom: 20px;
-    bottom: 10px; /* 부모 요소의 아래쪽에 배치 */
-    right: 10px; /* 부모 요소의 오른쪽에 배치 */
-    object-fit: cover;
-    cursor: pointer;
+    background-color: #e2b8b8;
   }
 `;
+
+const MissYouText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 70px;
+  border-radius: 20px;
+  font-size: 15px;
+  background-color: #EAD4C1;
+  color: #000000;
+`; 
 
 const HighLight = styled.div`
   color: #ff832b;
@@ -160,7 +172,12 @@ const RecentPosts = () => {
         )}
         <RightButton src={`${process.env.PUBLIC_URL}/rightbutton.png`} alt="right" onClick={handleRightClick}/>
       </RecentPostsContainer>
-      <MissYouButton src={`${process.env.PUBLIC_URL}/missyou-2.png`} alt="heart" onClick={handleMissYouClick}/>
+      <MissYouContainer>
+        <MissYouButton onClick={handleMissYouClick}/> 
+        <MissYouText>‘보고싶어 버튼’ 을 눌러보세요
+        <br/>보호자에게 연락이 갑니다</MissYouText>
+      </MissYouContainer>
+      
     </MainContainer>
   );
 };
@@ -170,13 +187,13 @@ const EmptyBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 650px;
-  height: 380px;
+  width: 350px;
+  height: 200px;
   margin-top: 20px;
   background-color: #fcfcfc;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 1px #dfdfdf;
-  font-size: 23px;
+  font-size: 13px;
 `;
 
 export default RecentPosts;
