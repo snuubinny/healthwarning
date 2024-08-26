@@ -36,27 +36,29 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 `;
 
 const PercentContainer = styled.div`
-  width: 50%;
-  padding: 10px;
+  width: 80%;
+  height: 220px;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
   cursor: pointer;
-  height: 450px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const PercentText = styled.p`
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 13px;
   margin-top: 20px;
   line-height: 2;
 `;
@@ -64,9 +66,9 @@ const PercentText = styled.p`
 const TextWrap = styled.p`
   text-align: center;
   font-weight: bold;
-  font-size: 15px;
-  margin-top: 10px;
-  line-height: 2;
+  font-size: 10px;
+  margin-top: 0px;
+  line-height: 1.5;
 `;
 
 const Highlight = styled.span`
@@ -74,18 +76,17 @@ const Highlight = styled.span`
 `;
 
 const DiaryContainer = styled.div`
-  width: 50%;
-  padding: 10px;
+  width: 80%;
+  height: 220px;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
   cursor: pointer;
-  min-height: 400px;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const DiaryText = styled.p`
@@ -96,7 +97,7 @@ const DiaryText = styled.p`
 `;
 
 const StyledCatImage = styled.img`
-  width: 110px;
+  width: 70px;
   height: auto;
   border-radius: 8px;
   position: absolute;
@@ -105,16 +106,16 @@ const StyledCatImage = styled.img`
 `;
 
 const CardImage = styled.img`
-  width: 250px;
+  width: 130px;
   height: auto;
   border-radius: 8px;
-  margin-left: 240px;
-  margin-top: 70px;
+  margin-left: 105px;
+  margin-top: 40px;
 `;
 
 const Header = styled.div`
   width: 100%;
-  height: 60px;
+  height: 35px;
   background: linear-gradient(to right, #ff832b, #ffb74d);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -126,87 +127,75 @@ const Header = styled.div`
 const HeaderText = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 13px;
   color: white;
-  margin-top: 12px;
+  margin-top: 5px;
   margin-left: 15px;
   line-height: 2;
 `;
 
-const DetailTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 850px;
-  height: 60px;
-  border-radius: 20px;
-  margin: 0px;
-  font-size: 22px;
-  background: linear-gradient(to right, #ff832b, #ffb74d);
-  color: white;
-  font-weight: bold;
-`;
-
 const DetailBoxWrap = styled.div`
-  background-color: #fee5ce;
-  border-radius: 20px;
-  border-color: #edd6c1;
-  border-style: solid;
-  padding: 30px;
-  width: 800px;
+  background-color: transparent;
+  padding: 20px;
+  width: 100%;
   height: auto;
-  display: grid;
-  margin: 0px;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: row;
   gap: 15px;
-  justify-items: center;
+  justify-content: flex-start;
   margin-top: 10px;
+  overflow-x: scroll;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none; /* 스크롤바를 숨김 */
+  }
 `;
 
 const Box = styled.div`
-  width: 170px;
-  padding: 10px;
-  position: relative;
+  width: 220px;
+  height: 120px;
+  padding: 8px;
   border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 180px;
   margin-bottom: 20px;
+  flex-shrink: 0;
   &:hover {
     border: 1px solid #ff832b;
   }
 `;
 
 const BoxImage1 = styled.img`
-  width: 120px;
+  width: 100px;
   height: auto;
   border-radius: 8px;
-  margin-left: 25px;
+  margin-left: 65px;
   margin-top: 15px;
 `;
 
 const BoxImage2 = styled.img`
-  width: 100px;
+  width: 80px;
   height: auto;
   border-radius: 8px;
-  margin-left: 35px;
+  margin-left: 70px;
   margin-top: 10px;
 `;
 
 const BoxImage3 = styled.img`
-  width: 110px;
+  width: 95px;
   height: auto;
   border-radius: 8px;
-  margin-left: 35px;
-  margin-top: 27px;
+  margin-left: 70px;
+  margin-top: 18px;
 `;
 
 const BoxImage4 = styled.img`
-  width: 90px;
+  width: 75px;
   height: auto;
   border-radius: 8px;
-  margin-left: 35px;
-  margin-top: 10px;
+  margin-left: 75px;
+  margin-top: 8px;
 `;
 
 const SleepBox = styled(Box)``;
@@ -272,10 +261,9 @@ const AchievementRate = () => {
           <CardImage src={getAchievementImage()} alt="Achievement Percentage" />
           <PercentText>
             잘하고 있어요! 목표의
-            <Highlight>{data.achievement_rate}%</Highlight>를 달성했어요!
+            <Highlight> {data.achievement_rate}%</Highlight>를 달성했어요!
           </PercentText>
         </PercentContainer>
-        <DetailTitle>세부 달성률</DetailTitle>
         <DetailBoxWrap>
           <SleepBox>
             <BoxImage1 src={SleepImage} alt="Sleep" />

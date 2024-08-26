@@ -16,6 +16,7 @@ const WrapNavBar = styled.div`
   border: none;
   cursor: pointer;
   transition: height 0.5s ease;
+  position: relative;
 `;
 
 const LogoWrapper = styled.div`

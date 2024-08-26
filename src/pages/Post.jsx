@@ -6,6 +6,7 @@ import axios from "axios";
 import Footer_Logo from "../img/Footer_Logo.png";
 import { useParams, useNavigate } from "react-router-dom";
 import { keyframes } from "styled-components";
+import NavBar from "../components/NavBar";
 
 const fadeIn = keyframes`
   from {
@@ -26,16 +27,15 @@ const AnimatedContainer = styled.div`
 
 const DeleteButton = styled.button`
   padding: 3px;
-  font-size: 15px;
-  height: 40px;
-  width: 120px;
+  font-size: 10px;
+  height: 30px;
+  width: 75px;
   background-color: #ff832b;
   color: white;
   border: none;
   border-radius: 4px;
+  margin-right: 30px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-left: 680px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
 
@@ -43,14 +43,21 @@ const DeleteButton = styled.button`
     background-color: #fee5ce;
     color: #ff832b;
   }
-  margin-bottom: 20px;
 `;
 
 const CircleContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 200px;
   position: relative;
   background-color: white;
+`;
+
+const DeleteButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  margin: -10px 0;
 `;
 
 const Circle = styled.div`
@@ -60,15 +67,16 @@ const Circle = styled.div`
   width: 100%;
   height: 220%;
   background-color: #fee5ce;
-  border-radius: 70% / 40%;
+  border-radius: 800% / 150%;
   transform: translate(-50%, -50%);
 `;
 
 const TitleContainer = styled.div`
   display: flex;
-  align-items: center;
-  margin-left: 300px;
-  margin-top: 300px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 150px;
+  margin-right: 0px;
 `;
 
 const Logo = styled.img`
@@ -80,16 +88,19 @@ const Logo = styled.img`
 const CircleTitle = styled.div`
   text-align: left;
   color: #ff832b;
-  font-size: 40px;
+  margin-left: 120px;
+  margin-bottom: 70px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
 const CircleText = styled.p`
   font-family: "Nanum Pen Script", cursive;
-  font-size: 35px;
+  width: 300px;
+  font-size: 13px;
   color: #003366;
-  margin-left: 365px;
-  margin-top: 5px;
+  margin-left: 180px;
+  margin-top: -50px;
 `;
 
 const ButtonContainer = styled.div`
@@ -100,8 +111,8 @@ const ButtonContainer = styled.div`
 `;
 
 const ButtonBackground = styled.div`
-  width: 200px;
-  height: 100px;
+  width: 110px;
+  height: 45px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,7 +121,7 @@ const ButtonBackground = styled.div`
   background-color: rgba(255, 255, 255, 0.8); /* 배경만 반투명하게 설정 */
   padding: 10px;
   border: 1px solid #ff832b;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
 
   &:hover {
@@ -122,7 +133,7 @@ const ButtonBackground = styled.div`
 const ButtonTitle = styled.div`
   text-align: center;
   color: #ff832b;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   margin: 0;
   position: relative;
@@ -130,7 +141,7 @@ const ButtonTitle = styled.div`
 
 const ButtonText = styled.p`
   font-family: "Nanum Pen Script", cursive;
-  font-size: 20px;
+  font-size: 13px;
   color: #ff832b;
   text-align: center;
   margin: 0;
@@ -227,12 +238,12 @@ const Post = () => {
   };
   const [isVisible, setIsVisible] = useState(true);
   return (
-    <>
+    <div className="edit-profile-container">
+      <NavBar />
       <AnimatedContainer isVisible={isVisible}>
         <CircleContainer>
           <Circle>
             <TitleContainer>
-              <Logo src={Footer_Logo} alt="Footer Logo" />
               <CircleTitle>다했슈의 새로운 포스팅</CircleTitle>
             </TitleContainer>
             <CircleText>반가워요 {postDate}의 포스팅이에요!</CircleText>
@@ -243,11 +254,12 @@ const Post = () => {
           </Circle>
         </CircleContainer>
       </AnimatedContainer>
-
       <AchievementRate />
-      <DeleteButton onClick={handleDeletePost}>게시글 삭제</DeleteButton>
       <CommentList />
-    </>
+      <DeleteButtonContainer>
+        <DeleteButton onClick={handleDeletePost}>게시글 삭제</DeleteButton>
+      </DeleteButtonContainer>
+    </div>
   );
 };
 
