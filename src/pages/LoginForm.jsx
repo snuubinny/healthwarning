@@ -24,6 +24,7 @@ const BackButton = styled.img`
   width: 25px;
   height: 25px;
   margin: 20px;
+  margin-left: 30px;
   cursor: pointer;
 `;
 
@@ -52,15 +53,15 @@ const LogoText = styled.div`
   text-align: center;
   justify-content: center;
   width: 100%;
-  height: 100px;
-  font-size: 30px;
+  height: 70px;
+  font-size: 25px;
   color: #ff832b;
 `;
 
 const LoginText = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 30px;
+  font-size: 25px;
   color: #797979;
 `;
 
@@ -75,34 +76,34 @@ const LoginBox = styled.div`
 `;
 
 const IdBox = styled.input`
-  width: 330px;
-  height: 45px;
+  width: 280px;
+  height: 40px;
   background-color: #ffffff;
   border-color: #ffffff;
   border-style: none;
   border-radius: 30px;
   outline-color: #ffffff;
-  font-size: 15px;
+  font-size: 13px;
 `;
 
 const PwBox = styled.input`
-  width: 330px;
-  height: 45px;
+  width: 280px;
+  height: 40px;
   background-color: #ffffff;
   border-color: #ffffff;
   border-style: none;
   border-radius: 30px;
   outline-color: #ffffff;
-  font-size: 15px;
+  font-size: 13px;
 `;
 
 const LoginButton = styled.button`
-  width: 330px;
+  width: 280px;
   height: 45px;
   border: none;
   background-color: #ff832b;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 20px;
   cursor: pointer;
 
@@ -114,9 +115,9 @@ const LoginButton = styled.button`
 
 const Line = styled.div`
   background-color: #afafaf;
-  width: 400px;
+  width: 350px;
   height: 1px;
-  margin: 20px;
+  margin-bottom: 20px;
 `;
 
 const RegisterBox = styled.div`
@@ -134,16 +135,17 @@ const RegisterText = styled.div`
   justify-content: center;
   text-decoration: underline;
   margin-bottom: 10px;
+  font-size: 15px;
   color: #686868;
 `;
 
 const RegisterButton = styled.button`
-  width: 330px;
-  height: 45px;
+  width: 280px;
+  height: 43px;
   border: none;
   background-color: #ffffff;
   color: #ff832b;
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 20px;
   cursor: pointer;
 
@@ -155,7 +157,7 @@ const RegisterButton = styled.button`
 
 const Footer = styled.div`
   width: 100%;
-  height: 50px;
+  height: 70px;
 `;
 
 function LoginForm() {

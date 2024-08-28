@@ -39,7 +39,7 @@ const Background = styled.div`
   border-color: #edd6c1;
   border-style: solid;
   padding: 15px;
-  width: 350px;
+  width: 320px;
   height: auto;
   overflow-x: auto;
 `;
@@ -52,8 +52,8 @@ const ListText = styled.p`
   color: #ffffff;
   border-radius: 10px;
   opacity: 0.9;
-  width: 350px;
-  height: 25px;
+  width: 320px;
+  height: 20px;
   padding: 10px;
   padding-left: 20px;
   margin-bottom: 3px;

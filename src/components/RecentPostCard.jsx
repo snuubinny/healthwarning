@@ -12,7 +12,7 @@ const RecentPostsBox = styled.div`
   display: flex;
   align-content: center;
   flex-direction: column;
-  width: 360px;
+  width: 350px;
   height: 200px;
   margin-top: 20px;
   background-color: white;
