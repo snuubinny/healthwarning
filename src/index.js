@@ -9,8 +9,8 @@ import LoginForm from "./pages/LoginForm";
 import Post from "./pages/Post";
 import PostList from "./pages/PostList";
 import RegisterForm from "./pages/RegisterForm";
+import Lending from "./pages/Lending";
 import Main from "./pages/Main";
-
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 
@@ -20,6 +20,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Main />} />
+          <Route path="Lending" element={<Lending />} />
           <Route path="LoginForm" element={<LoginForm />} />
           <Route path="CreatePost" element={<CreatePost />} />
           <Route path="EditProfile/" element={<EditProfile />} />
