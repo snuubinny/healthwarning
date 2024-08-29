@@ -68,11 +68,25 @@ const ContentWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  text-align: center;
-  display: flex;
+  margin-right: 90px;
   font-weight: bold;
+  font-size: 8px;
   align-items: center;
-  justify-content: space-between;
+  line-height: 1.3;
+  color: #828282;
+  z-index: 10;
+`;
+const TitleWrapper = styled.div`
+  margin-right: 0px;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 1.3;
+  color: #828282;
+  z-index: 10;
+`;
+
+const FooterTextWrapper = styled.div`
+  font-weight: bold;
   font-size: 8px;
   line-height: 1.3;
   z-index: 10;
@@ -103,22 +117,29 @@ const Main = () => {
   return (
     <div>
       <Wrapper>
-        <AlarmContainer></AlarmContainer>
-        <AlarmContainer2></AlarmContainer2>
+        <AlarmContainer>
+          <TextWrapper>
+            건강주의보는 매일 세심하게 보호자의 건강을 관리해주는 완벽한 맞춤형
+            서비스입니다.
+          </TextWrapper>
+        </AlarmContainer>
+        <AlarmContainer2>
+          <TitleWrapper>건강주의보</TitleWrapper>
+        </AlarmContainer2>
         <MainButton></MainButton>
         <LoginButton></LoginButton>
         <WrapFooter>
           <CloudLeft />
           <CloudRight />
           <ContentWrapper>
-            <TextWrapper>
-              삐용삐용(bbiyong) | 대표자: 김지후(FE), 전수빈(FE), 김민경(BE),
-              손가영(BE)
+            <FooterTextWrapper>
+              건강주의보(bbiyongbbiyong) | 대표자: 김지후(FE), 전수빈(FE),
+              김민경(BE), 손가영(BE)
               <br />
               문의전화: 010-1234-5678 <br />
               e-mail: 12345678@inha.edu <br />
               instagram:@bbiyong_bbiyong
-            </TextWrapper>
+            </FooterTextWrapper>
           </ContentWrapper>
         </WrapFooter>
       </Wrapper>
