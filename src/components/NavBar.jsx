@@ -27,16 +27,18 @@ const LogoWrapper = styled.div`
 `;
 
 const CustomLogo = styled.svg`
-  width: 40px;
+  width: 35px;
   height: 40px;
   fill: black;
 `;
 
-const TitleWrapper = styled.div`
-  text-align: left;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
+const TitleWrapper = styled.img`
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ width: 120px;
+ height: 35px;
+ margin-left: 5px;
 `;
 
 const IconWrapper = styled.div`
@@ -45,8 +47,8 @@ const IconWrapper = styled.div`
 `;
 
 const NavBarIcon = styled.img`
-  width: 50px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin-right: 8px;
   transform: scale(2);
   margin-top: 3px;
@@ -103,8 +105,8 @@ const NavBar = () => {
         onMouseLeave={handleMouseLeave}
       >
         <IconWrapper onClick={handleHomeLogoClick}>
-          <NavBarIcon src={navBarLogo} />
-          <TitleWrapper>건강주의보</TitleWrapper>
+          <NavBarIcon src="/singlelogo.png" alt="singlelogo" />
+          <TitleWrapper src="/LogoText.png" alt="logotext"/>
         </IconWrapper>
         <LogoWrapper onClick={handleEditLogoClick}>
           <CustomLogo xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
