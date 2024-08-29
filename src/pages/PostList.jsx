@@ -6,6 +6,7 @@ import Pagination from "../components/Pagination";
 import RecentPosts from "../components/RecentPosts";
 import { keyframes } from "styled-components";
 import NavBar from "../components/NavBar";
+import UnderNavBar from "../components/UnderNavBar";
 
 const fadeIn = keyframes`
   from {
@@ -164,6 +165,7 @@ const PostList = () => {
       </HeadLine>
       <RecentPosts userId={userId}/>
       <Pagination userId={userId} onPostClick={handlePostClick} />
+      <UnderNavBar/>
     </Wrapper>
   </AnimatedContainer>
   );

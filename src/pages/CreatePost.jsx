@@ -5,6 +5,7 @@ import axios from "axios";
 import Pen from "../img/pen.png";
 import { keyframes } from "styled-components";
 import NavBar from "../components/NavBar";
+import UnderNavBar from "../components/UnderNavBar";
 
 const fadeIn = keyframes`
   from {
@@ -408,6 +409,7 @@ function CreatePost() {
   <PostButtonContainer>
     <PostButton onClick={handleSubmit}>오늘의 글 등록하기</PostButton>
   </PostButtonContainer>  
+  <UnderNavBar/>
 </Wrapper>
 </AnimatedContainer>
 </>

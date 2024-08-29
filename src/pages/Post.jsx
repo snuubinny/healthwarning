@@ -7,6 +7,7 @@ import Footer_Logo from "../img/Footer_Logo.png";
 import { useParams, useNavigate } from "react-router-dom";
 import { keyframes } from "styled-components";
 import NavBar from "../components/NavBar";
+import UnderNavBar from "../components/UnderNavBar";
 
 const fadeIn = keyframes`
   from {
@@ -259,6 +260,7 @@ const Post = () => {
       <DeleteButtonContainer>
         <DeleteButton onClick={handleDeletePost}>게시글 삭제</DeleteButton>
       </DeleteButtonContainer>
+      <UnderNavBar/>
     </div>
   );
 };
