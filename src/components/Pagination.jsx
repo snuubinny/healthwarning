@@ -61,45 +61,6 @@ const ListText = styled.p`
   font-weight: bold;
 `;
 
-const PostButtonContainer = styled.div`
-  width: 100%;
-  height: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const PostButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 350px;
-  height: 45px;
-  margin-top: 20px;
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 30px;
-  border-style: none;
-  background-color: #ff832b;
-  color: #ffffff;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #ffffff;
-    color: #ff832b;
-  }
-`;
-
-const PostText = styled.div``;
-
-const ButtonPNG = styled.img`
-  display: flex;
-  align-items: flex-end;
-  filter: invert(1) brightness(2);
-`;
-
 const EmptyBox = styled.div`
   background-color: #FEE5CE;
   color: #ff7b00;
@@ -172,17 +133,6 @@ const Pagination = ({ userId, onPostClick }) => {
           <EmptyBox>등록된 포스트가 없습니다</EmptyBox>
         )}
       </Background>
-      <PostButtonContainer>
-        <PostButton onClick={handleCreatePostClick}>
-          <PostText>오늘의 글 작성</PostText>
-          <ButtonPNG
-            src={`${process.env.PUBLIC_URL}/write.png`}
-            alt="pen"
-            width="20"
-            height="20"
-          />
-        </PostButton>
-      </PostButtonContainer>
     </>
   );
 };

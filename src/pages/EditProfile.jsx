@@ -8,6 +8,7 @@ import ProfileDetails from "../components/ProfileDetails";
 import SafeImage from "../img/Safe.png";
 import { keyframes } from "styled-components";
 import NavBar from "../components/NavBar";
+import UnderNavBar from "../components/UnderNavBar";
 
 const fadeIn = keyframes`
   from {
@@ -248,6 +249,7 @@ const EditProfile = () => {
           {isEditable ? "저장" : "수정하기"}
         </EditButton>
       </EditButtonContainer>
+      <UnderNavBar/>
     </div>
   );
 };
