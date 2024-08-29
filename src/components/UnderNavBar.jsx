@@ -26,8 +26,8 @@ const IconContainer = styled.div`
 `;
 
 const AIchatbox = styled.div`
-  width: 50px;
-  height: 50px;   
+  width: 45px;
+  height: 45px;   
   background-image: url('${process.env.PUBLIC_URL}/chatbot.png');
   background-size: 75%;
   background-repeat: no-repeat;
@@ -37,8 +37,8 @@ const AIchatbox = styled.div`
 `;
 
 const HomeBox = styled.div`
- width: 45px;
- height: 45px;  
+ width: 40px;
+ height: 40px;  
  background-image: url('${process.env.PUBLIC_URL}/home.png');
  background-size: 75%;
  background-repeat: no-repeat;
@@ -48,8 +48,8 @@ const HomeBox = styled.div`
 `;
 
 const CreatePostBox = styled.div`
-  width: 45px;
-  height: 45px;    
+  width: 40px;
+  height: 40px;    
   background-image: url('${process.env.PUBLIC_URL}/post.png');
   background-size: 75%;
   background-repeat: no-repeat;
@@ -63,7 +63,7 @@ const UnderNavBar = () => {
   const { userId } = useParams();
 
   const handleChatBotClick = () => {
-    navigate("/AIChatBot");
+    navigate("/ChatBot");
   };
 
   const handleHomeClick = () => {

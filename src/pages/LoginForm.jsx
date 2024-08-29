@@ -41,7 +41,7 @@ const BackButton = styled.img`
 
 const ServiceInfo = styled.div`
   width: 100%;
-  height: 200px;
+  height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,13 +49,23 @@ const ServiceInfo = styled.div`
   margin-bottom: 10px;
 `;
 
+const LogoImgBox = styled.div`
+  width: 130px;
+  height: 120px;
+  background-color: #fff9d7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  margin-bottom: 10px;
+`;
+
 const LogoImg = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90px;
-  height: 90px;
-  margin: 20px;
+  width: 100px;
+  height: 100px;
 `;
 
 const LogoText = styled.div`
@@ -64,8 +74,8 @@ const LogoText = styled.div`
   text-align: center;
   justify-content: center;
   width: 100%;
-  height: 70px;
-  font-size: 25px;
+  height: 60px;
+  font-size: 23px;
   color: #ff832b;
 `;
 
@@ -222,7 +232,9 @@ function LoginForm() {
           <BackButton src="/back.png" alt="Back" onClick={handleBackClick} />
         </Header>
         <ServiceInfo>
-          <LogoImg />
+          <LogoImgBox>
+            <LogoImg src="/logo.png" alt="Logo"/>
+          </LogoImgBox>
           <LogoText>
             삐용삐용! 내일의 건강을 감독해주는
             <br />
@@ -254,6 +266,7 @@ function LoginForm() {
         </RegisterBox>
       </LoginContainer>
       <Footer />
+      <Test/>
     </>
   );
 }
