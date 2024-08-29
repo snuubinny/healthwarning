@@ -3,14 +3,25 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Test from "../components/Test";
+import CloudImg from "../img/Cloud.png"; // 이미지 파일 가져오기
 
 const LoginContainer = styled.div`
-  background-color: #FEE5CE;
+  background-color: #fee5ce;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 700px;
+  position: relative;
+  overflow: hidden;
+`;
+
+const CloudImage = styled.img`
+  width: 300px; /* 원하는 크기로 설정 */
+  position: absolute;
+  bottom: -50px; /* 화면의 하단에 배치하여 일부만 보이도록 설정 */
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Header = styled.div`
@@ -71,7 +82,7 @@ const LoginBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 250px;
-  gap:20px;
+  gap: 20px;
 `;
 
 const IdBox = styled.input`
@@ -126,7 +137,7 @@ const RegisterBox = styled.div`
   flex-direction: column;
   width: 100%;
   height: 150px;
-  gap:10px;
+  gap: 10px;
 `;
 
 const RegisterText = styled.div`
@@ -148,7 +159,7 @@ const RegisterButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color:#ff832b;
+    background-color: #ff832b;
     color: #ffffff;
   }
 `;
@@ -170,7 +181,7 @@ function LoginForm() {
   const handleBackClick = () => {
     navigate("/Main");
   };
-  
+
   const handleLoginClick = async () => {
     try {
       const requestData = {
@@ -209,35 +220,38 @@ function LoginForm() {
           <BackButton src="/back.png" alt="Back" onClick={handleBackClick} />
         </Header>
         <ServiceInfo>
-          <LogoImg/>
-          <LogoText>삐용삐용! 내일의 건강을 감독해주는<br/>완벽한 맞춤형 건강 보호사 서비스</LogoText>
+          <LogoImg />
+          <LogoText>
+            삐용삐용! 내일의 건강을 감독해주는
+            <br />
+            완벽한 맞춤형 건강 보호사 서비스
+          </LogoText>
         </ServiceInfo>
         <LoginText>회원 로그인</LoginText>
         <LoginBox>
-            <IdBox
-              placeholder=" ID : 아이디를 입력하세요"
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-            />
-            <PwBox
-              placeholder=" PW : 비밀번호를 입력하세요"
-              type="password"
-              value={pw}
-              onChange={(e) => setPw(e.target.value)}
-            />
+          <IdBox
+            placeholder=" ID : 아이디를 입력하세요"
+            type="text"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+          <PwBox
+            placeholder=" PW : 비밀번호를 입력하세요"
+            type="password"
+            value={pw}
+            onChange={(e) => setPw(e.target.value)}
+          />
           <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
         </LoginBox>
-        <Line /> 
+        <Line />
         <RegisterBox>
           <RegisterText>아직 회원이 아니신가요?</RegisterText>
           <RegisterButton onClick={handleRegisterClick}>
             회원가입하기
           </RegisterButton>
-        </RegisterBox>  
+        </RegisterBox>
       </LoginContainer>
-      <Footer/>
-      <Test fillTestCredentials={fillTestCredentials} />
+      <Footer />
     </>
   );
 }
