@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styled from 'styled-components';
-import axios from 'axios';
+import styled from "styled-components";
+import axios from "axios";
 import RecentPostCard from "./RecentPostCard";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const MainContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 300px;
-  gap:20px;
+  gap: 20px;
   position: relative; /* MissYouButton을 절대 위치로 배치하기 위해 추가 */
 `;
 
@@ -29,7 +29,7 @@ const LeftButton = styled.img`
   cursor: pointer;
   filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
 
-  &:hover{
+  &:hover {
     width: 43px;
     height: 43px;
     margin-right: 0px;
@@ -44,7 +44,7 @@ const RightButton = styled.img`
   cursor: pointer;
   filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
 
-  &:hover{
+  &:hover {
     width: 43px;
     height: 43px;
     margin-right: 0;
@@ -60,15 +60,15 @@ const MissYouContainer = styled.div`
 `;
 
 const MissYouButton = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 20px;
-  background-color: #EAD4C1;
+  background-color: #ead4c1;
   cursor: pointer;
-  background-image: url('${process.env.PUBLIC_URL}/missyou.png');
+  background-image: url("${process.env.PUBLIC_URL}/missyou.png");
   background-size: 75%;
   background-repeat: no-repeat;
-  background-position: center; 
+  background-position: center;
 
   &:hover {
     background-color: #e2b8b8;
@@ -80,12 +80,12 @@ const MissYouText = styled.div`
   justify-content: center;
   align-items: center;
   width: 250px;
-  height: 70px;
+  height: 60px;
   border-radius: 20px;
-  font-size: 15px;
-  background-color: #EAD4C1;
+  font-size: 10px;
+  background-color: #ead4c1;
   color: #000000;
-`; 
+`;
 
 const HighLight = styled.div`
   color: #ff832b;
@@ -101,19 +101,22 @@ const RecentPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://healthwarning.kro.kr/blog/main/`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+        const response = await axios.get(
+          `https://healthwarning.kro.kr/blog/main/`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-        });
+        );
         if (response.status === 200) {
           setPosts(response.data.posts.slice(0, 10));
         }
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          console.error('Authentication failed');
+          console.error("Authentication failed");
         } else {
-          console.error('Failed to fetch data');
+          console.error("Failed to fetch data");
         }
       }
     };
@@ -122,34 +125,41 @@ const RecentPosts = () => {
   }, []);
 
   const handleLeftClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? posts.length - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? posts.length - 1 : prevIndex - 1
+    );
   };
 
   const handleRightClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === posts.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === posts.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   const handleMissYouClick = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`https://healthwarning.kro.kr/blog/miss_email/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `https://healthwarning.kro.kr/blog/miss_email/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.status === 200) {
-        alert('Email sent successfully');
+        alert("보호자에게 이메일이 성공적으로 전송되었습니다.");
       } else {
-        throw new Error('Failed to send email');
+        throw new Error("이메일 전송에 실패하였습니다. 다시 시도해주세요.");
       }
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        console.error('Not Found');
-        alert('User not found');
+        console.error("Not Found");
+        alert("User not found");
       } else {
-        console.error('An error occurred:', error);
-        alert('An error occurred while sending the email');
+        console.error("An error occurred:", error);
+        alert("An error occurred while sending the email");
       }
     }
   };
@@ -162,22 +172,36 @@ const RecentPosts = () => {
   return (
     <MainContainer>
       <RecentPostsContainer>
-        <LeftButton src={`${process.env.PUBLIC_URL}/leftbutton.png`} alt="left" onClick={handleLeftClick}/>
+        <LeftButton
+          src={`${process.env.PUBLIC_URL}/leftbutton.png`}
+          alt="left"
+          onClick={handleLeftClick}
+        />
         {posts.length > 0 ? (
-          <RecentPostCard post={posts[currentIndex]} onClick={handlePostClick}/>
+          <RecentPostCard
+            post={posts[currentIndex]}
+            onClick={handlePostClick}
+          />
         ) : (
           <EmptyBox>
-            <HighLight>'오늘의 글 작성'</HighLight>을 눌러 첫 게시글을 작성해보세요!
+            <HighLight>'오늘의 글 작성'</HighLight>을 눌러 첫 게시글을
+            작성해보세요!
           </EmptyBox> // 데이터를 불러오지 못했을 때 빈 박스 표시
         )}
-        <RightButton src={`${process.env.PUBLIC_URL}/rightbutton.png`} alt="right" onClick={handleRightClick}/>
+        <RightButton
+          src={`${process.env.PUBLIC_URL}/rightbutton.png`}
+          alt="right"
+          onClick={handleRightClick}
+        />
       </RecentPostsContainer>
       <MissYouContainer>
-        <MissYouButton onClick={handleMissYouClick}/> 
-        <MissYouText>‘보고싶어 버튼’ 을 눌러보세요
-        <br/>보호자에게 연락이 갑니다</MissYouText>
+        <MissYouButton onClick={handleMissYouClick} />
+        <MissYouText>
+          ‘보고싶어 버튼’은 버튼을 누르기만 해도
+          <br />
+          보호자에게 직접 연락이 닿도록 돕는 시스템이에요.
+        </MissYouText>
       </MissYouContainer>
-      
     </MainContainer>
   );
 };

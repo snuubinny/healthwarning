@@ -90,9 +90,9 @@ const DiaryContainer = styled.div`
 `;
 
 const DiaryText = styled.p`
-  margin-top: 60px;
+  margin-top: 25px;
   font-family: "Nanum Pen Script", cursive;
-  font-size: 30px;
+  font-size: 20px;
   color: #333;
 `;
 

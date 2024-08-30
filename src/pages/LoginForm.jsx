@@ -191,7 +191,7 @@ function LoginForm() {
   };
 
   const handleBackClick = () => {
-    navigate("/Main");
+    navigate("/");
   };
 
   const handleLoginClick = async () => {
@@ -233,7 +233,7 @@ function LoginForm() {
         </Header>
         <ServiceInfo>
           <LogoImgBox>
-            <LogoImg src="/logo.png" alt="Logo"/>
+            <LogoImg src="/logo.png" alt="Logo" />
           </LogoImgBox>
           <LogoText>
             삐용삐용! 내일의 건강을 감독해주는
@@ -266,7 +266,7 @@ function LoginForm() {
         </RegisterBox>
       </LoginContainer>
       <Footer />
-      <Test/>
+      <Test />
     </>
   );
 }

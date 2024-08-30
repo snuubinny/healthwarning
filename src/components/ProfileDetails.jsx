@@ -54,7 +54,8 @@ const FormBox = styled.input`
   outline-color: #ffe3c8;
   margin: 10px 0;
   padding: 0 10px;
-  width: 20px;
+  width: 25px;
+  font-size: 8px;
 `;
 
 const FormBoxContainer = styled.div`
@@ -109,6 +110,11 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
       [name]: value,
     }));
   };
+  const handleKeyDown = (e) => {
+    if (e.key === "-" || e.key === "e" || e.key === "E") {
+      e.preventDefault(); // 음수와 지수 표기(e, E) 입력 방지
+    }
+  };
 
   return (
     <Wrapper>
@@ -125,6 +131,7 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
               value={userData.sleep}
               onChange={handleChange}
               readOnly={!isEditable}
+              onKeyDown={handleKeyDown}
             />
             <InlineLabel>시간 입니다.</InlineLabel>
           </InputContainer>
@@ -137,6 +144,7 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
               value={userData.medications}
               onChange={handleChange}
               readOnly={!isEditable}
+              onKeyDown={handleKeyDown}
             />
             <InlineLabel>회 입니다.</InlineLabel>
           </InputContainer>
@@ -149,6 +157,7 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
               value={userData.exercises}
               onChange={handleChange}
               readOnly={!isEditable}
+              onKeyDown={handleKeyDown}
             />
             <InlineLabel>분 입니다.</InlineLabel>
           </InputContainer>
@@ -161,6 +170,7 @@ const ProfileDetails = ({ isEditable, userData, setUserData }) => {
               value={userData.meals}
               onChange={handleChange}
               readOnly={!isEditable}
+              onKeyDown={handleKeyDown}
             />
             <InlineLabel>끼입니다.</InlineLabel>
           </InputContainer>

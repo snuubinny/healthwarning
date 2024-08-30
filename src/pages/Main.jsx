@@ -68,13 +68,27 @@ const ContentWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  margin-right: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   font-weight: bold;
   font-size: 8px;
-  align-items: center;
   line-height: 1.3;
   color: #828282;
   z-index: 10;
+`;
+
+const TextWrapper2 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 1.3;
+  color: #828282;
+  z-index: 10;
+  position: relative;
+  top: 35px;
 `;
 const TitleWrapper = styled.div`
   margin-right: 0px;
@@ -111,6 +125,27 @@ const CloudRight = styled(CloudCircle)`
   top: 95px;
 `;
 
+const Icon = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 0px;
+  margin-top: -2px;
+`;
+
+const Icon2 = styled.img`
+  width: 80px;
+  height: 80px;
+  margin-right: 0px;
+  margin-top: -2px;
+`;
+
+const IconText = styled.img`
+  width: 100px;
+  height: 25px;
+  margin-right: 0px;
+  margin-top: -2px;
+`;
+
 const Main = () => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -119,14 +154,18 @@ const Main = () => {
       <Wrapper>
         <AlarmContainer>
           <TextWrapper>
+            <Icon src={`${process.env.PUBLIC_URL}/SingleLogo.png`} alt="Logo" />
             건강주의보는 매일 세심하게 보호자의 건강을 관리해주는 완벽한 맞춤형
             서비스입니다.
           </TextWrapper>
         </AlarmContainer>
         <AlarmContainer2>
-          <TitleWrapper>건강주의보</TitleWrapper>
+          <Icon2 src={`${process.env.PUBLIC_URL}/Logo.png`} alt="Logo" />
         </AlarmContainer2>
         <MainButton></MainButton>
+        <TextWrapper2>
+          건강주의보 소개페이지를 통해 어떤 서비스를 제공하는지 확인해보아요!
+        </TextWrapper2>
         <LoginButton></LoginButton>
         <WrapFooter>
           <CloudLeft />

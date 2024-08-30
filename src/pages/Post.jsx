@@ -100,7 +100,7 @@ const CircleText = styled.p`
   width: 300px;
   font-size: 13px;
   color: #003366;
-  margin-left: 180px;
+  margin-left: 160px;
   margin-top: -50px;
 `;
 
@@ -260,7 +260,7 @@ const Post = () => {
       <DeleteButtonContainer>
         <DeleteButton onClick={handleDeletePost}>게시글 삭제</DeleteButton>
       </DeleteButtonContainer>
-      <UnderNavBar/>
+      <UnderNavBar />
     </div>
   );
 };
