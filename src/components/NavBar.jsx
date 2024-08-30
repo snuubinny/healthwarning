@@ -27,18 +27,19 @@ const LogoWrapper = styled.div`
 `;
 
 const CustomLogo = styled.svg`
-  width: 35px;
+  width: 30px;
   height: 40px;
-  fill: black;
+  fill: #ff832b;
 `;
 
 const TitleWrapper = styled.img`
- display: flex;
- justify-content: flex-start;
- align-items: center;
- width: 120px;
- height: 35px;
- margin-left: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100px;
+  height: 25px;
+  margin-top: 5px;
+  margin-left: 3px;
 `;
 
 const IconWrapper = styled.div`
@@ -47,8 +48,8 @@ const IconWrapper = styled.div`
 `;
 
 const NavBarIcon = styled.img`
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   margin-right: 8px;
   transform: scale(2);
   margin-top: 3px;
@@ -106,7 +107,7 @@ const NavBar = () => {
       >
         <IconWrapper onClick={handleHomeLogoClick}>
           <NavBarIcon src="/singlelogo.png" alt="singlelogo" />
-          <TitleWrapper src="/LogoText.png" alt="logotext"/>
+          <TitleWrapper src="/LogoText.png" alt="logotext" />
         </IconWrapper>
         <LogoWrapper onClick={handleEditLogoClick}>
           <CustomLogo xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

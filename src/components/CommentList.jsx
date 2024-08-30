@@ -8,7 +8,6 @@ const WrapComment = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
   margin-top: 20px;
   width: 100%;
   padding-bottom: 20px;
@@ -16,64 +15,65 @@ const WrapComment = styled.div`
 `;
 
 const CommentContainer = styled.div`
-  width: 48.5%;
+  width: 70%;
   height: auto;
   transition: transform 0.2s;
   background-color: white;
-  padding: 10px;
+  padding: 3px 7px;
   display: flex;
   margin-top: 10px;
-  padding-bottom: 0px;
-  border: 1px solid #ff832b;
+  border: 0.5px solid #ff832b;
   border-radius: 4px;
   cursor: pointer;
+  align-items: center;
   &:hover {
     transform: scale(1.01);
   }
 `;
 
 const CommentText = styled.div`
-  margin-left: 20px;
+  margin-left: 10px;
+  font-size: 10px;
   flex: 1;
-  .guardian {
-    font-weight: bold;
-    color: #ff832b;
-    margin-right: 5px;
-  }
+  display: flex;
+  align-items: center;
 `;
 
-const GuardianText = styled.button`
-  padding: 3px;
-  font-size: 12px;
-  height: 25px;
-  width: 50px;
+const GuardianText = styled.span`
+  padding: 1px;
+  font-size: 9px;
+  height: 15px;
+  display: flex;
+  align-items: center;
   background-color: #fee5ce;
   color: #ff832b;
-  border: none;
   font-weight: bold;
   border-radius: 4px;
-  cursor: pointer;
+  margin-right: 5px;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-bottom: 10px;
-  gap: 5px;
+  align-items: center;
+  margin-left: 10px;
 `;
 
 const DeleteButton = styled.button`
   padding: 3px;
-  font-size: 12px;
-  height: 25px;
-  width: 35px;
+  font-size: 9px;
+  height: 15px;
+  width: 30px;
   background-color: #ff832b;
   color: white;
   border: none;
   font-weight: bold;
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: #fee5ce;
@@ -89,7 +89,7 @@ const CommentField = styled.input`
   font-size: 10px;
   box-sizing: border-box;
   margin-top: 10px;
-  margin-left: 15px;
+  margin-left: 25px;
   padding-left: 10px;
   &:focus {
     outline: 1px solid #ff832b;
@@ -99,14 +99,16 @@ const CommentField = styled.input`
 
 const CommentButton = styled.button`
   padding: 3px;
-  font-size: 10px;
-  height: 23px;
-  width: 50px;
+  font-size: 9px;
+  height: 20px;
+  width: 40px;
   background-color: #ff832b;
   color: white;
   border: none;
   border-radius: 4px;
-  margin-right: 30px;
+  margin-top: -10px;
+  margin-right: 20px;
+  margin-left: 3px;
   cursor: pointer;
   font-weight: bold;
   border: 1px solid #ffe3c8;
@@ -120,17 +122,10 @@ const CommentButton = styled.button`
 const CommentFieldWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 10px;
   width: 100%;
   margin-left: 10px;
-`;
-
-const CommentButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  margin-bottom: 10px;
 `;
 
 const Label = styled.label`
@@ -142,7 +137,7 @@ const Label = styled.label`
 `;
 
 const Checkbox = styled.input`
-  margin-left: 5px;
+  margin-right: -15px;
 `;
 
 const CommentList = () => {
@@ -181,7 +176,7 @@ const CommentList = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `https://healthwarning.kro.kr/blog/posts/${post_id}/comments/create/`, // 여기에서 슬래시 추가
+        `https://healthwarning.kro.kr/blog/posts/${post_id}/comments/create/`,
         {
           content: comment,
           protector: isGuardian,
@@ -240,9 +235,7 @@ const CommentList = () => {
           onChange={handleCommentChange}
           placeholder="댓글을 입력하세요."
         />
-        <CommentButtonWrapper>
-          <CommentButton onClick={handleCommentSubmit}>등록!</CommentButton>
-        </CommentButtonWrapper>
+        <CommentButton onClick={handleCommentSubmit}>등록!</CommentButton>
       </CommentFieldWrapper>
       <WrapComment>
         {comments.length > 0 &&

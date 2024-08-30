@@ -83,7 +83,7 @@ const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
   font-size: 13px;
-  margin-left: 100px;
+  margin-left: 125px;
   color: black;
   line-height: 2;
 `;
