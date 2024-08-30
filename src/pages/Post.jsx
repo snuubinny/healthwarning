@@ -89,7 +89,7 @@ const Logo = styled.img`
 const CircleTitle = styled.div`
   text-align: left;
   color: #ff832b;
-  margin-left: 120px;
+  margin-left: 100px;
   margin-bottom: 70px;
   font-size: 20px;
   font-weight: bold;
@@ -245,7 +245,7 @@ const Post = () => {
         <CircleContainer>
           <Circle>
             <TitleContainer>
-              <CircleTitle>다했슈의 새로운 포스팅</CircleTitle>
+              <CircleTitle>건강주의보의 새로운 포스팅</CircleTitle>
             </TitleContainer>
             <CircleText>반가워요 {postDate}의 포스팅이에요!</CircleText>
             <ButtonContainer>

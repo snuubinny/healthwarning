@@ -41,14 +41,19 @@ const SexButton = styled.button`
   font-size: 10px;
   height: 20px;
   width: 60px;
-  background-color: ${(props) => (props.$active ? "#ff832b" : "#fee5ce")};
-  color: ${(props) => (props.$active ? "white" : "#ff832b")};
+  background-color: ${(props) => (props.active ? "#ff832b" : "#fee5ce")};
+  color: ${(props) => (props.active ? "white" : "#ff832b")};
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-left: 5px;
   font-weight: bold;
   border: 1px solid #ffe3c8;
+
+  &:hover {
+    background-color: ${(props) => (props.active ? "#ff7a2b" : "#ffd6b0")};
+    color: ${(props) => (props.active ? "white" : "#ff832b")};
+  }
 `;
 
 const SexButtonContainer = styled.div`

@@ -105,12 +105,12 @@ const PostList = () => {
     if (tenDaysAverage < 25)
       return "위험해요!! 건강주의보와 함께 건강을 관리해보아요";
     if (tenDaysAverage < 50)
-      return "아직은 부족해요... 건강을 위해 꾸준한 노력이 필요합니다";
+      return "아직은 부족해요...건강을 위해 꾸준한 노력이 필요합니다";
     if (tenDaysAverage < 75)
-      return "벌써 절반을 넘었어요! 조금만 더 힘내세요!!";
+      return "벌써 절반을 넘었어요!! 조금만 더 힘내세요!!";
     if (tenDaysAverage < 90)
-      return "건강 목표까지 한걸음 남았어요! 조금만 더 힘내보아요!!";
-    return "잘 하고 있어요!! 계속 건강 목표를 달성해보아요";
+      return "건강 목표까지 한걸음 남았어요!! 조금만 더 힘내보아요!!";
+    return "잘 하고 있어요!!계속 건강 목표를 달성해보아요";
   };
 
   useEffect(() => {

@@ -63,17 +63,7 @@ const NavBar = () => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   const handleHomeLogoClick = () => {
-    try {
-      if (currentPath === "/LoginForm") {
-        navigate("/LoginForm");
-        return;
-      }
-
-      navigate(`/PostList/${userId}`);
-    } catch (error) {
-      console.error("Error checking token:", error);
-      alert("유저 정보를 가져오는 데 실패했습니다.");
-    }
+    navigate("/");
   };
 
   const handleEditLogoClick = async () => {
