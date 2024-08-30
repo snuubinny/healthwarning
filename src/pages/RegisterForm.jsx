@@ -76,7 +76,7 @@ const RegisterButton = styled.button`
   border: 1px solid #ffe3c8;
 
   &:hover {
-    background-color: #fee5ce;
+    background-color: #ffffff;
     color: #ff832b;
   }
 `;
@@ -89,6 +89,13 @@ const FooterIcon = styled.img`
   transform: scale(2);
   margin-top: 4px;
   margin-left: 0px;
+`;
+
+const Icon = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-right: 0px;
+  margin-top: -2px;
 `;
 
 const RegisterForm = () => {
@@ -153,10 +160,11 @@ const RegisterForm = () => {
       <NavBar />
       <RegisterWrap isVisible={isVisible}>
         <TextWrap>
-          <FooterIcon src={footerLogo} />
-          <span style={{ color: "#ff832b" }}>다! </span>했슈 계정 만들기
+          <Icon src={`${process.env.PUBLIC_URL}/SingleLogo.png`} alt="Logo" />
+          <span style={{ color: "#ff832b" }}>건강주의보</span>
+          <span style={{ marginLeft: "5px" }}>계정 만들기</span>
         </TextWrap>
-        <ContextWrap>회원가입을 통해 다했슈 멤버가 되어보세요!</ContextWrap>
+        <ContextWrap>회원가입을 통해 건강주의보 멤버가 되어보세요!</ContextWrap>
         <Divider />
       </RegisterWrap>
       <RegisterMyInfo

@@ -236,7 +236,7 @@ function LoginForm() {
             <LogoImg src="/logo.png" alt="Logo" />
           </LogoImgBox>
           <LogoText>
-            삐용삐용! 내일의 건강을 감독해주는
+            삐용삐용! 매일의 건강을 감독해주는
             <br />
             완벽한 맞춤형 건강 보호사 서비스
           </LogoText>

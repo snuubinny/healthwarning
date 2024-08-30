@@ -10,7 +10,7 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 300px;
+  height: auto;
   gap: 20px;
   position: relative; /* MissYouButton을 절대 위치로 배치하기 위해 추가 */
 `;
@@ -59,6 +59,40 @@ const MissYouContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+const HospitalContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: -20px;
+`;
+const HospitalButton = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #ead4c1;
+  cursor: pointer;
+  background-image: url("${process.env.PUBLIC_URL}/hostlink.png");
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    background-color: #9cb3c9;
+  }
+`;
+const HosiptalText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 60px;
+  border-radius: 20px;
+  font-size: 10px;
+  background-color: #ead4c1;
+  color: #000000;
+`;
+
 const MissYouButton = styled.div`
   width: 60px;
   height: 60px;
@@ -79,7 +113,7 @@ const MissYouText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
+  width: 280px;
   height: 60px;
   border-radius: 20px;
   font-size: 10px;
@@ -128,6 +162,10 @@ const RecentPosts = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? posts.length - 1 : prevIndex - 1
     );
+  };
+
+  const handleHospitalClick = () => {
+    navigate("/Hospital");
   };
 
   const handleRightClick = () => {
@@ -202,6 +240,14 @@ const RecentPosts = () => {
           보호자에게 직접 연락이 닿도록 돕는 시스템이에요.
         </MissYouText>
       </MissYouContainer>
+      <HospitalContainer>
+        <HosiptalText>
+          ‘핫라인 버튼’은 가까운 병원으로 연결되며,
+          <br />
+          해당 번호가 앱에 저장돼 언제든 연락할 수 있는 기능이에요.
+        </HosiptalText>
+        <HospitalButton onClick={handleHospitalClick} />
+      </HospitalContainer>
     </MainContainer>
   );
 };
