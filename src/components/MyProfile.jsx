@@ -8,7 +8,7 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 30px;
-  margin-left: 115px;
+  margin-left: 110px;
 `;
 
 const WomanIcon = styled.img`
@@ -71,10 +71,10 @@ const TitleWrap = styled.p`
   align-items: center;
   text-align: left;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
   justify-content: space-between;
   color: white;
-  margin-top: 5px;
+  margin-top: 3px;
   margin-left: 15px;
   line-height: 2;
 `;
@@ -82,15 +82,15 @@ const TitleWrap = styled.p`
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 13px;
-  margin-left: 125px;
+  font-size: 14px;
+  margin-left: 115px;
   color: black;
   line-height: 2;
 `;
 
 const LogoutIcon = styled.svg`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
   fill: #ff8000;
 `;

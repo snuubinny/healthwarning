@@ -40,7 +40,7 @@ const Header = styled.div`
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
   color: white;
   margin-top: 5px;
   padding: 3px 15px;
@@ -58,13 +58,13 @@ const FormBox = styled.input`
   width: 20px;
 `;
 const Label = styled.label`
-  font-weight: bold;
-  font-size: 10px;
-  width: 200px;
-  margin-left: -10px;
+  font-size: 13px;
+  width: auto;
+  margin-left: 0px;
   text-align: right;
   margin-top: 0px;
   margin: 0 4px;
+  white-space: nowrap;
 `;
 
 const FormBoxContainer = styled.div`
@@ -82,14 +82,14 @@ const InputContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  justify-content: center;
   margin-bottom: -5px;
-  margin-left: -5px;
+  margin-left: 30px;
 `;
 
 const InlineLabel = styled.label`
-  font-weight: bold;
   margin: 0 7px;
-  font-size: 10px;
+  font-size: 13px;
   flex-shrink: 0;
   width: 100px;
 `;

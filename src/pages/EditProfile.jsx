@@ -40,22 +40,19 @@ const EditButtonContainer = styled.div`
   margin: 20px 0;
 `;
 const EditButton = styled.button`
-  padding: 3px;
-  font-size: 10px;
-  height: 30px;
-  width: 75px;
-  background-color: #ff832b;
-  color: white;
+  width: 280px;
+  height: 43px;
   border: none;
-  border-radius: 4px;
-  margin-right: 30px;
-  cursor: pointer;
+  background-color: #ffffff;
+  color: #ff832b;
+  font-size: 20px;
   font-weight: bold;
-  border: 1px solid #ffe3c8;
-
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 35px;
   &:hover {
-    background-color: #fee5ce;
-    color: #ff832b;
+    background-color: #ff832b;
+    color: #ffffff;
   }
 `;
 
@@ -81,7 +78,7 @@ const TitleContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 15px;
-  margin-right: -100px;
+  margin-right: -75px;
 `;
 
 const CircleTitle = styled.div`
@@ -89,14 +86,14 @@ const CircleTitle = styled.div`
   color: #ff832b;
   margin-left: -50px;
   margin-bottom: 70px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
 `;
 
 const CircleText = styled.p`
   font-family: "Nanum Pen Script", cursive;
   width: 300px;
-  font-size: 12px;
+  font-size: 15px;
   color: #003366;
   margin-left: -50px;
   margin-top: -50px;
@@ -249,7 +246,7 @@ const EditProfile = () => {
           {isEditable ? "저장" : "수정하기"}
         </EditButton>
       </EditButtonContainer>
-      <UnderNavBar/>
+      <UnderNavBar />
     </div>
   );
 };

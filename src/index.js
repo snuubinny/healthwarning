@@ -11,6 +11,9 @@ import PostList from "./pages/PostList";
 import RegisterForm from "./pages/RegisterForm";
 import Lending from "./pages/Lending";
 import Main from "./pages/Main";
+import AiChat from "./pages/AiChat";
+import Report from "./pages/Report";
+
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 
@@ -27,6 +30,8 @@ root.render(
           <Route path="post/:post_id" element={<Post />} />
           <Route path="PostList/:userId" element={<PostList />} />
           <Route path="RegisterForm" element={<RegisterForm />} />
+          <Route path="AiChat" element={<AiChat />} />
+          <Route path="Report" element={<Report />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

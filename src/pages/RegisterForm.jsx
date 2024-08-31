@@ -33,7 +33,7 @@ const TextWrap = styled.div`
   display: flex;
   align-items: center;
   text-align: left;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   margin-left: 0px;
   padding-top: 50px;
@@ -62,22 +62,19 @@ const RegisterButtonContainer = styled.div`
 `;
 
 const RegisterButton = styled.button`
-  padding: 3px;
-  font-size: 10px;
-  height: 30px;
-  width: 75px;
-  background-color: #ff832b;
-  color: white;
+  width: 280px;
+  height: 43px;
   border: none;
-  border-radius: 4px;
-  margin-right: 30px;
-  cursor: pointer;
+  background-color: #ffffff;
+  color: #ff832b;
+  font-size: 20px;
   font-weight: bold;
-  border: 1px solid #ffe3c8;
-
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 35px;
   &:hover {
-    background-color: #ffffff;
-    color: #ff832b;
+    background-color: #ff832b;
+    color: #ffffff;
   }
 `;
 
@@ -92,8 +89,8 @@ const FooterIcon = styled.img`
 `;
 
 const Icon = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   margin-right: 0px;
   margin-top: -2px;
 `;
@@ -195,7 +192,7 @@ const RegisterForm = () => {
         setMeals={setMeals}
       />
       <RegisterButtonContainer>
-        <RegisterButton onClick={handleRegister}>회원가입</RegisterButton>
+        <RegisterButton onClick={handleRegister}>회 원 가 입</RegisterButton>
       </RegisterButtonContainer>
     </>
   );

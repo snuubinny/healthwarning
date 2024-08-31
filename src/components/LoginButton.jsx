@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import mainImage from "../img/MainButton.png";
 
 const ButtonBackground = styled.div`
-  width: 270px;
+  width: 290px;
   height: 100px;
   display: flex;
   margin-top: 70px;
@@ -26,7 +26,7 @@ const ButtonBackground = styled.div`
 
 const ContentContainer = styled.div`
   display: flex;
-  flex-direction: column; /* 전체를 세로로 정렬 */
+  flex-direction: column;
   align-items: center;
   margin-bottom: 35px;
   width: 100%;
@@ -42,9 +42,9 @@ const TextImageContainer = styled.div`
 
 const TextWrapper = styled.div`
   font-weight: bold;
-  font-size: 8px;
+  font-size: 11px;
   margin-top: 30px;
-  margin-left: 10px;
+  margin-left: 0px;
   line-height: 1.3;
   color: #828282;
 `;
@@ -52,13 +52,13 @@ const TextWrapper = styled.div`
 const ImageWrapper = styled.img`
   width: 60px;
   height: auto;
-  margin-left: 80px;
+  margin-left: 60px;
   margin-top: 30px;
 `;
 
 const GoButton = styled.button`
   padding: 3px;
-  font-size: 10px;
+  font-size: 13px;
   height: 25px;
   width: 100px;
   background-color: #ff832b;
@@ -68,7 +68,7 @@ const GoButton = styled.button`
   cursor: pointer;
   font-weight: bold;
   border: 1px solid #ffe3c8;
-  margin-top: -50px;
+  margin-top: -45px;
   margin-right: 160px;
 
   &:hover {

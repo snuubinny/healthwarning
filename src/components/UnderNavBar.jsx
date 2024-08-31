@@ -73,7 +73,7 @@ const UnderNavBar = () => {
   const { userId } = useParams();
 
   const handleChatBotClick = () => {
-    navigate("/ChatBot");
+    navigate("/AiChat");
   };
 
   const handleHomeClick = () => {
@@ -84,6 +84,10 @@ const UnderNavBar = () => {
     navigate("/CreatePost");
   };
 
+  const handleReportClick = () => {
+    navigate("/Report");
+  };
+
   return (
     <>
       <NavBarBox>
@@ -91,7 +95,7 @@ const UnderNavBar = () => {
           <AIchatbox onClick={handleChatBotClick} />
           <HomeBox onClick={handleHomeClick} />
           <CreatePostBox onClick={handlePostClick} />
-          <ChartBox />
+          <ChartBox onClick={handleReportClick} />
         </IconContainer>
       </NavBarBox>
     </>

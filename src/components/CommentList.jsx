@@ -8,10 +8,10 @@ const WrapComment = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 20px;
-  width: 100%;
+  margin-top: 8px;
+  width: 96.5%;
   padding-bottom: 20px;
-  margin-left: 10px;
+  margin-left: 20px;
 `;
 
 const CommentContainer = styled.div`
@@ -33,16 +33,16 @@ const CommentContainer = styled.div`
 
 const CommentText = styled.div`
   margin-left: 10px;
-  font-size: 10px;
+  font-size: 12px;
   flex: 1;
   display: flex;
   align-items: center;
 `;
 
 const GuardianText = styled.span`
-  padding: 1px;
-  font-size: 9px;
-  height: 15px;
+  padding: 0px;
+  font-size: 11px;
+  height: 20px;
   display: flex;
   align-items: center;
   background-color: #fee5ce;
@@ -62,8 +62,8 @@ const ButtonContainer = styled.div`
 
 const DeleteButton = styled.button`
   padding: 3px;
-  font-size: 9px;
-  height: 15px;
+  font-size: 11px;
+  height: 18px;
   width: 30px;
   background-color: #ff832b;
   color: white;
@@ -83,7 +83,7 @@ const DeleteButton = styled.button`
 
 const CommentField = styled.input`
   width: 80%;
-  padding: 3px;
+  padding: 7px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 10px;
@@ -99,8 +99,12 @@ const CommentField = styled.input`
 
 const CommentButton = styled.button`
   padding: 3px;
-  font-size: 9px;
-  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  text-align: center;
+  height: 25px;
   width: 40px;
   background-color: #ff832b;
   color: white;
@@ -129,7 +133,7 @@ const CommentFieldWrapper = styled.div`
 `;
 
 const Label = styled.label`
-  font-size: 10px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -204,18 +208,21 @@ const CommentList = () => {
   const handleDeleteComment = async (commentId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(
-        `https://healthwarning.kro.kr/blog/posts/${post_id}/comments/${commentId}/delete`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const url = `https://healthwarning.kro.kr/blog/posts/${post_id}/comments/${commentId}/delete/`;
+
+      await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       fetchComments();
     } catch (error) {
-      console.error("Failed to delete comment:", error);
+      console.error(
+        "Failed to delete comment:",
+        error.response ? error.response.data : error.message
+      );
+      alert("댓글 삭제에 실패했습니다. 다시 시도해 주세요.");
     }
   };
 

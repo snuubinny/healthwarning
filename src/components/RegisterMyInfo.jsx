@@ -52,7 +52,7 @@ const Header = styled.div`
 const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
   color: white;
   margin-top: 5px;
   padding: 3px 15px;
@@ -109,8 +109,11 @@ const DuplicateWrapper = styled.div`
 `;
 
 const DuplicateButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 3px;
-  font-size: 8px;
+  font-size: 10px;
   height: 17px;
   background-color: #ff832b;
   color: white;
@@ -120,6 +123,7 @@ const DuplicateButton = styled.button`
   font-weight: bold;
   margin-left: 10px;
   white-space: nowrap;
+  text-align: center;
 
   &:hover {
     background-color: #fee5ce;
@@ -128,8 +132,7 @@ const DuplicateButton = styled.button`
 `;
 
 const Label = styled.label`
-  font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   width: 120px;
   margin-left: -5px;
   text-align: right;
@@ -138,7 +141,7 @@ const Label = styled.label`
 
 const SexButton = styled.button`
   padding: 3px;
-  font-size: 10px;
+  font-size: 12px;
   height: 20px;
   width: 60px;
   background-color: ${(props) => (props.$active ? "#ff832b" : "#fee5ce")};
