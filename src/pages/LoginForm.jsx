@@ -1,10 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import axios from "axios";
 import Test from "../components/Test";
 import BackIcon from "../img/back.png";
 import LogoIcon from "../img/logo.png";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const AnimatedContainer = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+`;
 
 const LoginContainer = styled.div`
   background-color: #fee5ce;
@@ -188,7 +205,7 @@ function LoginForm() {
   const handleBackClick = () => {
     navigate("/");
   };
-
+  const [isVisible, setIsVisible] = useState(true);
   const handleLoginClick = async () => {
     try {
       const requestData = {
@@ -222,46 +239,48 @@ function LoginForm() {
 
   return (
     <>
-      <LoginContainer>
-        <Header>
-          <BackButton src={BackIcon} alt="Back" onClick={handleBackClick} />
-        </Header>
-        <ServiceInfo>
-          <LogoImgBox>
-            <LogoImg src={LogoIcon} alt="Logo" />
-          </LogoImgBox>
-          <LogoText>
-            삐용삐용! 매일의 건강을 감독해주는
-            <br />
-            완벽한 맞춤형 건강 보호사 서비스
-          </LogoText>
-        </ServiceInfo>
-        <LoginText>회원 로그인</LoginText>
-        <LoginBox>
-          <IdBox
-            placeholder=" ID : 아이디를 입력하세요"
-            type="text"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-          <PwBox
-            placeholder=" PW : 비밀번호를 입력하세요"
-            type="password"
-            value={pw}
-            onChange={(e) => setPw(e.target.value)}
-          />
-          <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
-        </LoginBox>
-        <Line />
-        <RegisterBox>
-          <RegisterText>아직 회원이 아니신가요?</RegisterText>
-          <RegisterButton onClick={handleRegisterClick}>
-            회원가입하기
-          </RegisterButton>
-        </RegisterBox>
-      </LoginContainer>
-      <Footer />
-      <Test />
+      <AnimatedContainer>
+        <LoginContainer>
+          <Header>
+            <BackButton src={BackIcon} alt="Back" onClick={handleBackClick} />
+          </Header>
+          <ServiceInfo>
+            <LogoImgBox>
+              <LogoImg src={LogoIcon} alt="Logo" />
+            </LogoImgBox>
+            <LogoText>
+              삐용삐용! 매일의 건강을 감독해주는
+              <br />
+              완벽한 맞춤형 건강 보호사 서비스
+            </LogoText>
+          </ServiceInfo>
+          <LoginText>회원 로그인</LoginText>
+          <LoginBox>
+            <IdBox
+              placeholder=" ID : 아이디를 입력하세요"
+              type="text"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
+            <PwBox
+              placeholder=" PW : 비밀번호를 입력하세요"
+              type="password"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+            />
+            <LoginButton onClick={handleLoginClick}>로 그 인</LoginButton>
+          </LoginBox>
+          <Line />
+          <RegisterBox>
+            <RegisterText>아직 회원이 아니신가요?</RegisterText>
+            <RegisterButton onClick={handleRegisterClick}>
+              회원가입하기
+            </RegisterButton>
+          </RegisterBox>
+        </LoginContainer>
+        <Footer />
+        <Test />
+      </AnimatedContainer>
     </>
   );
 }

@@ -23,12 +23,8 @@ const fadeIn = keyframes`
 
 const EditProfileContainer = styled.div`
   background-color: #f8f6e9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  height: auto;
-  position: relative;
+  height: 100%;
   overflow: hidden;
 `;
 
@@ -60,7 +56,7 @@ const EditButton = styled.button`
   font-weight: bold;
   border-radius: 20px;
   cursor: pointer;
-  margin-right: 0px;
+  margin-right: 35px;
   &:hover {
     background-color: #ff832b;
     color: #ffffff;

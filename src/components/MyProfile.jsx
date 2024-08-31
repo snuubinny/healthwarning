@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 `;
 
 const ProfileContainer = styled.div`
-  width: 117%;
+  width: 84%;
   padding: 20px;
   position: relative;
   overflow: hidden;

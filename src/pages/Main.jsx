@@ -152,37 +152,39 @@ const Main = () => {
 
   return (
     <div>
-      <Wrapper>
-        <AlarmContainer>
-          <TextWrapper>
-            <Icon src={SingleLogo} alt="Logo" />
-            건강주의보는 매일 세심하게 보호자의 건강을 관리해주는 완벽한 맞춤형
-            서비스입니다.
-          </TextWrapper>
-        </AlarmContainer>
-        <AlarmContainer2>
-          <Icon2 src={Logo} alt="Logo" />
-        </AlarmContainer2>
-        <MainButton />
-        <TextWrapper2>
-          건강주의보 소개페이지를 통해 어떤 서비스를 제공하는지 확인해보아요!
-        </TextWrapper2>
-        <LoginButton />
-        <WrapFooter>
-          <CloudLeft />
-          <CloudRight />
-          <ContentWrapper>
-            <FooterTextWrapper>
-              건강주의보(bbiyongbbiyong) | 대표자: 김지후(FE), 전수빈(FE),
-              김민경(BE), 손가영(BE)
-              <br />
-              문의전화: 010-1234-5678 <br />
-              e-mail: 12345678@inha.edu <br />
-              instagram:@bbiyong_bbiyong
-            </FooterTextWrapper>
-          </ContentWrapper>
-        </WrapFooter>
-      </Wrapper>
+      <AnimatedContainer>
+        <Wrapper>
+          <AlarmContainer>
+            <TextWrapper>
+              <Icon src={SingleLogo} alt="Logo" />
+              건강주의보는 매일 세심하게 보호자의 건강을 관리해주는 완벽한
+              맞춤형 서비스입니다.
+            </TextWrapper>
+          </AlarmContainer>
+          <AlarmContainer2>
+            <Icon2 src={Logo} alt="Logo" />
+          </AlarmContainer2>
+          <MainButton />
+          <TextWrapper2>
+            건강주의보 소개페이지를 통해 어떤 서비스를 제공하는지 확인해보아요!
+          </TextWrapper2>
+          <LoginButton />
+          <WrapFooter>
+            <CloudLeft />
+            <CloudRight />
+            <ContentWrapper>
+              <FooterTextWrapper>
+                건강주의보(bbiyongbbiyong) | 대표자: 김지후(FE), 전수빈(FE),
+                김민경(BE), 손가영(BE)
+                <br />
+                문의전화: 010-1234-5678 <br />
+                e-mail: 12345678@inha.edu <br />
+                instagram:@bbiyong_bbiyong
+              </FooterTextWrapper>
+            </ContentWrapper>
+          </WrapFooter>
+        </Wrapper>
+      </AnimatedContainer>
     </div>
   );
 };
