@@ -21,6 +21,17 @@ const fadeIn = keyframes`
   }
 `;
 
+const EditProfileContainer = styled.div`
+  background-color: #f8f6e9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+`;
+
 const AnimatedContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-out;
   opacity: 1;
@@ -49,7 +60,7 @@ const EditButton = styled.button`
   font-weight: bold;
   border-radius: 20px;
   cursor: pointer;
-  margin-right: 35px;
+  margin-right: 0px;
   &:hover {
     background-color: #ff832b;
     color: #ffffff;
@@ -79,6 +90,11 @@ const TitleContainer = styled.div`
   align-items: flex-start;
   margin-top: 15px;
   margin-right: -75px;
+`;
+
+const NavBarWrapper = styled.div`
+  width: 100%;
+  height: 70px;
 `;
 
 const CircleTitle = styled.div`
@@ -205,8 +221,10 @@ const EditProfile = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   return (
-    <div className="edit-profile-container">
-      <NavBar />
+    <EditProfileContainer>
+      <NavBarWrapper>
+        <NavBar />
+      </NavBarWrapper>
       <AnimatedContainer isVisible={isVisible}>
         <AlarmContainer>
           <SafeImageStyled src={SafeImage} alt="Safe" />
@@ -247,7 +265,7 @@ const EditProfile = () => {
         </EditButton>
       </EditButtonContainer>
       <UnderNavBar />
-    </div>
+    </EditProfileContainer>
   );
 };
 

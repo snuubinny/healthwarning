@@ -53,6 +53,7 @@ const HeadLine = styled.div`
   border: 2px solid #fee5ce;
   border-radius: 20px;
   font-size: 18px;
+  margin-left: 40px;
 `;
 
 const MessageIcon = styled.img`
@@ -76,6 +77,7 @@ const CheeringCommentsBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 35px;
   width: 85%;
   height: 70px;
   font-size: 15px;
@@ -154,25 +156,23 @@ const PostList = () => {
 
   return (
     <AnimatedContainer isVisible={isVisible}>
-      <Wrapper>
-        <NavBarWrapper>
-          <NavBar />
-        </NavBarWrapper>
-        <CheeringCommentsBox>
-          <MessageIcon src="/message.png" alt="Message Icon" />
-          <CommentsWrapper>{getCheeringMessage()}</CommentsWrapper>
-        </CheeringCommentsBox>
-        <HeadLine>
-          최근 10일 내의 달성률은
-          <AchievementRate>
-            {tenDaysAverage !== null ? tenDaysAverage : "..."}%
-          </AchievementRate>
-          입니다.
-        </HeadLine>
-        <RecentPosts userId={userId} />
-        <Pagination userId={userId} onPostClick={handlePostClick} />
-        <UnderNavBar />
-      </Wrapper>
+      <NavBarWrapper>
+        <NavBar />
+      </NavBarWrapper>
+      <CheeringCommentsBox>
+        <MessageIcon src="/message.png" alt="Message Icon" />
+        <CommentsWrapper>{getCheeringMessage()}</CommentsWrapper>
+      </CheeringCommentsBox>
+      <HeadLine>
+        최근 10일 내의 달성률은
+        <AchievementRate>
+          {tenDaysAverage !== null ? tenDaysAverage : "..."}%
+        </AchievementRate>
+        입니다.
+      </HeadLine>
+      <RecentPosts userId={userId} />
+      <Pagination userId={userId} onPostClick={handlePostClick} />
+      <UnderNavBar />
     </AnimatedContainer>
   );
 };

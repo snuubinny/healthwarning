@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Test from "../components/Test";
-import CloudImg from "../img/Cloud.png"; // 이미지 파일 가져오기
+import BackIcon from "../img/back.png";
+import LogoIcon from "../img/logo.png";
 
 const LoginContainer = styled.div`
   background-color: #fee5ce;
@@ -11,17 +12,9 @@ const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 700px;
+  height: auto;
   position: relative;
   overflow: hidden;
-`;
-
-const CloudImage = styled.img`
-  width: 300px; /* 원하는 크기로 설정 */
-  position: absolute;
-  bottom: -50px; /* 화면의 하단에 배치하여 일부만 보이도록 설정 */
-  left: 50%;
-  transform: translateX(-50%);
 `;
 
 const Header = styled.div`
@@ -221,9 +214,9 @@ function LoginForm() {
   };
 
   const fillTestCredentials = () => {
-    setId("dahyesuk52");
+    setId("healthwarning01");
     setPw("dahae01");
-    console.log("ID:", "dahyesuk52");
+    console.log("ID:", "healthwarning01");
     console.log("Password:", "dahae01");
   };
 
@@ -231,11 +224,11 @@ function LoginForm() {
     <>
       <LoginContainer>
         <Header>
-          <BackButton src="/back.png" alt="Back" onClick={handleBackClick} />
+          <BackButton src={BackIcon} alt="Back" onClick={handleBackClick} />
         </Header>
         <ServiceInfo>
           <LogoImgBox>
-            <LogoImg src="/logo.png" alt="Logo" />
+            <LogoImg src={LogoIcon} alt="Logo" />
           </LogoImgBox>
           <LogoText>
             삐용삐용! 매일의 건강을 감독해주는

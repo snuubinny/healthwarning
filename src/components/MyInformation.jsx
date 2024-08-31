@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const ProfileContainer = styled.div`
-  width: 80%;
+  width: 83%;
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -140,7 +140,7 @@ const DuplicateButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 5px;
   white-space: nowrap;
   text-align: center;
 

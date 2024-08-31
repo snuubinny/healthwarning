@@ -19,7 +19,7 @@ const CommentContainer = styled.div`
   height: auto;
   transition: transform 0.2s;
   background-color: white;
-  padding: 3px 7px;
+  padding: 6px 7px;
   display: flex;
   margin-top: 10px;
   border: 0.5px solid #ff832b;
@@ -42,7 +42,7 @@ const CommentText = styled.div`
 const GuardianText = styled.span`
   padding: 0px;
   font-size: 11px;
-  height: 20px;
+  height: 18px;
   display: flex;
   align-items: center;
   background-color: #fee5ce;
@@ -104,7 +104,7 @@ const CommentButton = styled.button`
   align-items: center;
   font-size: 11px;
   text-align: center;
-  height: 25px;
+  height: 22px;
   width: 40px;
   background-color: #ff832b;
   color: white;
@@ -242,7 +242,7 @@ const CommentList = () => {
           onChange={handleCommentChange}
           placeholder="댓글을 입력하세요."
         />
-        <CommentButton onClick={handleCommentSubmit}>등록!</CommentButton>
+        <CommentButton onClick={handleCommentSubmit}>등록</CommentButton>
       </CommentFieldWrapper>
       <WrapComment>
         {comments.length > 0 &&

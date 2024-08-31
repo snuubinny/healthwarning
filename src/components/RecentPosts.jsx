@@ -12,7 +12,7 @@ const MainContainer = styled.div`
   width: 100%;
   height: auto;
   gap: 20px;
-  position: relative; /* MissYouButton을 절대 위치로 배치하기 위해 추가 */
+  position: relative;
 `;
 
 const RecentPostsContainer = styled.div`
