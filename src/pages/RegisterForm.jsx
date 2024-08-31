@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import RegisterMyInfo from "../components/RegisterMyInfo";
 import RegisterInfo from "../components/RegisterInfo";
-import styled from "styled-components";
-import footerLogo from "../img/Footer_Logo.png";
+import styled, { keyframes } from "styled-components";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { keyframes } from "styled-components";
+import SingleLogo from "../img/SingleLogo.png";
 
 const fadeIn = keyframes`
   from {
@@ -19,13 +18,24 @@ const fadeIn = keyframes`
   }
 `;
 
+const Container = styled.div`
+  background-color: #fee5ce;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+`;
+
 const RegisterWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: #fee5ce;
-  margin-top: 20px; /* NavBar의 높이만큼 margin 추가해서 공간 안생기게!!!! */
+  margin-top: 20px; /* NavBar의 높이만큼 margin 추가 */
   animation: ${fadeIn} 0.5s ease-out;
 `;
 
@@ -71,21 +81,16 @@ const RegisterButton = styled.button`
   font-weight: bold;
   border-radius: 20px;
   cursor: pointer;
-  margin-right: 35px;
+  margin-right: 0px;
   &:hover {
     background-color: #ff832b;
     color: #ffffff;
   }
 `;
 
-const FooterIcon = styled.img`
-  width: 45px;
-  height: 35px;
-  fill: currentColor;
-  margin-right: 4px;
-  transform: scale(2);
-  margin-top: 4px;
-  margin-left: 0px;
+const NavBarWrapper = styled.div`
+  width: 100%;
+  height: 70px;
 `;
 
 const Icon = styled.img`
@@ -154,46 +159,52 @@ const RegisterForm = () => {
 
   return (
     <>
-      <NavBar />
-      <RegisterWrap isVisible={isVisible}>
-        <TextWrap>
-          <Icon src={`${process.env.PUBLIC_URL}/SingleLogo.png`} alt="Logo" />
-          <span style={{ color: "#ff832b" }}>건강주의보</span>
-          <span style={{ marginLeft: "5px" }}>계정 만들기</span>
-        </TextWrap>
-        <ContextWrap>회원가입을 통해 건강주의보 멤버가 되어보세요!</ContextWrap>
-        <Divider />
-      </RegisterWrap>
-      <RegisterMyInfo
-        username={username}
-        setUsername={setUsername}
-        identifier={identifier}
-        setIdentifier={setIdentifier}
-        password={password}
-        setPassword={setPassword}
-        confirmPassword={confirmPassword}
-        setConfirmPassword={setConfirmPassword}
-        email={email}
-        setEmail={setEmail}
-        birth={birth}
-        setBirth={setBirth}
-        gender={gender}
-        setGender={setGender}
-        isVisible={isVisible}
-      />
-      <RegisterInfo
-        sleep={sleep}
-        setSleep={setSleep}
-        medications={medications}
-        setMedications={setMedications}
-        exercises={exercises}
-        setExercises={setExercises}
-        meals={meals}
-        setMeals={setMeals}
-      />
-      <RegisterButtonContainer>
-        <RegisterButton onClick={handleRegister}>회 원 가 입</RegisterButton>
-      </RegisterButtonContainer>
+      <Container>
+        <NavBarWrapper>
+          <NavBar />
+        </NavBarWrapper>
+        <RegisterWrap isVisible={isVisible}>
+          <TextWrap>
+            <Icon src={SingleLogo} alt="Logo" />
+            <span style={{ color: "#ff832b" }}>건강주의보</span>
+            <span style={{ marginLeft: "5px" }}>계정 만들기</span>
+          </TextWrap>
+          <ContextWrap>
+            회원가입을 통해 건강주의보 멤버가 되어보세요!
+          </ContextWrap>
+          <Divider />
+        </RegisterWrap>
+        <RegisterMyInfo
+          username={username}
+          setUsername={setUsername}
+          identifier={identifier}
+          setIdentifier={setIdentifier}
+          password={password}
+          setPassword={setPassword}
+          confirmPassword={confirmPassword}
+          setConfirmPassword={setConfirmPassword}
+          email={email}
+          setEmail={setEmail}
+          birth={birth}
+          setBirth={setBirth}
+          gender={gender}
+          setGender={setGender}
+          isVisible={isVisible}
+        />
+        <RegisterInfo
+          sleep={sleep}
+          setSleep={setSleep}
+          medications={medications}
+          setMedications={setMedications}
+          exercises={exercises}
+          setExercises={setExercises}
+          meals={meals}
+          setMeals={setMeals}
+        />
+        <RegisterButtonContainer>
+          <RegisterButton onClick={handleRegister}>회 원 가 입</RegisterButton>
+        </RegisterButtonContainer>
+      </Container>
     </>
   );
 };

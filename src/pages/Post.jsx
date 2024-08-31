@@ -146,6 +146,13 @@ const ButtonText = styled.p`
   margin: 0;
 `;
 
+const Wrapper = styled.div`
+  background-color: #f8f6e9;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
 const AchievementButton = ({ onClick }) => (
   <ButtonBackground onClick={onClick}>
     <ButtonTitle>달성률 확인</ButtonTitle>
@@ -237,7 +244,7 @@ const Post = () => {
   };
   const [isVisible, setIsVisible] = useState(true);
   return (
-    <div className="edit-profile-container">
+    <Wrapper>
       <NavBar />
       <AnimatedContainer isVisible={isVisible}>
         <CircleContainer>
@@ -259,7 +266,7 @@ const Post = () => {
         <DeleteButton onClick={handleDeletePost}>게시글 삭제</DeleteButton>
       </DeleteButtonContainer>
       <UnderNavBar />
-    </div>
+    </Wrapper>
   );
 };
 

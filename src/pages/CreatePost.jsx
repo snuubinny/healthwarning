@@ -24,13 +24,6 @@ const AnimatedContainer = styled.div`
   transform: translateY(0);
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f8f6e9;
-`;
-
 const NavBarWrapper = styled.div`
   width: 100%;
   height: 70px;
@@ -239,6 +232,13 @@ const PostButton = styled.button`
   }
 `;
 
+const Wrapper = styled.div`
+  background-color: #f8f6e9;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
 function CreatePost() {
   const [isVisible, setIsVisible] = useState(false);
   const { userId } = useParams();
@@ -327,105 +327,107 @@ function CreatePost() {
 
   return (
     <>
-      <AnimatedContainer isVisible={isVisible}>
-        <NavBarWrapper>
-          <NavBar />
-        </NavBarWrapper>
-        <PostHeader>
-          <Pencil src={Pen} />
-          "매일매일 기록하는
-          <br /> 오늘의 건강 일기"
-        </PostHeader>
-        <InfoWrapper>
-          <CheckListContainer>
-            <CheckListTitle>
-              <YYYY
-                placeholder="YYYY"
-                maxLength={4}
-                value={date.year}
-                onChange={(e) =>
-                  handleNumberInput(e, (value) =>
-                    setDate({ ...date, year: value })
-                  )
-                }
+      <Wrapper>
+        <AnimatedContainer isVisible={isVisible}>
+          <NavBarWrapper>
+            <NavBar />
+          </NavBarWrapper>
+          <PostHeader>
+            <Pencil src={Pen} />
+            "매일매일 기록하는
+            <br /> 오늘의 건강 일기"
+          </PostHeader>
+          <InfoWrapper>
+            <CheckListContainer>
+              <CheckListTitle>
+                <YYYY
+                  placeholder="YYYY"
+                  maxLength={4}
+                  value={date.year}
+                  onChange={(e) =>
+                    handleNumberInput(e, (value) =>
+                      setDate({ ...date, year: value })
+                    )
+                  }
+                />
+                년
+                <MMDD
+                  placeholder="MM"
+                  maxLength={2}
+                  value={date.month}
+                  onChange={(e) =>
+                    handleNumberInput(
+                      e,
+                      (value) => setDate({ ...date, month: value }),
+                      12
+                    )
+                  }
+                />
+                월
+                <MMDD
+                  placeholder="DD"
+                  maxLength={2}
+                  value={date.day}
+                  onChange={(e) =>
+                    handleNumberInput(
+                      e,
+                      (value) => setDate({ ...date, day: value }),
+                      31
+                    )
+                  }
+                />
+                일
+              </CheckListTitle>
+              <CheckList>
+                <SleepBox>
+                  목표 수면 시간 <GoalBox>{data.sleep}</GoalBox>시간 중
+                  <Input
+                    value={sleep}
+                    onChange={(e) => handleNumberInput(e, setSleep, 24)}
+                  />
+                  시간 수면함
+                </SleepBox>
+                <MedicationsBox>
+                  목표 복약 횟수 <GoalBox>{data.medications}</GoalBox>회 중
+                  <Input
+                    value={medication}
+                    onChange={(e) => handleNumberInput(e, setMedication, 99)}
+                  />
+                  회 복용함
+                </MedicationsBox>
+                <ExerciseBox>
+                  목표 운동 시간 <GoalBox>{data.exercises}</GoalBox>분 중
+                  <Input
+                    value={exercise}
+                    onChange={(e) => handleNumberInput(e, setExercise, 1440)}
+                  />
+                  분 운동함
+                </ExerciseBox>
+                <MealsBox>
+                  목표 식사 횟수 <GoalBox>{data.meals}</GoalBox>끼 중
+                  <Input
+                    value={meal}
+                    onChange={(e) => handleNumberInput(e, setMeal, 10)}
+                  />
+                  끼 식사함
+                </MealsBox>
+              </CheckList>
+            </CheckListContainer>
+            <DairyContainer>
+              <DiaryTitle>어떤 하루를 보내셨나요?</DiaryTitle>
+              <DiaryInput
+                placeholder="특이사항이나 오늘의 기분 등을 작성해주세요!"
+                value={diary}
+                onChange={(e) => setDiary(e.target.value)}
               />
-              년
-              <MMDD
-                placeholder="MM"
-                maxLength={2}
-                value={date.month}
-                onChange={(e) =>
-                  handleNumberInput(
-                    e,
-                    (value) => setDate({ ...date, month: value }),
-                    12
-                  )
-                }
-              />
-              월
-              <MMDD
-                placeholder="DD"
-                maxLength={2}
-                value={date.day}
-                onChange={(e) =>
-                  handleNumberInput(
-                    e,
-                    (value) => setDate({ ...date, day: value }),
-                    31
-                  )
-                }
-              />
-              일
-            </CheckListTitle>
-            <CheckList>
-              <SleepBox>
-                목표 수면 시간 <GoalBox>{data.sleep}</GoalBox>시간 중
-                <Input
-                  value={sleep}
-                  onChange={(e) => handleNumberInput(e, setSleep, 24)}
-                />
-                시간 수면함
-              </SleepBox>
-              <MedicationsBox>
-                목표 복약 횟수 <GoalBox>{data.medications}</GoalBox>회 중
-                <Input
-                  value={medication}
-                  onChange={(e) => handleNumberInput(e, setMedication, 99)}
-                />
-                회 복용함
-              </MedicationsBox>
-              <ExerciseBox>
-                목표 운동 시간 <GoalBox>{data.exercises}</GoalBox>분 중
-                <Input
-                  value={exercise}
-                  onChange={(e) => handleNumberInput(e, setExercise, 1440)}
-                />
-                분 운동함
-              </ExerciseBox>
-              <MealsBox>
-                목표 식사 횟수 <GoalBox>{data.meals}</GoalBox>끼 중
-                <Input
-                  value={meal}
-                  onChange={(e) => handleNumberInput(e, setMeal, 10)}
-                />
-                끼 식사함
-              </MealsBox>
-            </CheckList>
-          </CheckListContainer>
-          <DairyContainer>
-            <DiaryTitle>어떤 하루를 보내셨나요?</DiaryTitle>
-            <DiaryInput
-              placeholder="특이사항이나 오늘의 기분 등을 작성해주세요!"
-              value={diary}
-              onChange={(e) => setDiary(e.target.value)}
-            />
-          </DairyContainer>
-        </InfoWrapper>
-        <PostButtonContainer>
-          <PostButton onClick={handleSubmit}>오늘의 글 등록하기</PostButton>
-        </PostButtonContainer>
-        <UnderNavBar />
-      </AnimatedContainer>
+            </DairyContainer>
+          </InfoWrapper>
+          <PostButtonContainer>
+            <PostButton onClick={handleSubmit}>오늘의 글 등록하기</PostButton>
+          </PostButtonContainer>
+          <UnderNavBar />
+        </AnimatedContainer>
+      </Wrapper>
     </>
   );
 }

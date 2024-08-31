@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import axios from "axios";
 import Pagination from "../components/Pagination";
 import RecentPosts from "../components/RecentPosts";
-import { keyframes } from "styled-components";
 import NavBar from "../components/NavBar";
 import UnderNavBar from "../components/UnderNavBar";
+import MessageIconImage from "../img/message.png";
 
 const fadeIn = keyframes`
   from {
@@ -96,6 +96,17 @@ const AchievementRate = styled.div`
   color: #ff832b;
 `;
 
+const Container = styled.div`
+  background-color: #fee5ce;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+`;
+
 const PostList = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { userId } = useParams(); // URL 파라미터에서 userId를 가져옴
@@ -155,25 +166,27 @@ const PostList = () => {
   };
 
   return (
-    <AnimatedContainer isVisible={isVisible}>
-      <NavBarWrapper>
-        <NavBar />
-      </NavBarWrapper>
-      <CheeringCommentsBox>
-        <MessageIcon src="/message.png" alt="Message Icon" />
-        <CommentsWrapper>{getCheeringMessage()}</CommentsWrapper>
-      </CheeringCommentsBox>
-      <HeadLine>
-        최근 10일 내의 달성률은
-        <AchievementRate>
-          {tenDaysAverage !== null ? tenDaysAverage : "..."}%
-        </AchievementRate>
-        입니다.
-      </HeadLine>
-      <RecentPosts userId={userId} />
-      <Pagination userId={userId} onPostClick={handlePostClick} />
-      <UnderNavBar />
-    </AnimatedContainer>
+    <Container>
+      <AnimatedContainer isVisible={isVisible}>
+        <NavBarWrapper>
+          <NavBar />
+        </NavBarWrapper>
+        <CheeringCommentsBox>
+          <MessageIcon src={MessageIconImage} alt="Message Icon" />
+          <CommentsWrapper>{getCheeringMessage()}</CommentsWrapper>
+        </CheeringCommentsBox>
+        <HeadLine>
+          최근 10일 내의 달성률은
+          <AchievementRate>
+            {tenDaysAverage !== null ? tenDaysAverage : "..."}%
+          </AchievementRate>
+          입니다.
+        </HeadLine>
+        <RecentPosts userId={userId} />
+        <Pagination userId={userId} onPostClick={handlePostClick} />
+        <UnderNavBar />
+      </AnimatedContainer>
+    </Container>
   );
 };
 
