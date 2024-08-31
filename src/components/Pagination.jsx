@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PostListContainer = styled.div`
-  background-color: #FFD6B0;
+  background-color: #ffd6b0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -14,8 +14,8 @@ const PostListContainer = styled.div`
   overflow-x: auto;
   white-space: nowrap;
 
-   /* Webkit 기반 브라우저 (Chrome, Safari, Edge 등) */
-   ::-webkit-scrollbar {
+  /* Webkit 기반 브라우저 (Chrome, Safari, Edge 등) */
+  ::-webkit-scrollbar {
     height: 8px; /* 스크롤바의 높이 (가로 스크롤) */
   }
 
@@ -34,7 +34,7 @@ const PostListContainer = styled.div`
 `;
 
 const Background = styled.div`
-  background-color: #FFD6B0;
+  background-color: #ffd6b0;
   border-radius: 20px;
   border-color: #edd6c1;
   border-style: solid;
@@ -42,6 +42,7 @@ const Background = styled.div`
   width: 320px;
   height: auto;
   overflow-x: auto;
+  margin-left: 37px;
 `;
 
 const ListText = styled.p`
@@ -59,10 +60,11 @@ const ListText = styled.p`
   margin-bottom: 3px;
   font-size: 15px;
   font-weight: bold;
+  margin-left: 40px;
 `;
 
 const EmptyBox = styled.div`
-  background-color: #FEE5CE;
+  background-color: #fee5ce;
   color: #ff7b00;
   display: flex;
   flex-direction: row;
@@ -115,7 +117,9 @@ const Pagination = ({ userId, onPostClick }) => {
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard).slice(0, maxCardsToShow);
+  const currentCards = cards
+    .slice(indexOfFirstCard, indexOfLastCard)
+    .slice(0, maxCardsToShow);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

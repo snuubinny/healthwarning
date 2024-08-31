@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import navBarLogo from "../img/NavBar_Logo.png";
+import singleLogo from "../img/SingleLogo.png";
+import logoText from "../img/LogoText.png";
 
 const WrapNavBar = styled.div`
   display: flex;
@@ -96,8 +97,8 @@ const NavBar = () => {
         onMouseLeave={handleMouseLeave}
       >
         <IconWrapper onClick={handleHomeLogoClick}>
-          <NavBarIcon src="/singlelogo.png" alt="singlelogo" />
-          <TitleWrapper src="/LogoText.png" alt="logotext" />
+          <NavBarIcon src={singleLogo} alt="singlelogo" />
+          <TitleWrapper src={logoText} alt="logotext" />
         </IconWrapper>
         <LogoWrapper onClick={handleEditLogoClick}>
           <CustomLogo xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

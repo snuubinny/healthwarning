@@ -8,13 +8,13 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 30px;
-  margin-left: 110px;
+  margin-left: 115px;
 `;
 
 const WomanIcon = styled.img`
   width: 120px;
   height: auto;
-  margin-right: 20px;
+  margin-right: 0px;
 `;
 
 const ManIcon = styled.img`
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 `;
 
 const ProfileContainer = styled.div`
-  width: 80%;
+  width: 117%;
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -83,7 +83,7 @@ const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
   font-size: 14px;
-  margin-left: 115px;
+  margin-left: 120px;
   color: black;
   line-height: 2;
 `;

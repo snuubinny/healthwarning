@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  width: 80%;
+  width: 83%;
   height: 220px;
   padding: 20px;
   position: relative;

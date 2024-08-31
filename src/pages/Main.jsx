@@ -1,9 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import MainButton from "../components/MainButton";
 import LoginButton from "../components/LoginButton";
+import SingleLogo from "../img/SingleLogo.png";
+import Logo from "../img/logo.png";
 
 const fadeIn = keyframes`
   from {
@@ -154,19 +155,19 @@ const Main = () => {
       <Wrapper>
         <AlarmContainer>
           <TextWrapper>
-            <Icon src={`${process.env.PUBLIC_URL}/SingleLogo.png`} alt="Logo" />
+            <Icon src={SingleLogo} alt="Logo" />
             건강주의보는 매일 세심하게 보호자의 건강을 관리해주는 완벽한 맞춤형
             서비스입니다.
           </TextWrapper>
         </AlarmContainer>
         <AlarmContainer2>
-          <Icon2 src={`${process.env.PUBLIC_URL}/Logo.png`} alt="Logo" />
+          <Icon2 src={Logo} alt="Logo" />
         </AlarmContainer2>
-        <MainButton></MainButton>
+        <MainButton />
         <TextWrapper2>
           건강주의보 소개페이지를 통해 어떤 서비스를 제공하는지 확인해보아요!
         </TextWrapper2>
-        <LoginButton></LoginButton>
+        <LoginButton />
         <WrapFooter>
           <CloudLeft />
           <CloudRight />

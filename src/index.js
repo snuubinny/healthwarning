@@ -13,6 +13,7 @@ import Lending from "./pages/Lending";
 import Main from "./pages/Main";
 import AiChat from "./pages/AiChat";
 import Report from "./pages/Report";
+import Loading from "./pages/Loading";
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
@@ -22,7 +23,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Main />} />
+          <Route index element={<Loading />} />
+          <Route path="Main" element={<Main />} />
           <Route path="Lending" element={<Lending />} />
           <Route path="LoginForm" element={<LoginForm />} />
           <Route path="CreatePost" element={<CreatePost />} />
