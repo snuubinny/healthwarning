@@ -125,6 +125,7 @@ const LoginButton = styled.button`
   background-color: #ff832b;
   color: white;
   font-size: 20px;
+  font-weight: bold;
   border-radius: 20px;
   cursor: pointer;
 
@@ -167,6 +168,7 @@ const RegisterButton = styled.button`
   background-color: #ffffff;
   color: #ff832b;
   font-size: 20px;
+  font-weight: bold;
   border-radius: 20px;
   cursor: pointer;
 

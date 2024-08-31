@@ -27,8 +27,8 @@ const LogoWrapper = styled.div`
 `;
 
 const CustomLogo = styled.svg`
-  width: 30px;
-  height: 40px;
+  width: 40px;
+  height: 50px;
   fill: #ff832b;
 `;
 
@@ -36,8 +36,8 @@ const TitleWrapper = styled.img`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100px;
-  height: 25px;
+  width: 110px;
+  height: 30px;
   margin-top: 5px;
   margin-left: 3px;
 `;
@@ -48,8 +48,8 @@ const IconWrapper = styled.div`
 `;
 
 const NavBarIcon = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   margin-right: 8px;
   transform: scale(2);
   margin-top: 3px;

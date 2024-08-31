@@ -72,7 +72,7 @@ const TextWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   font-weight: bold;
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.3;
   color: #828282;
   z-index: 10;
@@ -83,7 +83,7 @@ const TextWrapper2 = styled.div`
   align-items: center;
   justify-content: flex-start;
   font-weight: bold;
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.3;
   color: #828282;
   z-index: 10;

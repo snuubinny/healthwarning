@@ -27,22 +27,20 @@ const AnimatedContainer = styled.div`
 `;
 
 const DeleteButton = styled.button`
-  padding: 3px;
-  font-size: 10px;
-  height: 30px;
-  width: 75px;
-  background-color: #ff832b;
-  color: white;
+  width: 280px;
+  height: 43px;
   border: none;
-  border-radius: 4px;
-  margin-right: 30px;
-  cursor: pointer;
+  background-color: #ffffff;
+  color: #ff832b;
+  font-size: 20px;
   font-weight: bold;
-  border: 1px solid #ffe3c8;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 35px;
 
   &:hover {
-    background-color: #fee5ce;
-    color: #ff832b;
+    background-color: #ff832b;
+    color: #ffffff;
   }
 `;
 
@@ -89,18 +87,18 @@ const Logo = styled.img`
 const CircleTitle = styled.div`
   text-align: left;
   color: #ff832b;
-  margin-left: 100px;
+  margin-left: 65px;
   margin-bottom: 70px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
 `;
 
 const CircleText = styled.p`
   font-family: "Nanum Pen Script", cursive;
   width: 300px;
-  font-size: 13px;
+  font-size: 18px;
   color: #003366;
-  margin-left: 160px;
+  margin-left: 135px;
   margin-top: -50px;
 `;
 
@@ -134,7 +132,7 @@ const ButtonBackground = styled.div`
 const ButtonTitle = styled.div`
   text-align: center;
   color: #ff832b;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   margin: 0;
   position: relative;
@@ -142,7 +140,7 @@ const ButtonTitle = styled.div`
 
 const ButtonText = styled.p`
   font-family: "Nanum Pen Script", cursive;
-  font-size: 13px;
+  font-size: 15px;
   color: #ff832b;
   text-align: center;
   margin: 0;

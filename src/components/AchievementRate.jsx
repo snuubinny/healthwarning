@@ -58,7 +58,7 @@ const PercentContainer = styled.div`
 const PercentText = styled.p`
   text-align: center;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 20px;
   line-height: 2;
 `;
@@ -66,7 +66,7 @@ const PercentText = styled.p`
 const TextWrap = styled.p`
   text-align: center;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 13px;
   margin-top: 0px;
   line-height: 1.5;
 `;
@@ -127,9 +127,9 @@ const Header = styled.div`
 const HeaderText = styled.p`
   text-align: left;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
   color: white;
-  margin-top: 5px;
+  margin-top: 3px;
   margin-left: 15px;
   line-height: 2;
 `;
@@ -171,7 +171,7 @@ const BoxImage1 = styled.img`
   height: auto;
   border-radius: 8px;
   margin-left: 65px;
-  margin-top: 15px;
+  margin-top: 6px;
 `;
 
 const BoxImage2 = styled.img`
@@ -179,7 +179,7 @@ const BoxImage2 = styled.img`
   height: auto;
   border-radius: 8px;
   margin-left: 70px;
-  margin-top: 10px;
+  margin-top: 6px;
 `;
 
 const BoxImage3 = styled.img`
@@ -187,7 +187,7 @@ const BoxImage3 = styled.img`
   height: auto;
   border-radius: 8px;
   margin-left: 70px;
-  margin-top: 18px;
+  margin-top: 9px;
 `;
 
 const BoxImage4 = styled.img`
@@ -195,7 +195,7 @@ const BoxImage4 = styled.img`
   height: auto;
   border-radius: 8px;
   margin-left: 75px;
-  margin-top: 8px;
+  margin-top: 3px;
 `;
 
 const SleepBox = styled(Box)``;
