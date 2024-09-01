@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import HospitalPage from "../img/Hospital 1.png";
 import BackIcon from "../img/back.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Container = styled.div`
   position: relative;
@@ -60,6 +60,7 @@ const AddButton = styled.button`
 
 function Hospital() {
   const navigate = useNavigate();
+  const { userId } = useParams();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
@@ -68,7 +69,7 @@ function Hospital() {
   };
 
   const handleBackClick = () => {
-    navigate("/"); // 뒤로 가기
+    navigate(`/PostList/${userId}`); // 뒤로 가기
   };
 
   const handleAddClick = () => {

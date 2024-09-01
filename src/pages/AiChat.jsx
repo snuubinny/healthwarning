@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AIPage from "../img/AIChat.png";
 import BackIcon from "../img/back.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const FullScreenImage = styled.img`
   height: 100%;
@@ -25,12 +25,13 @@ const BackButton = styled.img`
   width: 25px;
   height: 25px;
   margin: 20px;
-  margin-left: 400px;
+  margin-left: 520px;
   cursor: pointer;
 `;
 
 function AiChat() {
   const navigate = useNavigate();
+  const { userId } = useParams();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
@@ -39,7 +40,7 @@ function AiChat() {
   };
 
   const handleBackClick = () => {
-    navigate("/"); // 뒤로 가기
+    navigate(`/PostList/${userId}`); // 뒤로 가기
   };
 
   return (
