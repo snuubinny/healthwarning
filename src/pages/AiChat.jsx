@@ -14,18 +14,15 @@ const Header = styled.div`
   width: 100%;
   height: 65px;
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: 1; /* 이미지를 덮을 수 있도록 z-index 추가 */
 `;
 
 const BackButton = styled.img`
   width: 25px;
   height: 25px;
-  margin: 20px;
-  margin-left: 520px;
   cursor: pointer;
 `;
 
