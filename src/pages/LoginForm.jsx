@@ -232,9 +232,9 @@ function LoginForm() {
 
   const fillTestCredentials = () => {
     setId("healthwarning01");
-    setPw("dahae01");
+    setPw("bbiyong!");
     console.log("ID:", "healthwarning01");
-    console.log("Password:", "dahae01");
+    console.log("Password:", "bbiyong!");
   };
 
   return (
@@ -279,7 +279,7 @@ function LoginForm() {
           </RegisterBox>
         </LoginContainer>
         <Footer />
-        <Test />
+        <Test fillTestCredentials={fillTestCredentials} />
       </AnimatedContainer>
     </>
   );
