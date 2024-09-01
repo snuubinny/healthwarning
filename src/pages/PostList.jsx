@@ -36,8 +36,10 @@ const Wrapper = styled.div`
 `;
 
 const NavBarWrapper = styled.div`
-  width: 100%;
+  width: calc(100% - 8px);
   height: 70px;
+  margin-left: 4px;
+  margin-right: 4px;
 `;
 
 const HeadLine = styled.div`
@@ -99,6 +101,7 @@ const AchievementRate = styled.div`
 const Container = styled.div`
   background-color: #fee5ce;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   width: 100%;
