@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center; /* 추가: 가로 방향 가운데 정렬 */
   margin-top: 30px;
-  margin-left: 115px;
+  margin-left: 15px;
 `;
 
 const WomanIcon = styled.img`
@@ -43,6 +44,10 @@ const Wrapper = styled.div`
 `;
 
 const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가로 가운데 정렬 */
+  justify-content: center; /* 세로 가운데 정렬 */
   width: 84%;
   padding: 20px;
   position: relative;
@@ -83,7 +88,6 @@ const TextWrap = styled.p`
   text-align: left;
   font-weight: bold;
   font-size: 14px;
-  margin-left: 120px;
   color: black;
   line-height: 2;
 `;

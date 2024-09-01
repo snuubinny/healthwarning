@@ -76,7 +76,7 @@ const AlarmContainer = styled.div`
 const SafeImageStyled = styled.img`
   width: 150px;
   height: auto;
-  margin-right: 100px;
+  margin-right: 70px;
   margin-top: 28px;
 `;
 
