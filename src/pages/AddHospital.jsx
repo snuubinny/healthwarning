@@ -24,8 +24,8 @@ const Header = styled.div`
 const BackButton = styled.img`
   width: 25px;
   height: 25px;
-  margin: 10px;
-  margin-left: 400px;
+  margin: 15px;
+  margin-left: 520px;
   cursor: pointer;
 `;
 
@@ -39,7 +39,7 @@ function AddHospital() {
   };
 
   const handleBackClick = () => {
-    navigate("/"); // 뒤로 가기
+    navigate("/Hospital"); // 뒤로 가기
   };
 
   return (

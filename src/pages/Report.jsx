@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ReportPage from "../img/report.png";
 import BackIcon from "../img/back.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const FullScreenImage = styled.img`
   height: 100%;
@@ -24,13 +24,14 @@ const Header = styled.div`
 const BackButton = styled.img`
   width: 25px;
   height: 25px;
-  margin: 20px;
-  margin-left: 400px;
+  margin: 15px;
+  margin-left: 520px;
   cursor: pointer;
 `;
 
 function Report() {
   const navigate = useNavigate();
+  const { userId } = useParams();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
@@ -39,7 +40,7 @@ function Report() {
   };
 
   const handleBackClick = () => {
-    navigate("/"); // 뒤로 가기
+    navigate(`/PostList/${userId}`); // 뒤로 가기
   };
 
   return (
