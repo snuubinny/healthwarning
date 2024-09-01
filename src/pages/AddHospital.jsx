@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import AIPage from "../img/AIChat.png";
+import AddHospitalPage from "../img/Hospital 2.png";
 import BackIcon from "../img/back.png";
 import { useNavigate } from "react-router-dom";
 
@@ -24,12 +24,12 @@ const Header = styled.div`
 const BackButton = styled.img`
   width: 25px;
   height: 25px;
-  margin: 20px;
+  margin: 10px;
   margin-left: 400px;
   cursor: pointer;
 `;
 
-function AiChat() {
+function AddHospital() {
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -47,9 +47,9 @@ function AiChat() {
       <Header>
         <BackButton src={BackIcon} alt="Back" onClick={handleBackClick} />
       </Header>
-      <FullScreenImage src={AIPage} alt="AI Page" onLoad={handleImageLoad} />
+      <FullScreenImage src={AddHospitalPage} alt="AddHospitalPage" onLoad={handleImageLoad} />
     </>
   );
 }
 
-export default AiChat;
+export default AddHospital;
