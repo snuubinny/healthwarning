@@ -14,6 +14,8 @@ import Main from "./pages/Main";
 import AiChat from "./pages/AiChat";
 import Report from "./pages/Report";
 import Loading from "./pages/Loading";
+import Hospital from "./pages/Hospital";
+import AddHospital from "./pages/AddHospital";
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
@@ -34,6 +36,8 @@ root.render(
           <Route path="RegisterForm" element={<RegisterForm />} />
           <Route path="AiChat" element={<AiChat />} />
           <Route path="Report" element={<Report />} />
+          <Route path="Hospital" element={<Hospital />} />
+          <Route path="AddHospital" element={<AddHospital />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
