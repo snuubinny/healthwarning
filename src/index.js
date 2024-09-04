@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/Bbiyong">
+    <BrowserRouter basename="/Bbiyong_App">
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Loading />} />
