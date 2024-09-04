@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import MainPage from "../img/MainPage.png";
 import DirectLinks from "../components/DirectLinks";
+import LendingPage from "../img/Lending.png";
 import NavBar from "../components/NavBar";
 
 const FullScreenImage = styled.img`
@@ -13,7 +13,7 @@ const FullScreenImage = styled.img`
 function Lending() {
   return (
     <>
-      <FullScreenImage src={MainPage} alt="Main Page" />
+      <FullScreenImage src={LendingPage} alt="Lending Page" />
       <DirectLinks />
     </>
   );
