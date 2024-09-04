@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/healthwarning/static/css/main.1cd5b016.css",
+    "main.js": "/healthwarning/static/js/main.3b906cb0.js",
+    "static/media/Lending.png": "/healthwarning/static/media/Lending.e875910fc80ea602dd6f.png",
+    "static/media/report.png": "/healthwarning/static/media/report.c0165313d794c325ac21.png",
+    "static/media/analysis.png": "/healthwarning/static/media/analysis.fb6f07253875d2ff6224.png",
+    "static/media/Safe.png": "/healthwarning/static/media/Safe.1114a96c2c8bb54cc921.png",
+    "static/media/AIChat.png": "/healthwarning/static/media/AIChat.79efbc486f7d40978ee0.png",
+    "static/media/Hospital 1.png": "/healthwarning/static/media/Hospital 1.0b7848941948c49cfe8c.png",
+    "static/media/pen.png": "/healthwarning/static/media/pen.8c177be6da3b1cd0f96e.png",
+    "static/media/Hospital 2.png": "/healthwarning/static/media/Hospital 2.04d0a08dbc022fe93e8a.png",
+    "static/media/sleep.png": "/healthwarning/static/media/sleep.5f6344eadd001b5e1fee.png",
+    "static/media/logo.png": "/healthwarning/static/media/logo.f9cd0062549389a3e622.png",
+    "static/media/woman.png": "/healthwarning/static/media/woman.e072870e8b4ac800bf8a.png",
+    "static/media/man.png": "/healthwarning/static/media/man.0f097e58f293521a6111.png",
+    "static/media/medicine.png": "/healthwarning/static/media/medicine.f94a5ead28c36b035b1a.png",
+    "static/media/meal.png": "/healthwarning/static/media/meal.6c45253dd1ef3841a091.png",
+    "static/media/MainButton.png": "/healthwarning/static/media/MainButton.e23e5914bcc9321a7c31.png",
+    "static/media/exercise.png": "/healthwarning/static/media/exercise.0a1ade7c5c5575241272.png",
+    "static/media/hand.png": "/healthwarning/static/media/hand.1873ad686d2a41fe94b5.png",
+    "static/media/MainButton2.png": "/healthwarning/static/media/MainButton2.44d0b25976ea956bf343.png",
+    "static/media/cat.png": "/healthwarning/static/media/cat.23b3eac1c5d2867cfc11.png",
+    "static/media/SingleLogo.png": "/healthwarning/static/media/SingleLogo.cb0bfc1582aab871966d.png",
+    "static/media/LogoText.png": "/healthwarning/static/media/LogoText.3f56351e747b986cbba7.png",
+    "static/media/Footer_Logo.png": "/healthwarning/static/media/Footer_Logo.6b10089c24c2122f184f.png",
+    "static/media/25percent.png": "/healthwarning/static/media/25percent.2e08c073e5ca33c43518.png",
+    "static/media/50percent.png": "/healthwarning/static/media/50percent.8789949b8496f9276c61.png",
+    "static/media/100percent.png": "/healthwarning/static/media/100percent.24142ea531bf06e046e6.png",
+    "static/media/75percent.png": "/healthwarning/static/media/75percent.61fbf0e30c0c3ef7ed8d.png",
+    "static/media/0percent.png": "/healthwarning/static/media/0percent.9d9ff97496f364569c24.png",
+    "static/media/message.png": "/healthwarning/static/media/message.c9c9571283fdfc0c22ef.png",
+    "static/media/back.png": "/healthwarning/static/media/back.3e69c573992c76698e41.png",
+    "index.html": "/healthwarning/index.html",
+    "main.1cd5b016.css.map": "/healthwarning/static/css/main.1cd5b016.css.map",
+    "main.3b906cb0.js.map": "/healthwarning/static/js/main.3b906cb0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1cd5b016.css",
+    "static/js/main.3b906cb0.js"
+  ]
+}
