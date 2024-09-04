@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import axios from "axios";
@@ -8,13 +9,6 @@ import FiftyImage from "../img/50percent.png";
 import SeventyfiveImage from "../img/75percent.png";
 import HundredImage from "../img/100percent.png";
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 435px;
-  height: 170px;
-`;
 const RecentPostsBox = styled.div`
   display: flex;
   align-content: center;
@@ -104,51 +98,17 @@ const HighLight2 = styled.div`
   margin-right: 10px;
 `;
 
-const LeftButton = styled.img`
-  width: 37px;
-  height: 37px;
-  margin-right: 3px;
-  cursor: pointer;
-  filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
-
-  &:hover {
-    width: 40px;
-    height: 40px;
-    margin-right: 0px;
-    transition: all 0.1s ease-in-out;
-  }
-`;
-
-const RightButton = styled.img`
-  width: 37px;
-  height: 37px;
-  margin-right: 3px;
-  cursor: pointer;
-  filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
-
-  &:hover {
-    width: 40px;
-    height: 40px;
-    margin-right: 0;
-    transition: all 0.1s ease-in-out;
-  }
-`;
-
 const EmptyBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  width: 335px;
-  margin-left: 50px;
-  margin-right: 50px;
-  gap: 5px;
-  height: 180px;
+  flex-direction: column;
+  width: 650px;
+  height: 380px;
   margin-top: 20px;
   background-color: #fcfcfc;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 1px #dfdfdf;
-  font-size: 13px;
 `;
 
 const RecentPostCard = ({ post, onClick }) => {
@@ -164,8 +124,6 @@ const RecentPostCard = ({ post, onClick }) => {
   };
 
   const [data, setData] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -194,18 +152,6 @@ const RecentPostCard = ({ post, onClick }) => {
     navigate(`/post/${post.id}`); // postId를 사용하여 해당 포스트로 이동
   };
 
-  const handleLeftClick = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? posts.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleRightClick = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === posts.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
   if (!data) {
     return (
       <EmptyBox>
@@ -215,13 +161,7 @@ const RecentPostCard = ({ post, onClick }) => {
   }
 
   return (
-    <Wrapper>
-    <LeftButton
-          src={`${process.env.PUBLIC_URL}/leftbutton.png`}
-          alt="left"
-          onClick={handleLeftClick}
-        />
-      <RecentPostsBox onClick={handleClick}>
+    <RecentPostsBox onClick={handleClick}>
       <PostDate>{date} 의 건강 기록</PostDate>
       <AchivementRateContainer>
         <AchivementRate src={getAchievementImage()} alt="Achievement Percentage" />
@@ -241,12 +181,6 @@ const RecentPostCard = ({ post, onClick }) => {
         </InfoBox>
       </AchivementRateContainer>
     </RecentPostsBox>
-    <RightButton
-          src={`${process.env.PUBLIC_URL}/rightbutton.png`}
-          alt="right"
-          onClick={handleRightClick}
-        />
-    </Wrapper>
   );
 };
 

@@ -36,10 +36,10 @@ const Wrapper = styled.div`
 `;
 
 const NavBarWrapper = styled.div`
-  width: calc(100% - 8px);
+  width: calc(100% - 10px);
   height: 70px;
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 
 const HeadLine = styled.div`
