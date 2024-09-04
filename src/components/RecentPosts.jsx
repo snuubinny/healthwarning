@@ -17,36 +17,37 @@ const MainContainer = styled.div`
 
 const RecentPostsContainer = styled.div`
   display: flex;
+  width: 435px;
   justify-content: center;
   align-items: center;
   gap: 0px;
 `;
 
 const LeftButton = styled.img`
-  width: 37px;
-  height: 37px;
+  width: 40px;
+  height: 40px;
   margin-right: 3px;
   cursor: pointer;
   filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
 
   &:hover {
-    width: 40px;
-    height: 40px;
+    width: 43px;
+    height: 43px;
     margin-right: 0px;
     transition: all 0.1s ease-in-out;
   }
 `;
 
 const RightButton = styled.img`
-  width: 37px;
-  height: 37px;
+  width: 40px;
+  height: 40px;
   margin-right: 3px;
   cursor: pointer;
   filter: invert(0.3) sepia(0.5) saturate(0.1) hue-rotate(0deg);
 
   &:hover {
-    width: 40px;
-    height: 40px;
+    width: 43px;
+    height: 43px;
     margin-right: 0;
     transition: all 0.1s ease-in-out;
   }
@@ -121,10 +122,10 @@ const MissYouText = styled.div`
   color: #000000;
 `;
 
-const HighLight = styled.img`
-  width: 25px;
-  height: 25px;
-  filter: invert(58%) sepia(96%) saturate(3000%) hue-rotate(-10deg) brightness(105%) contrast(90%);
+const HighLight = styled.div`
+  color: #ff832b;
+  margin-left: 5px;
+  font-weight: bold;
 `;
 
 const RecentPosts = () => {
@@ -158,9 +159,22 @@ const RecentPosts = () => {
     fetchData();
   }, []);
 
+  const handleLeftClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? posts.length - 1 : prevIndex - 1
+    );
+  };
+
   const handleHospitalClick = () => {
     navigate("/Hospital");
   };
+
+  const handleRightClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === posts.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   const handleMissYouClick = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -197,6 +211,11 @@ const RecentPosts = () => {
   return (
     <MainContainer>
       <RecentPostsContainer>
+        <LeftButton
+          src={`${process.env.PUBLIC_URL}/leftbutton.png`}
+          alt="left"
+          onClick={handleLeftClick}
+        />
         {posts.length > 0 ? (
           <RecentPostCard
             post={posts[currentIndex]}
@@ -204,10 +223,15 @@ const RecentPosts = () => {
           />
         ) : (
           <EmptyBox>
-            <HighLight src={`${process.env.PUBLIC_URL}/post.png`} alt="Post"/>버튼을 눌러 첫 게시글을
+            <HighLight>'오늘의 글 작성'</HighLight>을 눌러 첫 게시글을
             작성해보세요!
           </EmptyBox> // 데이터를 불러오지 못했을 때 빈 박스 표시
         )}
+        <RightButton
+          src={`${process.env.PUBLIC_URL}/rightbutton.png`}
+          alt="right"
+          onClick={handleRightClick}
+        />
       </RecentPostsContainer>
       <MissYouContainer>
         <MissYouButton onClick={handleMissYouClick} />
@@ -234,11 +258,8 @@ const EmptyBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 335px;
-  margin-left: 50px;
-  margin-right: 50px;
-  gap: 5px;
-  height: 180px;
+  width: 350px;
+  height: 200px;
   margin-top: 20px;
   background-color: #fcfcfc;
   border-radius: 20px;

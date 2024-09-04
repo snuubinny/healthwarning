@@ -76,11 +76,34 @@ const EmptyBox = styled.div`
   height: 150px;
 `;
 
+const PageButtonContainer = styled.div`
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+const LeftPageButton = styled.img`
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+`;
+
+const RightPageButton = styled.img`
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+`;
+
+const PageText = styled.p`
+font-size: 15px;
+`;
+
 const Pagination = ({ userId, onPostClick }) => {
   const navigate = useNavigate();
-  const handleCreatePostClick = () => {
-    navigate("/CreatePost");
-  };
 
   const [cards, setCards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -136,6 +159,27 @@ const Pagination = ({ userId, onPostClick }) => {
         ) : (
           <EmptyBox>등록된 포스트가 없습니다</EmptyBox>
         )}
+         <PageButtonContainer>
+        <LeftPageButton
+          src={`${process.env.PUBLIC_URL}/leftbutton.png`}
+          alt="left"
+          onClick={() =>
+            paginate(currentPage > 1 ? currentPage - 1 : currentPage)
+          }
+        />
+        <PageText>{currentPage}</PageText>
+        <RightPageButton
+          src={`${process.env.PUBLIC_URL}/rightbutton.png`}
+          alt="right"
+          onClick={() =>
+            paginate(
+              currentPage < Math.ceil(cards.length / cardsPerPage)
+                ? currentPage + 1
+                : currentPage
+            )
+          }
+        />
+      </PageButtonContainer>
       </Background>
     </>
   );
