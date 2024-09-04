@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ReportPage from "../img/report.png";
 import BackIcon from "../img/back.png";
 import { useNavigate, useParams } from "react-router-dom";
+import AnalysisPage from "../img/analysis.png";
 
 const FullScreenImage = styled.img`
   height: 100%;
@@ -45,7 +46,11 @@ function Report() {
       <Header>
         <BackButton src={BackIcon} alt="Back" onClick={handleBackClick} />
       </Header>
-      <FullScreenImage src={ReportPage} alt="Report Page" onLoad={handleImageLoad} />
+      <FullScreenImage
+        src={AnalysisPage}
+        alt="Analysis Page"
+        onLoad={handleImageLoad}
+      />
     </>
   );
 }

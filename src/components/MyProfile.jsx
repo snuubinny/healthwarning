@@ -85,7 +85,7 @@ const TitleWrap = styled.p`
 `;
 
 const TextWrap = styled.p`
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-size: 14px;
   color: black;
